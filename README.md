@@ -1,0 +1,2 @@
+# rekvalifio
+Diplomová práce
