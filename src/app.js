@@ -1,12 +1,14 @@
 import express from "express";
-import contacts from "../routes/contacts.js";
-import home from "../routes/home.js";
-import courses from "../routes/courses.js";
+import contacts from "../routes/web/contacts.js";
+import home from "../routes/web/home.js";
+import courses from "../routes/web/courses.js";
 
 
 export const app = express()
 
 app.set('view engine', 'ejs')
+
+app.use(express.static('public'))
 
 app.use(home)
 app.use(contacts)

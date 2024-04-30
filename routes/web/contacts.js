@@ -1,4 +1,4 @@
-import {contactsView} from "../controllers/contactsController.js";
+import {contactsView} from "../../controllers/web/contactsController.js";
 import express from "express";
 
 const contacts = express.Router()
