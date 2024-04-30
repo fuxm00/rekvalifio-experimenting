@@ -1,0 +1,22 @@
+{
+  "name": "rekvalifio",
+  "version": "1.0.0",
+  "description": "diplomová práce",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuxm00/rekvalifio.git"
+  },
+  "author": "Marek Fux",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fuxm00/rekvalifio/issues"
+  },
+  "homepage": "https://github.com/fuxm00/rekvalifio#readme",
+  "dependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
