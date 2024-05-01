@@ -1,3 +1,5 @@
-<a href="/">Domů</a>
-<a href="/courses">kurzy</a>
-<a href="/contacts">Kontakty</a>
+<div id="navbar-container">
+    <a href="/" class="navbar-item <%= marked === "home" ? "marked" : ""%>">Domů</a>
+    <a href="/courses" class="navbar-item <%= marked === "courses" ? "marked" : ""%>">Kurzy</a>
+    <a href="/contacts" class="navbar-item <%= marked === "contacts" ? "marked" : ""%>">Kontakty</a>
+</div>

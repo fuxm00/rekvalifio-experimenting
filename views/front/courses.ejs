@@ -1,4 +1,15 @@
 <%- include('_header') %>
 <%- include('_navbar') %>
 <h1>Kurzy</h1>
+
+<div>
+    <% for (const course of courses) { %>
+    <div>
+        <a href="/courses/<%= course.id %>"><%= course.title %></a>
+        <%= course.description %>
+    </div>
+
+    <% } %>
+</div>
+
 <%- include('_footer') %>
