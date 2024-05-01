@@ -1,0 +1,11 @@
+admin kurzy
+
+<div>
+    <% for (const course of courses) { %>
+        <div>
+            <a href="/admin/courses/<%= course.id %>"><%= course.title %></a>
+            <%= course.description %>
+        </div>
+
+    <% } %>
+</div>

@@ -1,8 +1,11 @@
 import express from "express";
-import {adminView} from "../../controllers/admin/adminController.js";
+import {adminLoginView, adminView} from "../../controllers/admin/adminController.js";
+import auth from "../../src/middlewares/auth.js";
 
 const admin = express.Router()
 
-admin.get("/admin", adminView)
+admin.get("/admin", auth, adminView)
+
+admin.get("/admin/login", adminLoginView)
 
 export default admin
