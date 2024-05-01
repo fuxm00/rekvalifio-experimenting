@@ -1,5 +1,5 @@
 export const contactsView = async (req, res) => {
-    res.render("web/contacts", {
+    res.render("front/contacts", {
         title: 'Kontakty'
     } );
 }

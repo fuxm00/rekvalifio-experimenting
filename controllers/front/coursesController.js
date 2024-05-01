@@ -1,5 +1,5 @@
 export const coursesView = async (req, res) => {
-    res.render("web/courses", {
+    res.render("front/courses", {
         title: 'Kurzy'
     } );
 }

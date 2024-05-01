@@ -1,5 +1,5 @@
 export const homeView = async (req, res) => {
-    res.render("web/home", {
+    res.render("front/home", {
         title: 'Domů'
     } );
 }
