@@ -1,9 +1,8 @@
-
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-export const up = async (knex) => {
+exports.up = function(knex) {
   
 };
 
@@ -11,8 +10,6 @@ export const up = async (knex) => {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-export const down = async (knex) => {
+exports.down = function(knex) {
   
 };
-
-

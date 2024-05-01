@@ -1,7 +1,10 @@
 export default {
     client: 'sqlite3',
     connection: {
-        filename: './rekvalifiodb.sqlite',
+        filename: './db.sqlite',
     },
     useNullAsDefault: false,
+    migrations: {
+        directory: './migrations'
+    }
 }

@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "mig": "knex migrate:latest",
-    "cdb": "knex migrate:currentVersion"
+    "cdb": "knex migrate:currentVersion",
+    "schema": "knex migrate:make newSchema"
   },
   "repository": {
     "type": "git",
