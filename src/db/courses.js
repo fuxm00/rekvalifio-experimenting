@@ -17,3 +17,7 @@ export const getCourseById = async (id) => {
 
     return course
 }
+
+export const removeCourseById = async (id) => {
+    await db('courses').delete().where('id', id)
+}

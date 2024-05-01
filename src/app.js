@@ -11,18 +11,15 @@ export const app = express()
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: true}))
 
-//front
 app.use(home)
 app.use(contacts)
 app.use(courses)
 
-//admin
 app.use(admin)
 app.use(adminCourses)
 
-//404
 app.use((req, res) => {
     console.log('404', req.method, req.url)
     res.render('404')
