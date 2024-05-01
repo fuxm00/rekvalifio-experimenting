@@ -1,4 +1,4 @@
-import {getAllCourses, getCourseById} from "../../src/db/courses.js";
+import {createCourse, getAllCourses, getCourseById} from "../../src/db/courses.js";
 
 export const adminCoursesView = async (req, res) => {
 
@@ -21,4 +21,14 @@ export const adminCourseView = async (req, res) => {
         title: 'Kurz',
         course
     } );
+}
+
+export const addCourse = async (req, res) => {
+
+    const title = String(req.body.title)
+    const description = String(req.body.description)
+
+    await createCourse({title, description})
+
+    res.redirect('back')
 }
