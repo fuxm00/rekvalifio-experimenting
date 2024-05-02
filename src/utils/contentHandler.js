@@ -1,6 +1,6 @@
 import fs from "fs";
 
-const path = './src/db/content.json'
+const path = './src/content.json'
 
 export const getContentByKey = async function (key) {
     const rawData = fs.readFileSync(path);
