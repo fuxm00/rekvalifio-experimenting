@@ -4,6 +4,7 @@ import home from "../routes/front/home.js";
 import courses from "../routes/front/courses.js";
 import admin from "../routes/admin/admin.js";
 import adminCourses from "../routes/admin/adminCourses.js";
+import loadUser from "./middlewares/loadUser.js";
 
 
 export const app = express()
@@ -12,6 +13,7 @@ app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
+app.use(loadUser)
 
 app.use(home)
 app.use(contacts)

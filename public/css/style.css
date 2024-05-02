@@ -5,9 +5,6 @@
 
 #master-container {
     margin: 0 250px 0 250px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 .marked {

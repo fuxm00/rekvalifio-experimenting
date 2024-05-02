@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#master-container {
+    margin: 0 250px 0 250px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#header {
+    margin-top: 20px;
+    border-radius: 8px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #FDD692;
+}
+
+#footer {
+    margin-top: auto;
+    margin-bottom: 15px;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #FDD692;
+}
