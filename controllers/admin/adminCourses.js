@@ -47,12 +47,7 @@ export const editCourse = async (req, res) => {
 
     await updateCourse({title, description}, courseId)
 
-    const courses = await getAllCourses()
-
-    res.render("admin/courses", {
-        title: 'kurzy',
-        courses,
-    } );
+    res.redirect('/admin/courses')
 }
 
 export const removeCourse = async (req, res) => {
