@@ -34,3 +34,8 @@
 
     background-color: #FDD692;
 }
+
+.center-button {
+    display: flex;
+    justify-content: center;
+}

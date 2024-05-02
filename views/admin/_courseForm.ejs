@@ -1,0 +1,47 @@
+<h2>
+    <% if (!course) { %>
+        Přidat kurz
+    <% } else { %>
+        Upravit kurz
+    <% } %>
+</h2>
+
+<div>
+    <form
+    <% if (!course) { %>
+        action='/admin/courses/add-course'
+    <% } else { %>
+        action='/admin/courses/edit-course/<%= course.id %>'
+            <% } %>
+
+        method='post'>
+        <div>
+            <label>
+                Název
+                <input type="text" name="title" placeholder="Název" class="input"
+                <% if (course) { %>
+                       value="<%= course.title %>"
+                        <% } %>
+                />
+            </label>
+
+            <label>
+                Popis
+                <input type=" text" name="description" placeholder="Popis" class="input"
+                <% if (course) { %>
+                       value="<%= course.description %>"
+                        <% } %>/>
+            </label>
+        </div>
+
+        <div class="center-button">
+            <button type='submit'>
+                <% if (!course) { %>
+                    Přidat
+                <% } else { %>
+                    Upravit
+                <% } %>
+            </button>
+        </div>
+    </form>
+</div>

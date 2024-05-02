@@ -13,6 +13,7 @@ export const adminCoursesView = async (req, res) => {
     res.render("admin/courses", {
         title: 'kurzy',
         courses,
+        course: null
     } );
 
 }
