@@ -5,6 +5,8 @@ import courses from "../routes/front/courses.js";
 import admin from "../routes/admin/admin.js";
 import adminCourses from "../routes/admin/adminCourses.js";
 import loadUser from "./middlewares/loadUser.js";
+import adminOrders from "../routes/admin/adminOrders.js";
+import adminContent from "../routes/admin/adminContent.js";
 
 
 export const app = express()
@@ -21,6 +23,8 @@ app.use(courses)
 
 app.use(admin)
 app.use(adminCourses)
+app.use(adminOrders)
+app.use(adminContent)
 
 app.use((req, res) => {
     console.log('404', req.method, req.url)
