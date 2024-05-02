@@ -131,3 +131,4 @@ dist
 *.sqlite
 
 /public/img/*
+/src/content.json
