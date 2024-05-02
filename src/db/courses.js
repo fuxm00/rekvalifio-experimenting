@@ -11,6 +11,9 @@ export const getAllCourses = async () => {
 export const createCourse = async (data) => {
     await db('courses').insert(data)
 }
+export const updateCourse = async (data, courseId) => {
+    await db('courses').update(data).where('Id', courseId)
+}
 
 export const getCourseById = async (id) => {
     const course = await db('courses').select('*').where('id', id).first()
