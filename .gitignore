@@ -130,4 +130,4 @@ dist
 .pnp.*
 *.sqlite
 
-./public/img/*
+/public/img/*
