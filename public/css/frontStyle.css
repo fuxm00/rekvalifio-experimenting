@@ -1,0 +1,12 @@
+
+.marked {
+    color: orange;
+}
+
+#logo {
+    max-width: 300px;
+}
+
+#logo:hover {
+    opacity: 70%;
+}
