@@ -5,14 +5,13 @@ export const adminContentView = async (req, res) => {
 
     res.render("admin/content", {
         title: 'Obsah',
-    } );
+    });
 }
 
 export const changeLogo = async (req, res) => {
 
-    const fileName = req.file.filename
-
-    await saveContent(fileName)
+    const {filename, fieldname} = req.file
+    await saveContent(fieldname, filename)
 
     res.redirect('back')
 }

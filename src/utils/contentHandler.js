@@ -8,10 +8,10 @@ export const getContentByKey = async function (key) {
     return json[key]
 }
 
-export const saveContent = async function (value) {
+export const saveContent = async function (key, value) {
     var data = fs.readFileSync(path);
     var json = JSON.parse(data);
-    json['logo'] = value
+    json[key] = value
 
     fs.writeFile(path, JSON.stringify(json, null, 2), (err, data) => {
         if (err) throw err;
