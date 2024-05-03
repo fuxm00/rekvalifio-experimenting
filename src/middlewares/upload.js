@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
     },
     filename: async function (req, file, cb) {
         const extension = path.extname(file.originalname)
-        const name = 'logo'
+        const name = file.fieldname
         cb(null, name + extension)
     }
 })

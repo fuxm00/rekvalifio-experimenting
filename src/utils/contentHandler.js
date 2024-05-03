@@ -13,8 +13,7 @@ export const saveContent = async function (value) {
     var json = JSON.parse(data);
     json['logo'] = value
 
-    fs.writeFile(path, JSON.stringify(json), (err, data) => {
+    fs.writeFile(path, JSON.stringify(json, null, 2), (err, data) => {
         if (err) throw err;
-        console.log(data);
     } )
 }

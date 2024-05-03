@@ -6,6 +6,6 @@ import {upload} from "../../src/middlewares/upload.js";
 const content = express.Router()
 
 content.get("/admin/content", auth, adminContentView)
-content.post("/admin/content/change-logo", auth, upload.single('image'), changeLogo)
+content.post("/admin/content/change-logo", auth, upload.single('logo'), changeLogo)
 
 export default content
