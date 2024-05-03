@@ -11,14 +11,16 @@
 <body>
 <div id="master-container">
     <div id="header">
-        <h1>REKVALIFIO</h1>
+        <a href="/admin">
+            <h1>REKVALIFIO</h1>
+        </a>
         <div>
             <% if (user) { %>
                 Uživatel: <%= user.name %>
-                <a href="/logout" class="header-button">Odhlásit</a>
+                <a href="/admin">Odhlásit</a>
             <% } else { %>
-                <a href="/login" class="header-button">Přihlášení</a>
-                <a href="/register" class="header-button">Registrace</a>
+                <a href="/admin">Přihlášení</a>
+                <a href="/admin">Registrace</a>
             <% } %>
         </div>
     </div>

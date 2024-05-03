@@ -1,4 +1,4 @@
-<%- include('_header') %>
+<%- include('./parts/_header') %>
 
 <h2>Objednávky</h2>
 
@@ -6,4 +6,13 @@
     <a href="/admin/orders/archive">Archiv objednávek</a>
 </div>
 
-<%- include('_footer') %>
+<h2>Seznam objednávek</h2>
+<% if ((orders.length >= 1)) { %>
+    <%- include('./parts/_orderList') %>
+<% } else { %>
+    <div id="content-container">
+        <p>žádné</p>
+    </div>
+<% } %>
+
+<%- include('./parts/_footer') %>

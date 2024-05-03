@@ -1,11 +1,15 @@
 import {getAllCourses, getCourseById} from "../../src/db/courses.js";
 import {getContentByKey} from "../../src/utils/contentHandler.js";
+import {createOrder} from "../../src/db/orders.js";
 
 const logoName = await getContentByKey('logo')
 
 export const coursesView = async (req, res) => {
 
     const courses = await getAllCourses()
+
+    const courseId = 1
+    await createOrder({courseId})
 
     res.render("front/courses", {
         title: 'Kurzy',
