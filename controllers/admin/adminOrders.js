@@ -1,9 +1,9 @@
 import {getAllCourses} from "../../src/db/courses.js";
-import {getAllOrders} from "../../src/db/orders.js";
+import {getAllArchivedOrders, getAllNonArchivedOrders, getAllOrders} from "../../src/db/orders.js";
 
 export const adminOrdersView = async (req, res) => {
 
-    const orders = await getAllOrders();
+    const orders = await getAllNonArchivedOrders();
 
     res.render("admin/orders", {
         title: 'Objednávky',
@@ -13,7 +13,7 @@ export const adminOrdersView = async (req, res) => {
 
 export const adminOrdersArchiveView = async (req, res) => {
 
-    const orders = null
+    const orders = await getAllArchivedOrders();
 
     res.render("admin/ordersArchive", {
         title: 'Archiv objednávek',

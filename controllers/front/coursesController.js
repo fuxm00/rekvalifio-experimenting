@@ -8,6 +8,7 @@ export const coursesView = async (req, res) => {
 
     const courses = await getAllCourses()
 
+    //TODO temp
     const courseId = 1
     await createOrder({courseId})
 

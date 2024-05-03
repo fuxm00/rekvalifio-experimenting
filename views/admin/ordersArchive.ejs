@@ -1,5 +1,12 @@
-<%- include('./parts_header') %>
+<%- include('./parts/_header') %>
 
-Archiv obejdnávek
+<h2>Seznam archivovaných objednávek</h2>
+<% if ((orders.length >= 1)) { %>
+    <%- include('./parts/_orderList') %>
+<% } else { %>
+    <div id="content-container">
+        <p>žádné</p>
+    </div>
+<% } %>
 
 <%- include('./parts/_footer') %>
