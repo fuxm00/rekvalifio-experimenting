@@ -3,9 +3,9 @@ import fs from "fs";
 const path = './src/content.json'
 
 export const getContentByKey = async function (key) {
-    const rawData = fs.readFileSync(path);
-    const data = JSON.parse(rawData)
-    return data[key]
+    const data = fs.readFileSync(path);
+    const json = JSON.parse(data)
+    return json[key]
 }
 
 export const saveContent = async function (value) {
