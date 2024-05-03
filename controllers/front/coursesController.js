@@ -1,4 +1,7 @@
 import {getAllCourses, getCourseById} from "../../src/db/courses.js";
+import {getContentByKey} from "../../src/utils/contentHandler.js";
+
+const logoName = await getContentByKey('logo')
 
 export const coursesView = async (req, res) => {
 
@@ -8,6 +11,7 @@ export const coursesView = async (req, res) => {
         title: 'Kurzy',
         marked: 'courses',
         courses,
+        logoName
     } );
 }
 
@@ -20,6 +24,7 @@ export const courseView = async (req, res) => {
     res.render("front/course", {
         title: 'Kurz',
         marked: 'courses',
-        course
+        course,
+        logoName
     } );
 }
