@@ -1,13 +1,9 @@
 <%- include('_header') %>
 <%- include('_navbar') %>
-<h1>Super kurz</h1>
+<h1><%= course.title %></h1>
 
 <div>
-        <div>
-            <%= course.title %>
-            <%= course.description %>
-        </div>
-
+    <%= course.description %>
 </div>
 
 <%- include('_footer') %>

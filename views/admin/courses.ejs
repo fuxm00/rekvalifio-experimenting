@@ -2,6 +2,14 @@
 
 <%- include('_courseForm') %>
 
-<%- include('_courseList') %>
+<h2>Seznam kurzů</h2>
+<% if ((courses.length >= 1)) { %>
+    <%- include('_courseList') %>
+<% } else { %>
+    <div id="content-container">
+        <p>žádné</p>
+    </div>
+<% } %>
+
 
 <%- include('_footer') %>
