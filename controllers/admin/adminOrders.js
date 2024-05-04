@@ -1,9 +1,15 @@
 import {getAllCourses, removeCourseById} from "../../src/db/courses.js";
 import {archiveOrderById, getAllArchivedOrders, getAllNonArchivedOrders, getAllOrders} from "../../src/db/orders.js";
+import moment from "moment";
+import {formatDate} from "../../src/utils/formatDate.js";
 
 export const adminOrdersView = async (req, res) => {
 
     const orders = await getAllNonArchivedOrders();
+
+    for (const order of orders) {
+        order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
+    }
 
     res.render("admin/orders", {
         title: 'Objednávky',
@@ -15,6 +21,10 @@ export const adminOrdersView = async (req, res) => {
 export const adminOrdersArchiveView = async (req, res) => {
 
     const orders = await getAllArchivedOrders();
+
+    for (const order of orders) {
+        order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
+    }
 
     res.render("admin/ordersArchive", {
         title: 'Archiv objednávek',

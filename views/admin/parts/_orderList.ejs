@@ -1,15 +1,15 @@
 <div id="content-container">
     <% for (const order of orders) { %>
         <div>
-            <%= order.id %>
+            <%= order.id %>.
 
-                <% if (archivedList) { %>
-                        <a href="/admin/orders/unArchiveOrder/<%= order.id %>">Odarchivovat</a>
-                <% } else { %>
-                        <a href="/admin/orders/archiveOrder/<%= order.id %>">Archivovat</a>
-                <% } %>
+            Vytvořeno: <%= order.formatedDate %>
 
-
+            <% if (archivedList) { %>
+                <a href="/admin/orders/unArchiveOrder/<%= order.id %>">Odarchivovat</a>
+            <% } else { %>
+                <a href="/admin/orders/archiveOrder/<%= order.id %>">Archivovat</a>
+            <% } %>
 
         </div>
 
