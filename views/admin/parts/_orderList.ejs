@@ -2,7 +2,15 @@
     <% for (const order of orders) { %>
         <div>
             <%= order.id %>
-                <%= order.archived %>
+
+                <% if (archivedList) { %>
+                        <a href="/admin/orders/unArchiveOrder/<%= order.id %>">Odarchivovat</a>
+                <% } else { %>
+                        <a href="/admin/orders/archiveOrder/<%= order.id %>">Archivovat</a>
+                <% } %>
+
+
+
         </div>
 
     <% } %>

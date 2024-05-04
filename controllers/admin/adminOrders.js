@@ -1,5 +1,5 @@
-import {getAllCourses} from "../../src/db/courses.js";
-import {getAllArchivedOrders, getAllNonArchivedOrders, getAllOrders} from "../../src/db/orders.js";
+import {getAllCourses, removeCourseById} from "../../src/db/courses.js";
+import {archiveOrderById, getAllArchivedOrders, getAllNonArchivedOrders, getAllOrders} from "../../src/db/orders.js";
 
 export const adminOrdersView = async (req, res) => {
 
@@ -8,6 +8,7 @@ export const adminOrdersView = async (req, res) => {
     res.render("admin/orders", {
         title: 'Objednávky',
         orders,
+        archivedList: false
     } );
 }
 
@@ -18,5 +19,24 @@ export const adminOrdersArchiveView = async (req, res) => {
     res.render("admin/ordersArchive", {
         title: 'Archiv objednávek',
         orders,
+        archivedList: true
     } );
+}
+
+export const adminOrdersArchive = async (req, res) => {
+
+    const orderId = req.params.id;
+
+    await archiveOrderById(orderId, true);
+
+    res.redirect('back')
+}
+
+export const adminOrdersUnArchive = async (req, res) => {
+
+    const orderId = req.params.id;
+
+    await archiveOrderById(orderId, false);
+
+    res.redirect('back')
 }
