@@ -1,13 +1,31 @@
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 #logo-link {
     max-width: min-content;
 }
-
 
 #logo {
     max-width: 300px;
 }
 
 #logo:hover {
+    opacity: 70%;
+}
+
+#social-link {
+    max-width: min-content;
+    margin: 0 20px;
+}
+
+#social-logo {
+    max-width: 30px;
+}
+
+#social-logo:hover {
     opacity: 70%;
 }
 

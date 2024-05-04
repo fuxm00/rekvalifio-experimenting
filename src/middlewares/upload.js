@@ -4,7 +4,7 @@ import crypto from "crypto";
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/img')
+        cb(null, './public/img/upload')
     },
     filename: async function (req, file, cb) {
         const extension = path.extname(file.originalname)

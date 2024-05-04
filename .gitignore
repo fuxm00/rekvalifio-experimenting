@@ -130,5 +130,5 @@ dist
 .pnp.*
 *.sqlite
 
-/public/img/*
+/public/img/upload/*
 /db.json
