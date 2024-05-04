@@ -1,5 +1,5 @@
 import {getAllCourses, getCourseById} from "../../src/db/courses.js";
-import {createOrder} from "../../src/db/orders.js";
+import {createOrder, getOrderById} from "../../src/db/orders.js";
 import jsonDb from "../../src/jsonDb.js";
 
 const logoName = await jsonDb.get('logo')
@@ -7,10 +7,6 @@ const logoName = await jsonDb.get('logo')
 export const coursesView = async (req, res) => {
 
     const courses = await getAllCourses()
-
-    //TODO temp
-    const courseId = 1
-    await createOrder({courseId})
 
     res.render("front/courses", {
         title: 'Kurzy',
@@ -47,3 +43,27 @@ export const courseOrderView = async (req, res) => {
         logoName
     } );
 }
+
+export const placeOrder = async (req, res) => {
+
+    const courseId = req.params.id;
+    const order = await createOrder({courseId})
+
+    res.redirect(`/course/order-complete/${order.id}`);
+}
+
+export const orderCompleteView = async (req, res) => {
+
+    const orderId = req.params.id;
+    const order = await getOrderById(orderId)
+
+    res.render("front/orderComplete", {
+        title: 'Kurz',
+        marked: null,
+        order,
+        logoName
+    } );
+}
+
+
+
