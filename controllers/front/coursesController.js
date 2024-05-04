@@ -1,8 +1,8 @@
 import {getAllCourses, getCourseById} from "../../src/db/courses.js";
-import {getContentByKey} from "../../src/utils/contentHandler.js";
 import {createOrder} from "../../src/db/orders.js";
+import jsonDb from "../../src/jsonDb.js";
 
-const logoName = await getContentByKey('logo')
+const logoName = await jsonDb.get('logo')
 
 export const coursesView = async (req, res) => {
 

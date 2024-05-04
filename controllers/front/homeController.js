@@ -1,14 +1,16 @@
-import {createCourse} from "../../src/db/courses.js";
-import fs from "fs";
-import {getContentByKey,} from "../../src/utils/contentHandler.js";
+import jsonDb from "../../src/jsonDb.js";
 
 export const homeView = async (req, res) => {
 
-    const logoName = await getContentByKey('logo')
+    const logoName = await jsonDb.get('logo')
+    const homeHeading = await jsonDb.get('home-title')
+    const homeText = await jsonDb.get('home-text')
 
     res.render("front/home", {
         title: 'Domů',
         marked: 'home',
-        logoName
+        logoName,
+        homeHeading,
+        homeText
     } );
 }

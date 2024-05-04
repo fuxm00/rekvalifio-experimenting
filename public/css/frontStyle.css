@@ -23,16 +23,16 @@
 }
 
 .navbar-item {
-    margin: 5px;
+    margin: 15px;
     padding: 5px;
     color: white;
     text-decoration: none;
 }
 
 .navbar-item:hover {
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .marked {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
 }
