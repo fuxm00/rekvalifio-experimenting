@@ -3,7 +3,7 @@ import {
     archiveOrderById, completeOrderById,
     getAllArchivedOrders,
     getAllNonArchivedOrders,
-    getOrderById
+    getOrderById, remvoeOrderById
 } from "../../src/db/orders.js";
 import {formatDate} from "../../src/utils/formatDate.js";
 
@@ -84,6 +84,15 @@ export const adminOrdersUnComplete = async (req, res) => {
     const orderId = req.params.id;
 
     await completeOrderById(orderId, false);
+
+    res.redirect('back')
+}
+
+export const deleteOrder = async (req, res) => {
+
+    const orderId = req.params.id;
+
+    await remvoeOrderById(orderId)
 
     res.redirect('back')
 }
