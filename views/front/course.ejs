@@ -1,9 +1,12 @@
 <%- include('./parts/_header') %>
 <%- include('./parts/_navbar') %>
+
 <h1><%= course.title %></h1>
 
 <div>
     <%= course.description %>
 </div>
+
+<a href="/course/order/<%= course.id %>">Obejdnat</a>
 
 <%- include('./parts/_footer') %>

@@ -33,3 +33,17 @@ export const courseView = async (req, res) => {
         logoName
     } );
 }
+
+export const courseOrderView = async (req, res) => {
+
+    const courseId = req.params.id;
+
+    const course = await getCourseById(courseId);
+
+    res.render("front/order", {
+        title: 'Kurz',
+        marked: null,
+        course,
+        logoName
+    } );
+}
