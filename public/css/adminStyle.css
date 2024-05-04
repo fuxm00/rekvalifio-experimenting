@@ -25,3 +25,7 @@
     display: flex;
     justify-content: center;
 }
+
+.marked {
+    color: orange;
+}

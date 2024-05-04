@@ -3,10 +3,8 @@ import {
     archiveOrderById,
     getAllArchivedOrders,
     getAllNonArchivedOrders,
-    getAllOrders,
     getOrderById
 } from "../../src/db/orders.js";
-import moment from "moment";
 import {formatDate} from "../../src/utils/formatDate.js";
 
 export const adminOrdersView = async (req, res) => {
@@ -20,7 +18,24 @@ export const adminOrdersView = async (req, res) => {
     res.render("admin/orders", {
         title: 'Objednávky',
         orders,
-        archivedList: false
+        archivedList: false,
+        marked: "orders"
+    } );
+}
+
+export const adminOrdersArchiveView = async (req, res) => {
+
+    const orders = await getAllArchivedOrders();
+
+    for (const order of orders) {
+        order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
+    }
+
+    res.render("admin/orders", {
+        title: 'Archiv objednávek',
+        orders,
+        archivedList: true,
+        marked: "archive"
     } );
 }
 
@@ -34,21 +49,6 @@ export const adminOrderView = async (req, res) => {
     res.render("admin/order", {
         title: 'Objednávka',
         order
-    } );
-}
-
-export const adminOrdersArchiveView = async (req, res) => {
-
-    const orders = await getAllArchivedOrders();
-
-    for (const order of orders) {
-        order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
-    }
-
-    res.render("admin/ordersArchive", {
-        title: 'Archiv objednávek',
-        orders,
-        archivedList: true
     } );
 }
 

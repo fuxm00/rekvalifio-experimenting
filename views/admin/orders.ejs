@@ -1,18 +1,29 @@
 <%- include('./parts/_header') %>
 
-<h2>Objednávky</h2>
+<h2>Správa objednávek</h2>
+<div id="content-container">
 
-<div>
-    <a href="/admin/orders/archive">Archiv objednávek</a>
-</div>
-
-<h2>Seznam objednávek</h2>
-<% if ((orders.length >= 1)) { %>
-    <%- include('./parts/_orderList') %>
-<% } else { %>
-    <div id="content-container">
-        <p>žádné</p>
+    <div>
+        <a href="/admin/orders" class="<%= marked === "orders" ? "marked" : ""%>">Objednávky</a>
+        <a href="/admin/orders/archive" class="<%= marked === "archive" ? "marked" : ""%>">Archiv</a>
     </div>
-<% } %>
+
+    <h3>
+
+        <% if (marked === "orders" ) { %>
+            Aktivní objednávky
+        <% } else if  (marked === "archive" ) { %>
+            Archivované objednávky
+        <% } %>
+    </h3>
+
+    <% if ((orders.length >= 1)) { %>
+        <%- include('./parts/_orderList') %>
+    <% } else { %>
+        <div id="content-container">
+            <p>žádné</p>
+        </div>
+    <% } %>
+</div>
 
 <%- include('./parts/_footer') %>

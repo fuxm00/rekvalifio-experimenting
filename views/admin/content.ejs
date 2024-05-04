@@ -1,20 +1,6 @@
 <%- include('./parts/_header') %>
 
-<h2>Logo</h2>
-
-<form action="/admin/content/change-logo" method="post" enctype="multipart/form-data">
-
-    <div>
-        <label>
-            Logo
-            <input type="file" name="logo">
-        </label>
-    </div>
-
-
-    <button type="submit" class="button">Přidat</button>
-
-
-</form>
+<h2>Správa obsahu</h2>
+<%- include('./parts/_content') %>
 
 <%- include('./parts/_footer') %>

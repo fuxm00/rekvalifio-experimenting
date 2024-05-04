@@ -1,47 +1,51 @@
-<h2>
-    <% if (!course) { %>
-        Přidat kurz
-    <% } else { %>
-        Upravit kurz
-    <% } %>
-</h2>
-
 <div id="content-container">
-    <form
-    <% if (!course) { %>
-        action='/admin/courses/add-course'
-    <% } else { %>
-        action='/admin/courses/edit-course/<%= course.id %>'
-            <% } %>
 
-        method='post'>
-        <div>
-            <label>
-                Název
-                <input type="text" name="title" placeholder="Název" class="input"
-                <% if (course) { %>
-                       value="<%= course.title %>"
-                        <% } %>
-                />
-            </label>
+    <h3>
+        <% if (!course) { %>
+            Přidat kurz
+        <% } else { %>
+            Upravit kurz
+        <% } %>
+    </h3>
 
-            <label>
-                Popis
-                <input type=" text" name="description" placeholder="Popis" class="input"
-                <% if (course) { %>
-                       value="<%= course.description %>"
-                        <% } %>/>
-            </label>
-        </div>
-
-        <div class="center-button">
-            <button type='submit'>
-                <% if (!course) { %>
-                    Přidat
-                <% } else { %>
-                    Upravit
+    <div id="content-container">
+        <form
+        <% if (!course) { %>
+            action='/admin/courses/add-course'
+        <% } else { %>
+            action='/admin/courses/edit-course/<%= course.id %>'
                 <% } %>
-            </button>
-        </div>
-    </form>
+
+            method='post'>
+            <div>
+                <label>
+                    Název
+                    <input type="text" name="title" placeholder="Název" class="input"
+                    <% if (course) { %>
+                           value="<%= course.title %>"
+                            <% } %>
+                    />
+                </label>
+
+                <label>
+                    Popis
+                    <input type=" text" name="description" placeholder="Popis" class="input"
+                    <% if (course) { %>
+                           value="<%= course.description %>"
+                            <% } %>
+                    />
+                </label>
+            </div>
+
+            <div class="center-button">
+                <button type='submit'>
+                    <% if (!course) { %>
+                        Přidat
+                    <% } else { %>
+                        Upravit
+                    <% } %>
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
