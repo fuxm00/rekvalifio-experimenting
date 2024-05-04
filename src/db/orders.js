@@ -39,3 +39,7 @@ export const createOrder = async (data) => {
 export const archiveOrderById = async (id, isArchived) => {
     await db('orders').update({archived: isArchived}).where('id', id)
 }
+
+export const completeOrderById = async (id, isComplete) => {
+    await db('orders').update({completed: isComplete}).where('id', id)
+}

@@ -1,6 +1,6 @@
 import {getAllCourses, removeCourseById} from "../../src/db/courses.js";
 import {
-    archiveOrderById,
+    archiveOrderById, completeOrderById,
     getAllArchivedOrders,
     getAllNonArchivedOrders,
     getOrderById
@@ -66,6 +66,24 @@ export const adminOrdersUnArchive = async (req, res) => {
     const orderId = req.params.id;
 
     await archiveOrderById(orderId, false);
+
+    res.redirect('back')
+}
+
+export const adminOrdersComplete = async (req, res) => {
+
+    const orderId = req.params.id;
+
+    await completeOrderById(orderId, true);
+
+    res.redirect('back')
+}
+
+export const adminOrdersUnComplete = async (req, res) => {
+
+    const orderId = req.params.id;
+
+    await completeOrderById(orderId, false);
 
     res.redirect('back')
 }

@@ -13,6 +13,14 @@
                 <a href="/admin/orders/archiveOrder/<%= order.id %>">Archivovat</a>
             <% } %>
 
+            <% if (!archivedList) { %>
+                <% if (order.completed) { %>
+                    <a href="/admin/orders/unCompleteOrder/<%= order.id %>">Od Hotovo</a>
+                <% } else { %>
+                    <a href="/admin/orders/completeOrder/<%= order.id %>">Hotovo</a>
+                <% } %>
+            <% } %>
+
         </div>
 
     <% } %>

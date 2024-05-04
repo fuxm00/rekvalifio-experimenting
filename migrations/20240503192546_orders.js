@@ -8,6 +8,8 @@ export const up = async function (knex) {
 
         table.boolean('archived').notNullable().defaultTo(false)
 
+        table.boolean('completed').notNullable().defaultTo(false)
+
         table.timestamp('created_at').defaultTo(knex.fn.now());
 
         table.integer('courseId').notNullable()

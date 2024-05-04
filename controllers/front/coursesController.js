@@ -28,7 +28,7 @@ export const courseView = async (req, res) => {
 
     res.render("front/course", {
         title: 'Kurz',
-        marked: 'courses',
+        marked: null,
         course,
         logoName
     } );
