@@ -11,7 +11,7 @@ export const up = async function (knex) {
         table.timestamp('created_at').defaultTo(knex.fn.now());
 
         table.integer('courseId').notNullable()
-        table.foreign('courseId').references('courses.id')
+        table.foreign('courseId').references('id').inTable('courses')
     })
 }
 
