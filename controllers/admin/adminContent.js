@@ -2,8 +2,13 @@ import jsonDb from "../../src/jsonDb.js";
 
 export const adminContentView = async (req, res) => {
 
+    const homeHeading = await jsonDb.get('home-title')
+    const homeText = await jsonDb.get('home-text')
+
     res.render("admin/content", {
         title: 'Obsah',
+        homeHeading,
+        homeText
     });
 }
 

@@ -131,4 +131,4 @@ dist
 *.sqlite
 
 /public/img/*
-/src/jsonDB.json
+/db.json
