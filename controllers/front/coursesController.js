@@ -24,7 +24,7 @@ export const courseView = async (req, res) => {
 
     res.render("front/course", {
         title: 'Kurz',
-        marked: null,
+        marked: 'courses',
         course,
         logoName
     } );
@@ -38,7 +38,7 @@ export const courseOrderView = async (req, res) => {
 
     res.render("front/order", {
         title: 'Kurz',
-        marked: null,
+        marked: 'courses',
         course,
         logoName
     } );
@@ -59,7 +59,7 @@ export const orderCompleteView = async (req, res) => {
 
     res.render("front/orderComplete", {
         title: 'Kurz',
-        marked: null,
+        marked: 'courses',
         order,
         logoName
     } );
