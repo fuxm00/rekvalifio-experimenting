@@ -3,8 +3,43 @@
 <h2>Správa obsahu</h2>
 <%- include('./parts/_contentLogo') %>
 
-<%- include('./parts/_contentHome') %>
 
-<%- include('./parts/_contentContacts') %>
+<div id="content-container">
+    <form action="/admin/content/change-home-texts" method="post">
+
+        <h3>Domů obsah</h3>
+        <textarea id="homeContent" name="homeContent"></textarea>
+        <div class="center-button">
+            <button type="submit" class="button">Upravit</button>
+        </div>
+
+        <h3>Kurzy obsah</h3>
+        <textarea id="coursesContent" name="coursesContent"></textarea>
+        <div class="center-button">
+            <button type="submit" class="button">Upravit</button>
+        </div>
+
+        <h3>Kontakty obsah</h3>
+        <textarea id="contactsContent" name="contactsContent"></textarea>
+        <div class="center-button">
+            <button type="submit" class="button">Upravit</button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    new FroalaEditor('#homeContent', {}, function () {
+        this.html.set('<%- homeContent %>');
+    })
+
+    new FroalaEditor('#coursesContent', {}, function () {
+        this.html.set('<%- coursesContent %>');
+    })
+
+    new FroalaEditor('#contactsContent', {}, function () {
+        this.html.set('<%- contactsContent %>');
+    })
+</script>
 
 <%- include('./parts/_footer') %>

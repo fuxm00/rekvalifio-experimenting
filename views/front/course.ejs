@@ -3,10 +3,8 @@
 
 <h1><%= course.title %></h1>
 
-<div>
-    <%= course.description %>
-</div>
+<%- course.content %>
 
-<a href="/course/order/<%= course.id %>">Obejdnat</a>
+<a href="/course/order/<%= course.id %>">Objednat</a>
 
 <%- include('./parts/_footer') %>

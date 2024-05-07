@@ -26,16 +26,16 @@ export const adminCourseView = async (req, res) => {
 
     res.render("admin/course", {
         title: 'Kurz',
-        course
+        course,
     } );
 }
 
 export const addCourse = async (req, res) => {
 
     const title = String(req.body.title)
-    const description = String(req.body.description)
+    const content = String(req.body.courseContent)
 
-    await createCourse({title, description})
+    await createCourse({title, content})
 
     res.redirect('back')
 }
@@ -43,10 +43,10 @@ export const addCourse = async (req, res) => {
 export const editCourse = async (req, res) => {
 
     const title = String(req.body.title)
-    const description = String(req.body.description)
+    const content = String(req.body.courseContent)
     const courseId = req.params.id;
 
-    await updateCourse({title, description}, courseId)
+    await updateCourse({title, description, content}, courseId)
 
     res.redirect('/admin/courses')
 }

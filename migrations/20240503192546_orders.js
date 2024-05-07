@@ -10,6 +10,8 @@ export const up = async function (knex) {
 
         table.boolean('completed').notNullable().defaultTo(false)
 
+        table.string('note')
+
         table.timestamp('created_at').defaultTo(knex.fn.now());
 
         table.integer('courseId').notNullable()

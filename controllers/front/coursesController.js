@@ -7,12 +7,14 @@ const logoName = await jsonDb.get('logo')
 export const coursesView = async (req, res) => {
 
     const courses = await getAllCourses()
+    const coursesContent = await jsonDb.get('courses-content')
 
     res.render("front/courses", {
         title: 'Kurzy',
         marked: 'courses',
         courses,
-        logoName
+        logoName,
+        coursesContent
     } );
 }
 

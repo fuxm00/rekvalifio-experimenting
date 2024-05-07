@@ -2,12 +2,16 @@
 <%- include('./parts/_navbar') %>
 <h1>Kurzy</h1>
 
+<%- coursesContent %>
+
 <div>
     <% for (const course of courses) { %>
-    <div>
-        <a href="/course/<%= course.id %>"><%= course.title %></a>
-        <%= course.description %>
-    </div>
+        <ul>
+            <li>
+                <a href="/course/<%= course.id %>"><%= course.title %></a>
+            </li>
+
+        </ul>
 
     <% } %>
 </div>

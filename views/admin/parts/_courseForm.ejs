@@ -19,22 +19,20 @@
             method='post'>
             <div>
                 <label>
-                    Název
-                    <input type="text" name="title" placeholder="Název" class="input"
+                    <div>Název</div>
+
+                    <input type="text" name="title" placeholder="název kurzu" class="input"
                     <% if (course) { %>
                            value="<%= course.title %>"
                             <% } %>
                     />
                 </label>
 
-                <label>
-                    Popis
-                    <input type=" text" name="description" placeholder="Popis" class="input"
-                    <% if (course) { %>
-                           value="<%= course.description %>"
-                            <% } %>
-                    />
-                </label>
+            </div>
+
+            <div>
+                <div>Obsah</div>
+                <textarea id="courseContent" name="courseContent"></textarea>
             </div>
 
             <div class="center-button">
@@ -47,5 +45,14 @@
                 </button>
             </div>
         </form>
+
+        <script>
+            let editor = new FroalaEditor('#courseContent', {}, function () {
+                <% if (course) { %>
+                editor.html.set('<%- course.content %>');
+                <% } %>
+            })
+        </script>
+
     </div>
 </div>

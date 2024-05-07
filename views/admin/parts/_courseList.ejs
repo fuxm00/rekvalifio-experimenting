@@ -1,7 +1,7 @@
 
 <div id="content-container">
     <% for (const course of courses) { %>
-        <div>
+        <div id="course-list">
             <a href="/admin/courses/<%= course.id %>"><%= course.title %></a>
             <%= course.description %>
             <a href="/admin/courses/remove-course/<%= course.id %>">remove</a>

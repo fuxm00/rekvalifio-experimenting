@@ -29,3 +29,28 @@
 .marked {
     color: orange;
 }
+
+input {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(204, 204, 204);
+}
+
+button {
+    padding: 5px 15px;
+    margin: 5px 10px;
+
+    border: solid black 1px;
+    border-radius: 75px;
+
+    background-color: #FDD692;
+    color: black;
+}
+
+button:hover {
+    background-color: rgb(176, 149, 101);
+}
