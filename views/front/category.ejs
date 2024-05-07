@@ -1,0 +1,16 @@
+<%- include('./parts/_header') %>
+<%- include('./parts/_navbar') %>
+<h1><%- category.title %></h1>
+
+
+<% for (const course of courses) { %>
+    <ul>
+        <li>
+            <a href="/course/<%= course.id %>"><%= course.title %></a>
+        </li>
+
+    </ul>
+
+<% } %>
+
+<%- include('./parts/_footer') %>

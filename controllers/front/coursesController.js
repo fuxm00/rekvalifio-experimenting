@@ -1,20 +1,36 @@
-import {getAllCourses, getCourseById} from "../../src/db/courses.js";
+import {getAllCourses, getCourseById, getCoursesByCategoryId} from "../../src/db/courses.js";
 import {createOrder, getOrderById} from "../../src/db/orders.js";
 import jsonDb from "../../src/jsonDb.js";
+import {getAllCourseCategories, getCategoryById} from "../../src/db/courseCategories.js";
 
 const logoName = await jsonDb.get('logo')
 
 export const coursesView = async (req, res) => {
 
-    const courses = await getAllCourses()
+    const categories = await getAllCourseCategories()
     const coursesContent = await jsonDb.get('courses-content')
 
     res.render("front/courses", {
         title: 'Kurzy',
         marked: 'courses',
-        courses,
+        categories,
         logoName,
         coursesContent
+    } );
+}
+
+export const categoryView = async (req, res) => {
+
+    const categoryId = req.params.id;
+    const category = await getCategoryById(categoryId)
+    const courses = await getCoursesByCategoryId(categoryId);
+
+    res.render("front/category", {
+        title: 'Kurzy',
+        marked: 'courses',
+        logoName,
+        category,
+        courses
     } );
 }
 

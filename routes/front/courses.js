@@ -1,15 +1,16 @@
 import express from "express";
 import {
-    courseOrderView,
     coursesView,
+    courseOrderView,
     courseView,
     orderCompleteView,
-    placeOrder
+    placeOrder, categoryView
 } from "../../controllers/front/coursesController.js";
 
 const courses = express.Router()
 
 courses.get("/courses", coursesView)
+courses.get("/course-category/:id", categoryView)
 courses.get('/course/:id', courseView)
 courses.get('/course/order/:id', courseOrderView)
 courses.post('/course/place-order/:id', placeOrder)

@@ -11,3 +11,9 @@ export const getAllCourseCategories = async () => {
 export const createCategory = async (data) => {
     await db('courseCategories').insert(data)
 }
+
+export const getCategoryById = async (id) => {
+    const category = await db('courseCategories').select('*').where('id', id).first()
+
+    return category
+}

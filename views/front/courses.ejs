@@ -5,10 +5,10 @@
 <%- coursesContent %>
 
 <div>
-    <% for (const course of courses) { %>
+    <% for (const category of categories) { %>
         <ul>
             <li>
-                <a href="/course/<%= course.id %>"><%= course.title %></a>
+                <a href="/course-category/<%= category.id %>"><%= category.title %></a>
             </li>
 
         </ul>
