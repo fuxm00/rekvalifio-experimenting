@@ -35,6 +35,22 @@
                 <textarea id="courseContent" name="courseContent"></textarea>
             </div>
 
+            <div>
+                <div>Kategorie</div>
+                <select name="category">
+                    <% for (const category of categories) { %>
+                        <option value="<%= category.id %>"
+
+                        <% if (course) { %>
+                            <%= category.id === course.categoryId ? 'selected' : '' %>
+                        <% } %>
+
+
+                        ><%= category.title %></option>
+                    <% } %>
+                </select>
+            </div>
+
             <div class="center-button">
                 <button type='submit'>
                     <% if (!course) { %>

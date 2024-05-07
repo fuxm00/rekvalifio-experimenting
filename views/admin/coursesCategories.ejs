@@ -7,12 +7,12 @@
     <a href="/admin/courses/categories" class="<%= marked === "categories" ? "marked" : ""%>">Kategorie</a>
 </div>
 
-<%- include('./parts/_courseForm') %>
+<%- include('./parts/_coursesCategoriesForm') %>
 
 <div id="content-container">
-    <h3>Seznam kurzů</h3>
-    <% if ((courses.length >= 1)) { %>
-        <%- include('./parts/_courseList') %>
+    <h3>Seznam kategrií</h3>
+    <% if ((categories.length >= 1)) { %>
+        <%- include('./parts/_coursesCategoriesList') %>
     <% } else { %>
         <div id="content-container">
             <p>žádné</p>

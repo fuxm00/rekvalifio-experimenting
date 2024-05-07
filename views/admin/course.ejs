@@ -1,6 +1,12 @@
 <%- include('./parts/_header') %>
 
 <h2>Správa kurzů</h2>
+
+<div>
+    <a href="/admin/courses" class="<%= marked === "courses" ? "marked" : ""%>">Kurzy</a>
+    <a href="/admin/courses/categories" class="<%= marked === "categories" ? "marked" : ""%>">Kategorie</a>
+</div>
+
 <%- include('./parts/_courseForm') %>
 
 <%- include('./parts/_footer') %>
