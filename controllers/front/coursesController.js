@@ -49,7 +49,8 @@ export const courseOrderView = async (req, res) => {
 export const placeOrder = async (req, res) => {
 
     const courseId = req.params.id;
-    const order = await createOrder({courseId})
+    const note = req.body.note;
+    const order = await createOrder({courseId, note})
 
     res.redirect(`/course/order-complete/${order.id}`);
 }
