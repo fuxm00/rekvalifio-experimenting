@@ -1,16 +1,16 @@
 <div id="content-container">
-    <form action="/course/place-order/<%= course.id%>" method="post">
+    <form action="/course/order-proceed/<%= course.id%>" method="post">
         <h2>Účastníci</h2>
         <h2>Fakturační údaje</h2>
         <h2>Poštovní adresa</h2>
         <h2>kontaktní informace</h2>
         <h2>Poznámka</h2>
         <div>
-            <textarea name="note"></textarea>
+            <textarea name="note"><%= note %></textarea>
         </div>
 
         <div class="center-button">
-            <button type='submit'>Objednat</button>
+            <button type='submit'>Pokračovat v obejdnávce</button>
         </div>
     </form>
 

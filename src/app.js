@@ -7,6 +7,7 @@ import adminCourses from "../routes/admin/adminCourses.js";
 import loadUser from "./middlewares/loadUser.js";
 import adminOrders from "../routes/admin/adminOrders.js";
 import adminContent from "../routes/admin/adminContent.js";
+import session from "express-session";
 
 
 export const app = express()
@@ -15,6 +16,12 @@ app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
+app.use(session({
+        secret: 'secret key',
+        saveUninitialized: false,
+        resave: false
+    }
+))
 app.use(loadUser)
 
 app.use(home)
