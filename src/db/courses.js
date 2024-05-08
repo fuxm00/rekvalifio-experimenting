@@ -27,9 +27,8 @@ export const removeCourseById = async (id) => {
 }
 
 export const getCoursesByCategoryId = async (id) => {
-    const courses = await db('courses').select('courses.*' ,'courseCategories.title as categoryTitle')
-        .leftJoin('courseCategories', 'courses.categoryId', 'courseCategories.id')
-        .where('courses.categoryId', id)
+    const courses = await db('courses').select('*')
+        .where('categoryId', id)
 
     return courses
 }

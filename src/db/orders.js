@@ -17,7 +17,9 @@ export const getAllArchivedOrders = async () => {
 }
 
 export const getOrderById = async (id) => {
-    let query = db('orders').select('*').where('id', id).first()
+    let query = db('orders').select('*')
+        .where('orders.id', id)
+        .first()
 
     const orders = await query
 
@@ -35,7 +37,6 @@ export const getAllNonArchivedOrders = async () => {
 export const createOrder = async (data) => {
     const order = await db('orders').insert(data)
     return await db('orders').where('id', order[0]).first()
-    return placedOrder
 }
 
 export const archiveOrderById = async (id, isArchived) => {

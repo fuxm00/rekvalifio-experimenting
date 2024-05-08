@@ -1,4 +1,4 @@
-import {getAllCourses, removeCourseById} from "../../src/db/courses.js";
+import {getAllCourses, getCourseById, removeCourseById} from "../../src/db/courses.js";
 import {
     archiveOrderById, completeOrderById,
     getAllArchivedOrders,
@@ -45,6 +45,7 @@ export const adminOrderView = async (req, res) => {
 
     const order = await getOrderById(orderId);
     order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
+    order.course = await getCourseById(order.courseId);
 
     res.render("admin/order", {
         title: 'Objednávka',

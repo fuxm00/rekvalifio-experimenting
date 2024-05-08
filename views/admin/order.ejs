@@ -1,7 +1,12 @@
 <%- include('./parts/_header') %>
 
-<h2><%= order.id %></h2>
+<h2>Objednávka č. <%= order.id %></h2>
 
-<%= order.note %>
+<div>Kurz: <%= order.course.title%></div>
+
+
+<div>Poznámka: <%= order.note %></div>
+
+
 
 <%- include('./parts/_footer') %>
