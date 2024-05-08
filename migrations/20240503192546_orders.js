@@ -12,6 +12,10 @@ export const up = async function (knex) {
 
         table.string('note')
 
+        table.string('email').notNullable()
+
+        table.string('phone').notNullable()
+
         table.timestamp('created_at').defaultTo(knex.fn.now());
 
         table.integer('courseId').notNullable()

@@ -85,7 +85,9 @@ export const placeOrder = async (req, res) => {
 
     const courseId = req.params.id;
     const note = req.session.note;
-    const order = await createOrder({courseId, note})
+    const email = req.session.email;
+    const phone = req.session.phone;
+    const order = await createOrder({courseId, note, email, phone})
     req.session.regenerate(function(err) {})
 
     res.redirect(`/course/order-complete/${order.id}`);
@@ -94,6 +96,9 @@ export const placeOrder = async (req, res) => {
 export const proceedOrder = async (req, res) => {
 
     req.session.note = req.body.note
+    req.session.email = req.body.email
+    req.session.phone = req.body.phone
+
     req.session.courseId = req.params.id;
 
     res.redirect(`/course/order-summary`);
