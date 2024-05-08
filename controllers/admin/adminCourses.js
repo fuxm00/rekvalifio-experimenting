@@ -50,9 +50,7 @@ export const adminCourseView = async (req, res) => {
 
 export const addCourse = async (req, res) => {
 
-    const title = req.body.title
-    const content = req.body.courseContent
-    const categoryId = req.body.category
+    const {title, courseContent: content, category: categoryId} = req.body
 
     await createCourse({title, content, categoryId})
 
@@ -61,7 +59,7 @@ export const addCourse = async (req, res) => {
 
 export const addCategory = async (req, res) => {
 
-    const title = String(req.body.categoryTitle)
+    const {categoryTitle: title} = req.body
 
     await createCategory({title})
 
@@ -70,10 +68,8 @@ export const addCategory = async (req, res) => {
 
 export const editCourse = async (req, res) => {
 
-    const title = String(req.body.title)
-    const content = String(req.body.courseContent)
-    const courseId = req.params.id;
-    const categoryId = req.body.category
+    const {title, courseContent: content, category: categoryId} = req.body
+    const {id: courseId} = req.params;
 
     await updateCourse({title, content, categoryId}, courseId)
 
@@ -81,7 +77,7 @@ export const editCourse = async (req, res) => {
 }
 
 export const removeCourse = async (req, res) => {
-    const courseId = req.params.id;
+    const {id: courseId} = req.params;
 
     await removeCourseById(courseId);
 

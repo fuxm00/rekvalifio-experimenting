@@ -24,13 +24,10 @@ export const changeLogo = async (req, res) => {
 
 export const changeHomeTexts = async (req, res) => {
 
-    const homeContent = req.body.homeContent;
+    const {homeContent, coursesContent, contactsContent} = req.body;
+
     await jsonDb.set('home-content', homeContent);
-
-    const coursesContent = req.body.coursesContent;
     await jsonDb.set('courses-content', coursesContent);
-
-    const contactsContent = req.body.contactsContent;
     await jsonDb.set('contacts-content', contactsContent);
 
     res.redirect('back')
