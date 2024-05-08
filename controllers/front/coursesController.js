@@ -71,6 +71,8 @@ export const courseOrderView = async (req, res) => {
     const course = await getCourseById(courseId);
 
     const note = req.session.note;
+    const email = req.session.email;
+    const phone = req.session.phone;
 
     res.render("front/order", {
         title: 'Kurz',
@@ -78,6 +80,8 @@ export const courseOrderView = async (req, res) => {
         course,
         logoName,
         note,
+        email,
+        phone,
     } );
 }
 
