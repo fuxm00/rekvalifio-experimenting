@@ -1,8 +1,7 @@
-import {getAllCourses, getCourseById, getCoursesByCategoryId} from "../../src/db/courses.js";
-import {createOrder, getOrderById} from "../../src/db/orders.js";
+import {getCourseById, getCoursesByCategoryId} from "../../src/db/courses.js";
+import {createOrder} from "../../src/db/orders.js";
 import jsonDb from "../../src/jsonDb.js";
 import {getAllCourseCategories, getCategoryById} from "../../src/db/courseCategories.js";
-import session from "express-session";
 
 const logoName = await jsonDb.get('logo')
 
@@ -67,12 +66,10 @@ export const courseView = async (req, res) => {
 
 export const courseOrderView = async (req, res) => {
 
-    const courseId = req.params.id;
-    const course = await getCourseById(courseId);
+    const {id: courseId} = req.params;
+    const {note, email, phone} = req.session;
 
-    const note = req.session.note;
-    const email = req.session.email;
-    const phone = req.session.phone;
+    const course = await getCourseById(courseId);
 
     res.render("front/order", {
         title: 'Kurz',
@@ -87,10 +84,9 @@ export const courseOrderView = async (req, res) => {
 
 export const placeOrder = async (req, res) => {
 
-    const courseId = req.params.id;
-    const note = req.session.note;
-    const email = req.session.email;
-    const phone = req.session.phone;
+    const {id: courseId} = req.params;
+    const {note, email, phone} = req.session;
+
     const order = await createOrder({courseId, note, email, phone})
     req.session.regenerate(function(err) {})
 
