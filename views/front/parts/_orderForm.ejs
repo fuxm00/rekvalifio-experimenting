@@ -1,23 +1,37 @@
 <div id="content-container">
-    <form action="/course/order-proceed/<%= course.id%>" method="post">
+    <form action="/course/order-proceed/<%= course.id %>" method="post">
         <h2>Účastníci</h2>
         <h2>Fakturační údaje</h2>
         <h2>Poštovní adresa</h2>
         <h2>kontaktní informace</h2>
-        <label>
-            email
-            <input name="email" value="<%= email %>">
-        </label>
 
-        <label>
-            telefon
-            <input name="phone" value="<%= phone %>">
-        </label>
+        <div>
+            <label>
+                <div>E-mail</div>
+                <input name="email" value="<%= email %>">
+            </label>
+        </div>
 
+        <div>
+            <label>
+                <div>Telefon</div>
+                <input name="phone" value="<%= phone %>">
+            </label>
+        </div>
 
         <h2>Poznámka</h2>
         <div>
+            <p>Pro sdělení doplňujících informací</p>
             <textarea name="note"><%= note %></textarea>
+        </div>
+
+        <h2>Obchodní podmínky</h2>
+
+        <div>
+            <label>
+                <input name="approval" type="checkbox" required>
+                souhalsím s <a href="/">obchodními podmínkami společnosti</a>
+            </label>
         </div>
 
         <div class="center-button">
