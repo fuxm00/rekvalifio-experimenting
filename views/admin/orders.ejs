@@ -1,7 +1,7 @@
 <%- include('./parts/_header') %>
 
 <h2>Správa objednávek</h2>
-<div id="content-container">
+<div class="content-container">
 
     <div>
         <a href="/admin/orders" class="<%= marked === "orders" ? "marked" : ""%>">Objednávky</a>
@@ -20,7 +20,7 @@
     <% if ((orders.length >= 1)) { %>
         <%- include('./parts/_orderList') %>
     <% } else { %>
-        <div id="content-container">
+        <div class="content-container">
             <p>žádné</p>
         </div>
     <% } %>

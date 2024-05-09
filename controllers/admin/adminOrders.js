@@ -6,6 +6,7 @@ import {
     getOrderById, remvoeOrderById
 } from "../../src/db/orders.js";
 import {formatDate} from "../../src/utils/formatDate.js";
+import {getAddressById} from "../../src/db/addresses.js";
 
 export const adminOrdersView = async (req, res) => {
 
@@ -46,6 +47,8 @@ export const adminOrderView = async (req, res) => {
     const order = await getOrderById(orderId);
     order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
     order.course = await getCourseById(order.courseId);
+    order.billingAdress = await getAddressById(order.billingAddressId);
+    order.mailingAddress = await getAddressById(order.mailingAddressId);
 
     res.render("admin/order", {
         title: 'Objednávka',

@@ -2,6 +2,7 @@ import {getCourseById, getCoursesByCategoryId} from "../../src/db/courses.js";
 import {createOrder} from "../../src/db/orders.js";
 import jsonDb from "../../src/jsonDb.js";
 import {getAllCourseCategories, getCategoryById} from "../../src/db/courseCategories.js";
+import {createAddress} from "../../src/db/addresses.js";
 
 const logoName = await jsonDb.get('logo')
 
@@ -16,7 +17,7 @@ export const coursesView = async (req, res) => {
         categories,
         logoName,
         coursesContent
-    } );
+    });
 }
 
 export const categoryView = async (req, res) => {
@@ -31,7 +32,7 @@ export const categoryView = async (req, res) => {
         logoName,
         category,
         courses
-    } );
+    });
 }
 
 export const orderSummaryView = async (req, res) => {
@@ -47,7 +48,7 @@ export const orderSummaryView = async (req, res) => {
         logoName,
         session,
         course,
-    } );
+    });
 }
 
 export const courseView = async (req, res) => {
@@ -61,13 +62,25 @@ export const courseView = async (req, res) => {
         marked: 'courses',
         course,
         logoName
-    } );
+    });
 }
 
 export const courseOrderView = async (req, res) => {
 
     const {id: courseId} = req.params;
-    const {note, email, phone} = req.session;
+    const {
+        note,
+        email,
+        phone,
+        billingStreet,
+        billingCity,
+        billingPostal,
+        billingIc,
+        billingDic,
+        mailingStreet,
+        mailingCity,
+        mailingPostal
+    } = req.session;
 
     const course = await getCourseById(courseId);
 
@@ -79,25 +92,74 @@ export const courseOrderView = async (req, res) => {
         note,
         email,
         phone,
-    } );
+        billingStreet,
+        billingCity,
+        billingPostal,
+        billingIc,
+        billingDic,
+        mailingStreet,
+        mailingCity,
+        mailingPostal
+    });
 }
 
 export const placeOrder = async (req, res) => {
 
     const {id: courseId} = req.params;
-    const {note, email, phone} = req.session;
+    const {
+        note,
+        email,
+        phone,
+        billingStreet,
+        billingCity,
+        billingPostal,
+        billingIc,
+        billingDic,
+        mailingStreet,
+        mailingCity,
+        mailingPostal
+    } = req.session;
 
-    const order = await createOrder({courseId, note, email, phone})
-    req.session.regenerate(function(err) {})
+    const billingAddress = await createAddress({
+        street: billingStreet,
+        city: billingCity,
+        postal: billingPostal,
+        ic: billingIc,
+        dic: billingDic
+    })
+
+    const mailingAddress = await createAddress({
+        street: mailingStreet,
+        city: mailingCity,
+        postal: mailingPostal,
+    })
+
+    const billingAddressId = billingAddress.id;
+    const mailingAddressId = mailingAddress.id;
+
+    const order = await createOrder({courseId, note, email, phone, billingAddressId, mailingAddressId})
+    req.session.regenerate(function (err) {
+    })
 
     res.redirect(`/course/order-complete/${order.id}`);
 }
 
 export const proceedOrder = async (req, res) => {
 
-    req.session.note = req.body.note
+    req.session.billingStreet = req.body.billingStreet
+    req.session.billingCity = req.body.billingCity
+    req.session.billingPostal = req.body.billingPostal
+    req.session.billingIc = req.body.billingIc
+    req.session.billingDic = req.body.billingDic
+
+    req.session.mailingStreet = req.body.mailingStreet
+    req.session.mailingCity = req.body.mailingCity
+    req.session.mailingPostal = req.body.mailingPostal
+
     req.session.email = req.body.email
     req.session.phone = req.body.phone
+
+    req.session.note = req.body.note
 
     req.session.courseId = req.params.id;
 
@@ -113,7 +175,7 @@ export const orderCompleteView = async (req, res) => {
         marked: 'courses',
         orderId,
         logoName
-    } );
+    });
 }
 
 

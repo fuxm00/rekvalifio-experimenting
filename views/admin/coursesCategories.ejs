@@ -9,12 +9,12 @@
 
 <%- include('./parts/_coursesCategoriesForm') %>
 
-<div id="content-container">
+<div class="content-container">
     <h3>Seznam kategrií</h3>
     <% if ((categories.length >= 1)) { %>
         <%- include('./parts/_coursesCategoriesList') %>
     <% } else { %>
-        <div id="content-container">
+        <div class="content-container">
             <p>žádné</p>
         </div>
     <% } %>

@@ -1,10 +1,34 @@
 <%- include('./parts/_header') %>
 <%- include('./parts/_navbar') %>
 <h1>Shrnutí pro: <%= course.title%></h1>
-<div id="content-container">
+<div class="content-container">
     <h2>Účastníci</h2>
     <h2>Fakturační údaje</h2>
+    <div>
+        Ulice: <%= session.billingStreet %>
+    </div>
+    <div>
+        Město: <%= session.billingCity %>
+    </div>
+    <div>
+        PSČ: <%= session.billingPostal %>
+    </div>
+    <div>
+        IČ: <%= session.billingIc %>
+    </div>
+    <div>
+        DIČ: <%= session.billingDic %>
+    </div>
     <h2>Poštovní adresa</h2>
+    <div>
+        Ulice: <%= session.mailingStreet %>
+    </div>
+    <div>
+        Město: <%= session.mailingCity %>
+    </div>
+    <div>
+        PSČ: <%= session.mailingPostal %>
+    </div>
     <h2>kontaktní informace</h2>
     <div>
         mail: <%= session.email %>

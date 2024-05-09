@@ -1,14 +1,28 @@
 <%- include('./parts/_header') %>
-
 <h2>Objednávka č. <%= order.id %></h2>
+<div class="content-container">
+    <div>Kurz: <%= order.course.title %></div>
 
-<div>Kurz: <%= order.course.title%></div>
+    <h3>Fakturační údaje</h3>
+    <div>Ulice: <%= order.billingAdress.street %></div>
+    <div>Město: <%= order.billingAdress.city %></div>
+    <div>PSČ: <%= order.billingAdress.postal %></div>
+    <div>IČ: <%= order.billingAdress.ic %></div>
+    <div>DIČ: <%= order.billingAdress.dic %></div>
 
+    <% if (order.mailingAddress) { %>
+        <h3>Poštovní adresa</h3>
+        <div>Ulice: <%= order.mailingAddress.street %></div>
+        <div>Město: <%= order.mailingAddress.city %></div>
+        <div>PSČ: <%= order.mailingAddress.postal %></div>
+    <% } %>
 
-<div>mail: <%= order.email %></div>
-<div>telefon: <%= order.phone %></div>
-<div>Poznámka: <%= order.note %></div>
+    <h3>Kontaktní informace</h3>
+    <div>mail: <%= order.email %></div>
+    <div>telefon: <%= order.phone %></div>
 
-
+    <h3>Poznámka</h3>
+    <div>Poznámka: <%= order.note %></div>
+</div>
 
 <%- include('./parts/_footer') %>

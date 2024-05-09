@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
 }
 
-#content-container {
+.content-container {
     margin: 0 20px 0 20px;
 }
 

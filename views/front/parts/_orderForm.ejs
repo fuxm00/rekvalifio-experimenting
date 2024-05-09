@@ -1,9 +1,60 @@
-<div id="content-container">
+<div class="content-container">
     <form action="/course/order-proceed/<%= course.id %>" method="post">
         <h2>Účastníci</h2>
         <h2>Fakturační údaje</h2>
+        <div>
+            <label>
+                <div>Ulice</div>
+                <input name="billingStreet" value="<%= billingStreet %>">
+            </label>
+        </div>
+        <div>
+            <label>
+                <div>Město</div>
+                <input name="billingCity" value="<%= billingCity %>">
+            </label>
+        </div>
+        <div>
+            <label>
+                <div>PSČ</div>
+                <input name="billingPostal" value="<%= billingPostal %>">
+            </label>
+        </div>
+        <div>
+            <label>
+                <div>IČ</div>
+                <input name="billingIc" value="<%= billingIc %>">
+            </label>
+        </div>
+        <div>
+            <label>
+                <div>DIČ</div>
+                <input name="billingDic" value="<%= billingDic %>">
+            </label>
+        </div>
+
         <h2>Poštovní adresa</h2>
-        <h2>kontaktní informace</h2>
+        <p>Shoduje-li se adresa s fakturační, nemusíte vyplňovat.</p>
+        <div>
+            <label>
+                <div>Ulice</div>
+                <input name="mailingStreet" value="<%= mailingStreet %>">
+            </label>
+        </div>
+        <div>
+            <label>
+                <div>Město</div>
+                <input name="mailingCity" value="<%= mailingCity %>">
+            </label>
+        </div>
+        <div>
+            <label>
+                <div>PSČ</div>
+                <input name="mailingPostal" value="<%= mailingPostal %>">
+            </label>
+        </div>
+
+        <h2>Kontaktní informace</h2>
 
         <div>
             <label>
@@ -11,7 +62,6 @@
                 <input name="email" value="<%= email %>">
             </label>
         </div>
-
         <div>
             <label>
                 <div>Telefon</div>
@@ -26,7 +76,6 @@
         </div>
 
         <h2>Obchodní podmínky</h2>
-
         <div>
             <label>
                 <input name="approval" type="checkbox" required>

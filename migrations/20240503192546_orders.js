@@ -20,6 +20,12 @@ export const up = async function (knex) {
 
         table.integer('courseId').notNullable()
         table.foreign('courseId').references('id').inTable('courses')
+
+        table.integer('billingAddressId').notNullable()
+        table.foreign('billingAddressId').references('id').inTable('addresses')
+
+        table.integer('mailingAddressId')
+        table.foreign('mailingAddressId').references('id').inTable('addresses')
     })
 }
 
