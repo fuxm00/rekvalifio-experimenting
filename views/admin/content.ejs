@@ -29,15 +29,23 @@
 </div>
 
 <script>
-    new FroalaEditor('#homeContent', {}, function () {
+    const myToolbarButtons = ['fullscreen', '|', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', '|', 'paragraphFormat', 'paragraphStyle', '|', 'align', 'formatOL', 'formatUL', '-', 'insertLink', '|', 'insertHR', '|', 'undo', 'redo', 'trackChanges']
+
+    new FroalaEditor('#homeContent', {
+        toolbarButtons: myToolbarButtons
+    }, function () {
         this.html.set('<%- homeContent %>');
     })
 
-    new FroalaEditor('#coursesContent', {}, function () {
+    new FroalaEditor('#coursesContent', {
+        toolbarButtons: myToolbarButtons
+    }, function () {
         this.html.set('<%- coursesContent %>');
     })
 
-    new FroalaEditor('#contactsContent', {}, function () {
+    new FroalaEditor('#contactsContent', {
+        toolbarButtons: myToolbarButtons
+    }, function () {
         this.html.set('<%- contactsContent %>');
     })
 </script>

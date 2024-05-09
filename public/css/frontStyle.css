@@ -19,6 +19,7 @@
 #social-link {
     max-width: min-content;
     margin: 0 20px;
+    text-decoration: none;
 }
 
 #social-logo {
