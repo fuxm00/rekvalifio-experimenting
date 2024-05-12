@@ -1,12 +1,18 @@
 import express from "express";
 import {
-    addCategory,
-    addCourse, addType, adminCoursesCategoriesView, adminCoursesCategoryView, adminCoursesTypesView,
+    addCourse,
     adminCoursesView,
-    adminCourseView, editCategory,
+    adminCourseView,
     editCourse,
     removeCourse
 } from "../../controllers/admin/adminCourses.js";
+import {
+    addCategory,
+    adminCoursesCategoriesView,
+    adminCoursesCategoryView,
+    editCategory
+} from "../../controllers/admin/adminCourseCateoriesController.js";
+import {addType, adminCoursesTypesView} from "../../controllers/admin/adminCourseTypesController.js";
 
 const adminCourses = express.Router()
 
