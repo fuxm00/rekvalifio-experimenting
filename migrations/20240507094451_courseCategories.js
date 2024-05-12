@@ -7,6 +7,8 @@ export const up = async function (knex) {
         table.increments('id')
 
         table.string('title').notNullable()
+
+        table.string('content').notNullable()
     })
 }
 

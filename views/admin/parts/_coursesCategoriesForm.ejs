@@ -10,13 +10,25 @@
 
                     <input type="text" name="categoryTitle" placeholder="název kategorie" class="input"/>
                 </label>
-
             </div>
+
+            <h3>Obsah</h3>
+            <textarea id="categoryContent" name="categoryContent"></textarea>
 
             <div class="center-button">
                 <button type='submit'>Přidat</button>
             </div>
         </form>
+
+        <script>
+            const myToolbarButtons = ['fullscreen', '|', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', '|', 'paragraphFormat', 'paragraphStyle', '|', 'align', 'formatOL', 'formatUL', '-', 'insertLink', '|', 'insertHR', '|', 'undo', 'redo', 'trackChanges']
+
+            new FroalaEditor('#categoryContent', {
+                toolbarButtons: myToolbarButtons
+            }, function () {
+                this.html.set('');
+            })
+        </script>
 
     </div>
 </div>

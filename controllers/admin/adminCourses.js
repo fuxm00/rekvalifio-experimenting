@@ -59,9 +59,9 @@ export const addCourse = async (req, res) => {
 
 export const addCategory = async (req, res) => {
 
-    const {categoryTitle: title} = req.body
+    const {categoryTitle: title, categoryContent: content} = req.body
 
-    await createCategory({title})
+    await createCategory({title, content})
 
     res.redirect('back')
 }
