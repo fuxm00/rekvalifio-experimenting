@@ -5,7 +5,12 @@ import {
     removeCourseById,
     updateCourse
 } from "../../src/db/courses.js";
-import {createCategory, getAllCourseCategories} from "../../src/db/courseCategories.js";
+import {
+    createCategory,
+    getAllCourseCategories,
+    getCategoryById,
+    updateCategory
+} from "../../src/db/courseCategories.js";
 
 export const adminCoursesView = async (req, res) => {
 
@@ -28,7 +33,8 @@ export const adminCoursesCategoriesView = async (req, res) => {
     res.render("admin/coursesCategories", {
         title: 'kurzy',
         categories,
-        marked: "categories"
+        marked: "categories",
+        category: null
     } );
 }
 
@@ -48,6 +54,20 @@ export const adminCourseView = async (req, res) => {
     } );
 }
 
+export const adminCoursesCategoryView = async (req, res) => {
+
+    const categoryId = req.params.id;
+    const category = await getCategoryById(categoryId);
+    const categories = await getAllCourseCategories()
+
+    res.render("admin/coursesCategories", {
+        title: 'kurzy',
+        categories,
+        marked: "categories",
+        category: category
+    } );
+}
+
 export const addCourse = async (req, res) => {
 
     const {title, courseContent: content, category: categoryId} = req.body
@@ -64,6 +84,16 @@ export const addCategory = async (req, res) => {
     await createCategory({title, content})
 
     res.redirect('back')
+}
+
+export const editCategory = async (req, res) => {
+
+    const {categoryTitle: title, categoryContent: content} = req.body
+    const {id: categoryId} = req.params;
+
+    await updateCategory({title, content}, categoryId)
+
+    res.redirect('/admin/courses/categories')
 }
 
 export const editCourse = async (req, res) => {

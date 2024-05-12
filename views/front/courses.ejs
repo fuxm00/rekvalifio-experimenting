@@ -4,15 +4,13 @@
 <%- coursesContent %>
 
 <div>
-    <% for (const category of categories) { %>
-        <ul>
+    <ul>
+        <% for (const category of categories) { %>
             <li>
                 <a href="/course-category/<%= category.id %>"><%= category.title %></a>
             </li>
-
-        </ul>
-
-    <% } %>
+        <% } %>
+    </ul>
 </div>
 
 <%- include('./parts/_footer') %>

@@ -1,4 +1,4 @@
-import {getAllCourses, getCourseById, removeCourseById} from "../../src/db/courses.js";
+import { getCourseById } from "../../src/db/courses.js";
 import {
     archiveOrderById, completeOrderById,
     getAllArchivedOrders,

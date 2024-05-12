@@ -17,3 +17,7 @@ export const getCategoryById = async (id) => {
 
     return category
 }
+
+export const updateCategory = async (data, categryId) => {
+    await db('courseCategories').update(data).where('Id', categryId)
+}

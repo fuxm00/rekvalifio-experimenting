@@ -1,9 +1,7 @@
-
 <div class="content-container">
     <% for (const category of categories) { %>
         <div>
-            <%= category.title %>
+            <a href="/admin/courses/categories/<%= category.id %>"><%= category.title %></a>
         </div>
-
     <% } %>
 </div>

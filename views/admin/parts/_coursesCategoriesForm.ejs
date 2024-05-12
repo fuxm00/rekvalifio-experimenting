@@ -1,14 +1,23 @@
 <div class="content-container">
 
-    <h3>Přidat kategorii</h3>
+    <h3>
+        <% if (category) { %>
+            Upravit kategrii: <%= category.title %>
+        <% } else { %>
+            Přidat kategorii
+        <% } %>
+    </h3>
 
     <div class="content-container">
-        <form action='/admin/courses/add-category' method='post'>
+        <form action='/admin/courses/<%= category ? `edit-category/${category.id}` : "add-category" %>' method='post'>
             <div>
                 <label>
                     <div>Název</div>
 
-                    <input type="text" name="categoryTitle" placeholder="název kategorie" class="input"/>
+                    <input type="text" name="categoryTitle"
+                           placeholder="<%= category ? category.title : "název kategorie" %>"
+                           class="input"
+                           value="<%= category ? category.title : "" %>">
                 </label>
             </div>
 
@@ -16,7 +25,13 @@
             <textarea id="categoryContent" name="categoryContent"></textarea>
 
             <div class="center-button">
-                <button type='submit'>Přidat</button>
+                <button type='submit'>
+                    <% if (category) { %>
+                        Upravit
+                    <% } else { %>
+                        Přidat
+                    <% } %>
+                </button>
             </div>
         </form>
 
@@ -26,7 +41,10 @@
             new FroalaEditor('#categoryContent', {
                 toolbarButtons: myToolbarButtons
             }, function () {
-                this.html.set('');
+
+                <% if (category) { %>
+                this.html.set('<%- category.content %>');
+                <% } %>
             })
         </script>
 
