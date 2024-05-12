@@ -11,7 +11,7 @@ export const up = async function (knex) {
         table.string('salt').notNullable()
 
         table.string('hash').notNullable()
-        
+
         table.string('token')
     })
 }
