@@ -25,6 +25,18 @@
             <button type="submit" class="button">Upravit</button>
         </div>
 
+        <h3>Ochrana osobních údajů</h3>
+        <textarea id="gdprContent" name="gdprContent"></textarea>
+        <div class="center-button">
+            <button type="submit" class="button">Upravit</button>
+        </div>
+
+        <h3>Obchodní podmínky</h3>
+        <textarea id="conditionsContent" name="conditionsContent"></textarea>
+        <div class="center-button">
+            <button type="submit" class="button">Upravit</button>
+        </div>
+
     </form>
 </div>
 
@@ -47,6 +59,18 @@
         toolbarButtons: myToolbarButtons
     }, function () {
         this.html.set('<%- contactsContent %>');
+    })
+
+    new FroalaEditor('#gdprContent', {
+        toolbarButtons: myToolbarButtons
+    }, function () {
+        this.html.set('<%- gdprContent %>');
+    })
+
+    new FroalaEditor('#conditionsContent', {
+        toolbarButtons: myToolbarButtons
+    }, function () {
+        this.html.set('<%- conditionContent %>');
     })
 </script>
 

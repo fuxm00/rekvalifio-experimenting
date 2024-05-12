@@ -8,6 +8,8 @@ import loadUser from "./middlewares/loadUser.js";
 import adminOrders from "../routes/admin/adminOrders.js";
 import adminContent from "../routes/admin/adminContent.js";
 import session from "express-session";
+import conditions from "../routes/front/conditions.js";
+import gdpr from "../routes/front/gdpr.js";
 
 
 export const app = express()
@@ -27,6 +29,8 @@ app.use(loadUser)
 app.use(home)
 app.use(contacts)
 app.use(courses)
+app.use(conditions)
+app.use(gdpr)
 
 app.use(admin)
 app.use(adminCourses)

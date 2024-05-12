@@ -3,13 +3,14 @@ import {createOrder} from "../../src/db/orders.js";
 import jsonDb from "../../src/jsonDb.js";
 import {getAllCourseCategories, getCategoryById} from "../../src/db/courseCategories.js";
 import {createAddress} from "../../src/db/addresses.js";
+import {jsonDbSchema} from "../../src/jsonDbSchema.js";
 
-const logoName = await jsonDb.get('logo')
+const logoName = await jsonDb.get(jsonDbSchema.logo)
 
 export const coursesView = async (req, res) => {
 
     const categories = await getAllCourseCategories()
-    const coursesContent = await jsonDb.get('courses-content')
+    const coursesContent = await jsonDb.get(jsonDbSchema.courses)
 
     res.render("front/courses", {
         title: 'Kurzy',
