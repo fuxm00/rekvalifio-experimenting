@@ -24,6 +24,17 @@
             <h3>Obsah</h3>
             <textarea id="categoryContent" name="categoryContent"></textarea>
 
+            <div>Typ</div>
+            <select name="typeId">
+                <% for (const type of types) { %>
+                    <option value="<%= type.id %>"
+                    <% if (category) { %>
+                        <%= type.id === category.typeId ? 'selected' : '' %>
+                            <% } %>
+                    ><%= type.title %></option>
+                <% } %>
+            </select>
+
             <div class="center-button">
                 <button type='submit'>
                     <% if (category) { %>

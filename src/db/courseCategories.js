@@ -8,6 +8,14 @@ export const getAllCourseCategories = async () => {
     return categories
 }
 
+export const getCourseCategoriesOfType = async (id) => {
+    let query = db('courseCategories').select('*').where('typeId', id)
+
+    const categories = await query
+
+    return categories
+}
+
 export const createCategory = async (data) => {
     await db('courseCategories').insert(data)
 }

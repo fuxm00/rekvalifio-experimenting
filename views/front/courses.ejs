@@ -4,6 +4,15 @@
 <%- coursesContent %>
 
 <div>
+    <a href="/courses">Všechny</a>
+    <% for (const type of types) { %>
+
+        <a href="/courses?filter=<%= type.title %>"><%= type.title %></a>
+
+    <% } %>
+</div>
+
+<div>
     <ul>
         <% for (const category of categories) { %>
             <li>

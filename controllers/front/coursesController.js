@@ -1,23 +1,35 @@
 import {getCourseById, getCoursesByCategoryId} from "../../src/db/courses.js";
 import {createOrder} from "../../src/db/orders.js";
 import jsonDb from "../../src/jsonDb.js";
-import {getAllCourseCategories, getCategoryById} from "../../src/db/courseCategories.js";
+import {getAllCourseCategories, getCategoryById, getCourseCategoriesOfType} from "../../src/db/courseCategories.js";
 import {createAddress} from "../../src/db/addresses.js";
 import {jsonDbSchema} from "../../src/jsonDbSchema.js";
+import {getAllCourseTypes, geTypeByTitle} from "../../src/db/courseTypes.js";
 
 const logoName = await jsonDb.get(jsonDbSchema.logo)
 
 export const coursesView = async (req, res) => {
 
-    const categories = await getAllCourseCategories()
+    const {filter} = req.query;
+
+    let categories
+    if (filter) {
+        const type = await geTypeByTitle(filter)
+        categories = await getCourseCategoriesOfType(type.id)
+    } else {
+        categories = await getAllCourseCategories()
+    }
+
     const coursesContent = await jsonDb.get(jsonDbSchema.courses)
+    const types = await getAllCourseTypes()
 
     res.render("front/courses", {
         title: 'Kurzy',
         marked: 'courses',
         categories,
         logoName,
-        coursesContent
+        coursesContent,
+        types
     });
 }
 

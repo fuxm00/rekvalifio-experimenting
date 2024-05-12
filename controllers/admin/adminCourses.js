@@ -11,6 +11,7 @@ import {
     getCategoryById,
     updateCategory
 } from "../../src/db/courseCategories.js";
+import {createCourseType, getAllCourseTypes, getTypeById} from "../../src/db/courseTypes.js";
 
 export const adminCoursesView = async (req, res) => {
 
@@ -29,14 +30,30 @@ export const adminCoursesView = async (req, res) => {
 export const adminCoursesCategoriesView = async (req, res) => {
 
     const categories = await getAllCourseCategories()
+    const types = await getAllCourseTypes()
 
     res.render("admin/coursesCategories", {
         title: 'kurzy',
         categories,
         marked: "categories",
-        category: null
+        category: null,
+        types
+
     } );
 }
+
+export const adminCoursesTypesView = async (req, res) => {
+
+    const types = await getAllCourseTypes()
+
+    res.render("admin/coursesTypes", {
+        title: 'kurzy',
+        types,
+        marked: "types",
+        type: null
+    } );
+}
+
 
 export const adminCourseView = async (req, res) => {
 
@@ -58,13 +75,17 @@ export const adminCoursesCategoryView = async (req, res) => {
 
     const categoryId = req.params.id;
     const category = await getCategoryById(categoryId);
+    const type = await getTypeById(category.id)
     const categories = await getAllCourseCategories()
+    const types = await getAllCourseTypes()
 
     res.render("admin/coursesCategories", {
         title: 'kurzy',
         categories,
         marked: "categories",
-        category: category
+        category: category,
+        types,
+        type
     } );
 }
 
@@ -77,21 +98,31 @@ export const addCourse = async (req, res) => {
     res.redirect('back')
 }
 
+export const addType = async (req, res) => {
+
+    const {title} = req.body
+    console.log(title)
+
+    await createCourseType({title})
+
+    res.redirect('back')
+}
+
 export const addCategory = async (req, res) => {
 
-    const {categoryTitle: title, categoryContent: content} = req.body
+    const {categoryTitle: title, categoryContent: content, typeId} = req.body
 
-    await createCategory({title, content})
+    await createCategory({title, content, typeId})
 
     res.redirect('back')
 }
 
 export const editCategory = async (req, res) => {
 
-    const {categoryTitle: title, categoryContent: content} = req.body
+    const {categoryTitle: title, categoryContent: content, typeId} = req.body
     const {id: categoryId} = req.params;
 
-    await updateCategory({title, content}, categoryId)
+    await updateCategory({title, content, typeId}, categoryId)
 
     res.redirect('/admin/courses/categories')
 }
