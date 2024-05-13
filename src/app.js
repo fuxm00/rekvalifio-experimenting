@@ -11,6 +11,7 @@ import session from "express-session";
 import conditions from "../routes/front/conditions.js";
 import gdpr from "../routes/front/gdpr.js";
 import adminUsers from "../routes/admin/adminUsers.js";
+import adminOffers from "../routes/admin/adminOffers.js";
 
 
 export const app = express()
@@ -37,6 +38,7 @@ app.use(admin)
 app.use(adminCourses)
 app.use(adminOrders)
 app.use(adminContent)
+app.use(adminOffers)
 app.use(adminUsers)
 
 app.use((req, res) => {

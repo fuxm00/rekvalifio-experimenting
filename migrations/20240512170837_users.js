@@ -12,6 +12,8 @@ export const up = async function (knex) {
 
         table.string('hash').notNullable()
 
+        table.boolean('isAdmin').notNullable().defaultTo(false)
+
         table.string('token')
     })
 }

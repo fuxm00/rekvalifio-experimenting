@@ -1,0 +1,78 @@
+<div class="content-container">
+
+    <h3>
+        <% if (!offer) { %>
+            Přidat nabídku
+        <% } else { %>
+            Upravit nabídku
+        <% } %>
+    </h3>
+
+    <div class="content-container">
+        <form
+        <% if (!offer) { %>
+            action='/admin/offers/add-offer'
+        <% } else { %>
+            action='/admin/offers/edit-offer/<%= offer.id %>'
+                <% } %>
+
+            method='post'>
+            <div>
+                <label>
+                    <div>Název</div>
+
+                    <input type="text" name="title" placeholder="název nabídky" class="input"
+                    <% if (offer) { %>
+                           value="<%= offer.title %>"
+                            <% } %>
+                    />
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <div>Začátek</div>
+                    <input type="date" name="offerStart"
+                           value="<%= minDate %>"
+                           min="<%= minDate%>">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <div>Konec</div>
+                    <input type="date" name="offerEnd"
+                           value="<%= minDate %>"
+                           min="<%= minDate%>">
+                </label>
+            </div>
+
+            <div>
+                <div>Kategorie</div>
+                <select name="category">
+                    <% for (const category of categories) { %>
+                        <option value="<%= category.id %>"
+
+                        <% if (offer) { %>
+                            <%= category.id === offer.categoryId ? 'selected' : '' %>
+                                <% } %>
+
+
+                        ><%= category.title %></option>
+                    <% } %>
+                </select>
+            </div>
+
+            <div class="center-button">
+                <button type='submit'>
+                    <% if (!offer) { %>
+                        Přidat
+                    <% } else { %>
+                        Upravit
+                    <% } %>
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

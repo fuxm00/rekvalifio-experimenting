@@ -1,3 +1,16 @@
+:root {
+    --grey2: rgba(0, 0, 0, 0.2);
+    --grey3: rgba(0, 0, 0, 0.3);
+    --blue: rgba(45, 72, 121);
+    --nocolor: rgba(0, 0, 0, 0);
+    --h1: rgba(227, 147, 97);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 #header {
     display: flex;
     align-items: center;
@@ -31,7 +44,7 @@
 }
 
 #navbar-container {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--grey3);
 }
 
 #navbar-list {
@@ -39,6 +52,51 @@
     display: flex;
     padding: 5px;
     margin: 0;
+}
+
+#home-container {
+    display: flex;
+}
+
+#home-offers {
+    min-width: 350px;
+    margin: 10px 0 0 30px;
+}
+
+#offers-list {
+    list-style-type: none;
+}
+
+#offer-heading-box {
+    background-color: var(--blue);
+}
+
+#offer-heading {
+    margin: 0 30px;
+    padding: 15px 0;
+
+    color: white;
+}
+
+.offer-item {
+    margin: 28px 8px;
+}
+
+.offer-item-link {
+    padding: 10px;
+
+    color: black;
+
+    border: solid 1px var(--grey2);
+    border-radius: 5px;
+
+    text-decoration: none;
+}
+
+.offer-item-link:hover {
+    background-color: var(--grey2);
+
+    border: solid 1px var(--nocolor);
 }
 
 .navbar-item {
@@ -49,20 +107,24 @@
 }
 
 .navbar-item:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--grey2);
 }
 
 .marked {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--grey2);
 }
 
 ul {
     margin: 0;
 }
 
+h1 {
+    color: var(--h1);
+    margin: 20px 0
+}
 
 #footer {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--grey3);
 }
 
 #footer-links {

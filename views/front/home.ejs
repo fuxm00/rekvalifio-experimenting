@@ -1,6 +1,12 @@
 <%- include('./parts/_header') %>
 <%- include('./parts/_navbar') %>
-
-<%- homeContent %>
+<div id="home-container" class="content-container">
+    <div>
+        <%- homeContent %>
+    </div>
+    <div id="home-offers">
+        <%- include('./parts/_homeOffers') %>
+    </div>
+</div>
 
 <%- include('./parts/_footer') %>
