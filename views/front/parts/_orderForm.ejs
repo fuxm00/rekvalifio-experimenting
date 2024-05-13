@@ -1,5 +1,6 @@
 <div class="content-container">
-    <form action="/course/order-proceed/<%= course.id %>" method="post" id="order-form">
+    <form action="<%= summary ? "/course/place-order/" : "/course/order-proceed/" %><%= course.id %>"
+          method="post" id="order-form">
         <h2>Účastníci</h2>
 
         <h2>Fakturační údaje</h2>
@@ -7,31 +8,31 @@
             <div class="mb-10">
                 <label class="form-label">
                     <div>Ulice</div>
-                    <input name="billingStreet" value="<%= billingStreet %>">
+                    <input name="billingStreet" value="<%= billingStreet %>" <%= summary ? "disabled" : ""%>>
                 </label>
             </div>
             <div class="mb-10">
                 <label class="form-label">
                     <div>Město</div>
-                    <input name="billingCity" value="<%= billingCity %>">
+                    <input name="billingCity" value="<%= billingCity %>" <%= summary ? "disabled" : ""%>>
                 </label>
             </div>
             <div class="mb-10">
                 <label class="form-label">
                     <div>PSČ</div>
-                    <input name="billingPostal" value="<%= billingPostal %>">
+                    <input name="billingPostal" value="<%= billingPostal %>" <%= summary ? "disabled" : ""%>>
                 </label>
             </div>
             <div class="mb-10">
                 <label class="form-label">
                     <div>IČ</div>
-                    <input name="billingIc" value="<%= billingIc %>">
+                    <input name="billingIc" value="<%= billingIc %>" <%= summary ? "disabled" : ""%>>
                 </label>
             </div>
             <div class="mb-10">
                 <label class="form-label">
                     <div>DIČ</div>
-                    <input name="billingDic" value="<%= billingDic %>">
+                    <input name="billingDic" value="<%= billingDic %>" <%= summary ? "disabled" : ""%>>
                 </label>
             </div>
         </div>
@@ -45,19 +46,19 @@
             <div class="mb-10">
                 <label class="form-label">
                     <div>Ulice</div>
-                    <input name="mailingStreet" value="<%= mailingStreet %>">
+                    <input name="mailingStreet" value="<%= mailingStreet %>" <%= summary ? "disabled" : ""%>>
                 </label>
             </div>
             <div class="mb-10">
                 <label class="form-label">
                     <div>Město</div>
-                    <input name="mailingCity" value="<%= mailingCity %>">
+                    <input name="mailingCity" value="<%= mailingCity %>" <%= summary ? "disabled" : ""%>>
                 </label>
             </div>
             <div class="mb-10">
                 <label class="form-label">
                     <div>PSČ</div>
-                    <input name="mailingPostal" value="<%= mailingPostal %>">
+                    <input name="mailingPostal" value="<%= mailingPostal %>" <%= summary ? "disabled" : ""%>>
                 </label>
             </div>
         </div>
@@ -67,13 +68,13 @@
             <div class="mb-10" >
                 <label class="form-label" >
                     <div>E-mail</div>
-                    <input name="email" value="<%= email %>">
+                    <input name="email" value="<%= email %>" <%= summary ? "disabled" : ""%>>
                 </label>
             </div>
             <div class="mb-10">
                 <label class="form-label">
                     <div>Telefon</div>
-                    <input name="phone" value="<%= phone %>">
+                    <input name="phone" value="<%= phone %>" <%= summary ? "disabled" : ""%>>
                 </label>
             </div>
         </div>
@@ -86,7 +87,7 @@
                 </div>
                 <label class="form-label">
                     <div>Poznámky</div>
-                    <textarea name="note"><%= note %></textarea>
+                    <textarea name="note" <%= summary ? "disabled" : ""%>><%= note %></textarea>
                 </label>
             </div>
         </div>
@@ -96,7 +97,7 @@
             <div class="mt10">
                 <div class="mb-10">
                     <label>
-                        <input name="approval" type="checkbox" required>
+                        <input name="approval" type="checkbox" <%= summary ? checked="checked" : ""%> <%= summary ? "disabled " : ""%>>
                         souhalsím s <a href="/conditions">obchodními podmínkami společnosti</a>
                     </label>
                 </div>
@@ -105,7 +106,7 @@
         </div>
 
         <div class="order-button-container">
-            <button type='submit' class="order-button">Pokračovat v obejdnávce</button>
+            <button type='submit' class="order-button"><%= summary ? "Dokončit objednávku" : "Pokračovat v obejdnávce" %></button>
         </div>
     </form>
 

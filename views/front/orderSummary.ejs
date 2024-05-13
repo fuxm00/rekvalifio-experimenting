@@ -1,52 +1,15 @@
 <%- include('./parts/_header') %>
 <%- include('./parts/_navbar') %>
-<h1>Shrnutí pro: <%= course.title%></h1>
-<div class="content-container">
-    <h2>Účastníci</h2>
-    <h2>Fakturační údaje</h2>
-    <div>
-        Ulice: <%= session.billingStreet %>
-    </div>
-    <div>
-        Město: <%= session.billingCity %>
-    </div>
-    <div>
-        PSČ: <%= session.billingPostal %>
-    </div>
-    <div>
-        IČ: <%= session.billingIc %>
-    </div>
-    <div>
-        DIČ: <%= session.billingDic %>
-    </div>
-    <h2>Poštovní adresa</h2>
-    <div>
-        Ulice: <%= session.mailingStreet %>
-    </div>
-    <div>
-        Město: <%= session.mailingCity %>
-    </div>
-    <div>
-        PSČ: <%= session.mailingPostal %>
-    </div>
-    <h2>kontaktní informace</h2>
-    <div>
-        mail: <%= session.email %>
-    </div>
-    <div>
-        phone: <%= session.phone %>
-    </div>
-    <h2>Poznámka</h2>
-    <div>
-        <%= session.note %>
-    </div>
 
-    <form action="/course/place-order/<%= course.id%>" method="post">
-        <div class="center-button">
-            <button type='submit'>Dokončit obejdnávku</button>
-        </div>
-    </form>
+<div class="flex-container content-container">
+    <div>
+        <h1>Shrnutí obejdnávky kurzu: <%= course.title %></h1>
+
+        <%- include('./parts/_orderForm') %>
+    </div>
+    <div id="home-offers">
+        <%- include('./parts/_homeOffers') %>
+    </div>
 </div>
-
 
 <%- include('./parts/_footer') %>

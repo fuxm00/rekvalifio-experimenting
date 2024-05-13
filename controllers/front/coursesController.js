@@ -69,7 +69,26 @@ export const categoryView = async (req, res) => {
 
 export const orderSummaryView = async (req, res) => {
 
-    const session = req.session
+    const offers = await getAllOffers()
+
+    for (const offer of offers) {
+        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+    }
+
+    const {
+        note,
+        email,
+        phone,
+        billingStreet,
+        billingCity,
+        billingPostal,
+        billingIc,
+        billingDic,
+        mailingStreet,
+        mailingCity,
+        mailingPostal
+    } = req.session;
     const courseId = req.session.courseId
     const course = await getCourseById(courseId)
 
@@ -77,9 +96,21 @@ export const orderSummaryView = async (req, res) => {
     res.render("front/orderSummary", {
         title: 'Kurzy',
         marked: 'courses',
+        summary: true,
+        offers,
         logoName,
-        session,
         course,
+        note,
+        email,
+        phone,
+        billingStreet,
+        billingCity,
+        billingPostal,
+        billingIc,
+        billingDic,
+        mailingStreet,
+        mailingCity,
+        mailingPostal
     });
 }
 
@@ -134,6 +165,7 @@ export const courseOrderView = async (req, res) => {
     res.render("front/order", {
         title: 'Kurz',
         marked: 'courses',
+        summary: false,
         course,
         logoName,
         note,
