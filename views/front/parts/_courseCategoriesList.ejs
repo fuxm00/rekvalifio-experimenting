@@ -1,0 +1,11 @@
+<ul id="categories-list">
+    <% if (categories.length >= 1) { %>
+        <% for (const category of categories) { %>
+            <li class="ml-30">
+                <a href="/course-category/<%= category.id %>"><%= category.title %></a>
+            </li>
+        <% } %>
+    <% } else { %>
+        <div class="ml-30">žádné</div>
+    <% } %>
+</ul>

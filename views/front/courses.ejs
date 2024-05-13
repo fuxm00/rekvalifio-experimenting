@@ -1,25 +1,20 @@
 <%- include('./parts/_header') %>
 <%- include('./parts/_navbar') %>
 
-<%- coursesContent %>
-
-<div>
-    <a href="/courses">Všechny</a>
-    <% for (const type of types) { %>
-
-        <a href="/courses?filter=<%= type.title %>"><%= type.title %></a>
-
-    <% } %>
+<div class="flex-container content-container">
+    <div>
+        <%- coursesContent %>
+        <div class="mt20">
+            <%- include('./parts/_coursesNavbar') %>
+        </div>
+        <div class="mt20">
+            <%- include('./parts/_courseCategoriesList') %>
+        </div>
+    </div>
+    <div id="home-offers">
+        <%- include('./parts/_homeOffers') %>
+    </div>
 </div>
 
-<div>
-    <ul>
-        <% for (const category of categories) { %>
-            <li>
-                <a href="/course-category/<%= category.id %>"><%= category.title %></a>
-            </li>
-        <% } %>
-    </ul>
-</div>
 
 <%- include('./parts/_footer') %>

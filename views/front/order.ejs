@@ -1,8 +1,15 @@
 <%- include('./parts/_header') %>
 <%- include('./parts/_navbar') %>
 
-<h1>Objednávka kurzu: <%= course.title %></h1>
+<div class="flex-container content-container">
+    <div>
+        <h1>Obejdnávkový formulář kurzu: <%= course.title %></h1>
 
-<%- include('./parts/_orderForm') %>
+        <%- include('./parts/_orderForm') %>
+    </div>
+    <div id="home-offers">
+        <%- include('./parts/_homeOffers') %>
+    </div>
+</div>
 
 <%- include('./parts/_footer') %>

@@ -16,7 +16,28 @@ body {
     margin: 10px 20px 10px 20px;
 }
 
+.center-button {
+    display: flex;
+    justify-content: center;
+}
+
 #footer {
     margin-top: auto;
     margin-bottom: 15px;
+}
+
+.mt10 {
+    margin: 10px 0 0 0;
+}
+
+.mt20 {
+    margin: 20px 0 0 0;
+}
+
+.ml-30 {
+    margin: 0 0 0 30px;
+}
+
+.mb-10 {
+    margin: 0 0 10px 0;
 }

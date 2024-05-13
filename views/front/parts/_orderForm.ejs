@@ -1,90 +1,111 @@
 <div class="content-container">
-    <form action="/course/order-proceed/<%= course.id %>" method="post">
+    <form action="/course/order-proceed/<%= course.id %>" method="post" id="order-form">
         <h2>Účastníci</h2>
+
         <h2>Fakturační údaje</h2>
-        <div>
-            <label>
-                <div>Ulice</div>
-                <input name="billingStreet" value="<%= billingStreet %>">
-            </label>
-        </div>
-        <div>
-            <label>
-                <div>Město</div>
-                <input name="billingCity" value="<%= billingCity %>">
-            </label>
-        </div>
-        <div>
-            <label>
-                <div>PSČ</div>
-                <input name="billingPostal" value="<%= billingPostal %>">
-            </label>
-        </div>
-        <div>
-            <label>
-                <div>IČ</div>
-                <input name="billingIc" value="<%= billingIc %>">
-            </label>
-        </div>
-        <div>
-            <label>
-                <div>DIČ</div>
-                <input name="billingDic" value="<%= billingDic %>">
-            </label>
+        <div class="inputs-box">
+            <div class="mb-10">
+                <label class="form-label">
+                    <div>Ulice</div>
+                    <input name="billingStreet" value="<%= billingStreet %>">
+                </label>
+            </div>
+            <div class="mb-10">
+                <label class="form-label">
+                    <div>Město</div>
+                    <input name="billingCity" value="<%= billingCity %>">
+                </label>
+            </div>
+            <div class="mb-10">
+                <label class="form-label">
+                    <div>PSČ</div>
+                    <input name="billingPostal" value="<%= billingPostal %>">
+                </label>
+            </div>
+            <div class="mb-10">
+                <label class="form-label">
+                    <div>IČ</div>
+                    <input name="billingIc" value="<%= billingIc %>">
+                </label>
+            </div>
+            <div class="mb-10">
+                <label class="form-label">
+                    <div>DIČ</div>
+                    <input name="billingDic" value="<%= billingDic %>">
+                </label>
+            </div>
         </div>
 
         <h2>Poštovní adresa</h2>
-        <p>Shoduje-li se adresa s fakturační, nemusíte vyplňovat.</p>
-        <div>
-            <label>
-                <div>Ulice</div>
-                <input name="mailingStreet" value="<%= mailingStreet %>">
-            </label>
-        </div>
-        <div>
-            <label>
-                <div>Město</div>
-                <input name="mailingCity" value="<%= mailingCity %>">
-            </label>
-        </div>
-        <div>
-            <label>
-                <div>PSČ</div>
-                <input name="mailingPostal" value="<%= mailingPostal %>">
-            </label>
+        <div class="inputs-box">
+            <div class="mb-10">
+                <p>Shoduje-li se adresa s fakturační, nemusíte vyplňovat.</p>
+            </div>
+
+            <div class="mb-10">
+                <label class="form-label">
+                    <div>Ulice</div>
+                    <input name="mailingStreet" value="<%= mailingStreet %>">
+                </label>
+            </div>
+            <div class="mb-10">
+                <label class="form-label">
+                    <div>Město</div>
+                    <input name="mailingCity" value="<%= mailingCity %>">
+                </label>
+            </div>
+            <div class="mb-10">
+                <label class="form-label">
+                    <div>PSČ</div>
+                    <input name="mailingPostal" value="<%= mailingPostal %>">
+                </label>
+            </div>
         </div>
 
         <h2>Kontaktní informace</h2>
-
-        <div>
-            <label>
-                <div>E-mail</div>
-                <input name="email" value="<%= email %>">
-            </label>
-        </div>
-        <div>
-            <label>
-                <div>Telefon</div>
-                <input name="phone" value="<%= phone %>">
-            </label>
+        <div class="inputs-box">
+            <div class="mb-10" >
+                <label class="form-label" >
+                    <div>E-mail</div>
+                    <input name="email" value="<%= email %>">
+                </label>
+            </div>
+            <div class="mb-10">
+                <label class="form-label">
+                    <div>Telefon</div>
+                    <input name="phone" value="<%= phone %>">
+                </label>
+            </div>
         </div>
 
         <h2>Poznámka</h2>
-        <div>
-            <p>Pro sdělení doplňujících informací</p>
-            <textarea name="note"><%= note %></textarea>
+        <div class="inputs-box">
+            <div class="mb-10">
+                <div class="mb-10">
+                    <p>Pro sdělení doplňujících informací</p>
+                </div>
+                <label class="form-label">
+                    <div>Poznámky</div>
+                    <textarea name="note"><%= note %></textarea>
+                </label>
+            </div>
         </div>
 
         <h2>Obchodní podmínky</h2>
-        <div>
-            <label>
-                <input name="approval" type="checkbox" required>
-                souhalsím s <a href="/">obchodními podmínkami společnosti</a>
-            </label>
+        <div class="inputs-box">
+            <div class="mt10">
+                <div class="mb-10">
+                    <label>
+                        <input name="approval" type="checkbox" required>
+                        souhalsím s <a href="/conditions">obchodními podmínkami společnosti</a>
+                    </label>
+                </div>
+            </div>
+
         </div>
 
-        <div class="center-button">
-            <button type='submit'>Pokračovat v obejdnávce</button>
+        <div class="order-button-container">
+            <button type='submit' class="order-button">Pokračovat v obejdnávce</button>
         </div>
     </form>
 

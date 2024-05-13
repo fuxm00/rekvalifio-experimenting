@@ -5,6 +5,8 @@ import {getAllCourseCategories, getCategoryById, getCourseCategoriesOfType} from
 import {createAddress} from "../../src/db/addresses.js";
 import {jsonDbSchema} from "../../src/jsonDbSchema.js";
 import {getAllCourseTypes, geTypeByTitle} from "../../src/db/courseTypes.js";
+import {getAllOffers} from "../../src/db/offers.js";
+import {formatDate} from "../../src/utils/formatDate.js";
 
 const logoName = await jsonDb.get(jsonDbSchema.logo)
 
@@ -23,13 +25,22 @@ export const coursesView = async (req, res) => {
     const coursesContent = await jsonDb.get(jsonDbSchema.courses)
     const types = await getAllCourseTypes()
 
+    const offers = await getAllOffers()
+
+    for (const offer of offers) {
+        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+    }
+
     res.render("front/courses", {
         title: 'Kurzy',
         marked: 'courses',
         categories,
         logoName,
         coursesContent,
-        types
+        types,
+        offers,
+        filter
     });
 }
 
@@ -39,12 +50,20 @@ export const categoryView = async (req, res) => {
     const category = await getCategoryById(categoryId)
     const courses = await getCoursesByCategoryId(categoryId);
 
+    const offers = await getAllOffers()
+
+    for (const offer of offers) {
+        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+    }
+
     res.render("front/category", {
         title: 'Kurzy',
         marked: 'courses',
         logoName,
         category,
-        courses
+        courses,
+        offers
     });
 }
 
@@ -70,11 +89,19 @@ export const courseView = async (req, res) => {
 
     const course = await getCourseById(courseId);
 
+    const offers = await getAllOffers()
+
+    for (const offer of offers) {
+        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+    }
+
     res.render("front/course", {
         title: 'Kurz',
         marked: 'courses',
         course,
-        logoName
+        logoName,
+        offers
     });
 }
 
@@ -97,6 +124,13 @@ export const courseOrderView = async (req, res) => {
 
     const course = await getCourseById(courseId);
 
+    const offers = await getAllOffers()
+
+    for (const offer of offers) {
+        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+    }
+
     res.render("front/order", {
         title: 'Kurz',
         marked: 'courses',
@@ -112,7 +146,8 @@ export const courseOrderView = async (req, res) => {
         billingDic,
         mailingStreet,
         mailingCity,
-        mailingPostal
+        mailingPostal,
+        offers
     });
 }
 

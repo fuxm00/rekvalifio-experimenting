@@ -2,6 +2,8 @@
     --grey2: rgba(0, 0, 0, 0.2);
     --grey3: rgba(0, 0, 0, 0.3);
     --blue: rgba(45, 72, 121);
+    --darkerBlue: rgba(45, 72, 90);
+    --form-box: rgba(237, 246, 194);
     --nocolor: rgba(0, 0, 0, 0);
     --h1: rgba(227, 147, 97);
 }
@@ -54,8 +56,30 @@
     margin: 0;
 }
 
-#home-container {
+.flex-container {
     display: flex;
+}
+
+.inputs-box {
+    padding: 10px 20px;
+
+    background-color: var(--form-box);
+
+    border: 1px solid var(--grey3);
+    border-radius: 10px;
+}
+
+.offer-input {
+    width: 10px;
+}
+
+.form-label {
+    display: flex;
+    gap: 25px;
+}
+
+.form-label div {
+    width: 50px;
 }
 
 #home-offers {
@@ -114,6 +138,28 @@
     background-color: var(--grey2);
 }
 
+#courses-navbar {
+    display: flex;
+    gap: 20px;
+}
+
+.courses-navbar-item {
+    margin: 5px;
+    padding: 5px 15px;
+
+    text-decoration: none;
+
+    background-color: var(--grey3);
+    color: white;
+
+    border: 1px solid var(--grey2);
+    border-radius: 20px;
+}
+
+.courses-navbar-item-marked {
+    background-color: var(--blue);
+}
+
 ul {
     margin: 0;
 }
@@ -121,6 +167,40 @@ ul {
 h1 {
     color: var(--h1);
     margin: 20px 0
+}
+
+h2 {
+    color: var(--h1);
+    margin: 20px 0
+}
+
+.order-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 15px 0;
+}
+
+.order-button {
+    border: 1px solid var(--grey3);
+    border-radius: 20px;
+
+    padding: 8px 18px;
+
+    text-decoration: none;
+
+    background-color: var(--blue);
+    color: white;
+}
+
+.order-button:hover {
+    background-color: var(--darkerBlue);
+}
+
+#order-form h2 {
+    color: black;
+    margin: 15px 0 0 0
 }
 
 #footer {
