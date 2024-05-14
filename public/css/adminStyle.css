@@ -21,10 +21,6 @@
     background-color: #FDD692;
 }
 
-.marked {
-    color: orange;
-}
-
 input {
     margin-bottom: 20px;
     padding: 10px 20px;
@@ -49,3 +45,67 @@ button {
 button:hover {
     background-color: rgb(176, 149, 101);
 }
+
+#admin-order-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#admin-order-list div a {
+    text-decoration: none;
+}
+
+.admin-button {
+    border: 1px solid var(--grey3);
+    border-radius: 20px;
+
+    padding: 3px 11px;
+
+    text-decoration: none;
+}
+
+.button-red {
+    color: white;
+    background-color: var(--red);
+}
+
+.button-red:hover {
+    background-color: var(--darkerRed);
+}
+
+.button-blue {
+    color: white;
+    background-color: var(--blue);
+}
+
+.button-blue:hover {
+    background-color: var(--darkerBlue);
+}
+
+.button-navbar {
+    color: black;
+    background-color: white;
+}
+
+.button-navbar:hover {
+    color: white;
+    background-color: grey;
+}
+
+.button-navbar-marked {
+    color: white;
+    background-color: var(--orange);
+}
+
+.button-navbar-marked:hover {
+    background-color: var(--darkerOrange);
+}
+
+.flex-horizontal {
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+

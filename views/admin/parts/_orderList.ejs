@@ -1,28 +1,39 @@
 <div class="content-container">
+    <hr>
     <% for (const order of orders) { %>
-        <div>
-            <a href="/admin/orders/<%= order.id %>">
-                <%= order.id %>.
-            </a>
-
-            Vytvořeno: <%= order.formatedDate %>
-
-            <% if (archivedList) { %>
-                <a href="/admin/orders/unArchiveOrder/<%= order.id %>">Odarchivovat</a>
-            <% } else { %>
-                <a href="/admin/orders/archiveOrder/<%= order.id %>">Archivovat</a>
-            <% } %>
-
-            <% if (!archivedList) { %>
-                <% if (order.completed) { %>
-                    <a href="/admin/orders/unCompleteOrder/<%= order.id %>">Od Hotovo</a>
-                <% } else { %>
-                    <a href="/admin/orders/completeOrder/<%= order.id %>">Hotovo</a>
-                <% } %>
-            <% } %>
-            <a href="/admin/orders/delete/<%= order.id %>">smazat</a>
-
+        <div id="admin-order-list">
+            <div class="flex-horizontal">
+                <a href="/admin/orders/<%= order.id %>">
+                    Objednávka č. <%= order.id %>.
+                </a>
+                <div>
+                    Vytvořeno: <%= order.formatedDate %>
+                </div>
+            </div>
+            <div class="flex-horizontal">
+                <div>
+                    <% if (!archivedList) { %>
+                        <% if (order.completed) { %>
+                            <a href="/admin/orders/unCompleteOrder/<%= order.id %>">✅</a>
+                        <% } else { %>
+                            <a href="/admin/orders/completeOrder/<%= order.id %>">⬜</a>
+                        <% } %>
+                    <% } %>
+                </div>
+                <div>
+                    <% if (archivedList) { %>
+                        <a href="/admin/orders/unArchiveOrder/<%= order.id %>" class="admin-button button-blue">odarchivovat</a>
+                    <% } else { %>
+                        <a href="/admin/orders/archiveOrder/<%= order.id %>"
+                           class="admin-button button-blue">archivovat</a>
+                    <% } %>
+                </div>
+                <div>
+                    <a href="/admin/orders/delete/<%= order.id %>" class="admin-button button-red">smazat</a>
+                </div>
+            </div>
         </div>
+        <hr>
 
     <% } %>
 </div>
