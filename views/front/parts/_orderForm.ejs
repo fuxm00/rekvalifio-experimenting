@@ -169,37 +169,38 @@
         </div>
     </form>
 
-    <script>
+    <% if (!summary) { %>
+        <script>
+            let currentParticipants = 1
 
-        let currentParticipants = 1
+            function createInput() {
+                let div = document.createElement('div')
+                div.className = 'mb-10'
 
-        function createInput() {
-            let div = document.createElement('div')
-            div.className = 'mb-10'
+                let label = document.createElement('label')
+                label.className = 'form-label'
+                div.appendChild(label)
+                label.appendChild(document.createElement("div"))
 
-            let label = document.createElement('label')
-            label.className = 'form-label'
-            div.appendChild(label)
-            label.appendChild(document.createElement("div"))
+                let input = document.createElement('input');
+                currentParticipants++
+                input.name = `participant${currentParticipants}`
+                label.appendChild(input)
 
-            let input = document.createElement('input');
-            currentParticipants++
-            input.name = `participant${currentParticipants}`
-            label.appendChild(input)
+                let participants = document.getElementById("participants");
+                participants.appendChild(div);
+            }
 
-            let participants = document.getElementById("participants");
-            participants.appendChild(div);
-        }
+            let button = document.createElement('button');
+            button.textContent = 'Přidat';
+            button.type = 'button';
+            button.className = 'participants-button'
 
-        let button = document.createElement('button');
-        button.textContent = 'Přidat';
-        button.type = 'button';
-        button.className = 'participants-button'
+            button.addEventListener('click', () => createInput());
 
-        button.addEventListener('click', () => createInput());
-
-        let form = document.getElementById("participants-button");
-        form.appendChild(button);
-    </script>
+            let form = document.getElementById("participants-button");
+            form.appendChild(button);
+        </script>
+    <% } %>
 
 </div>
