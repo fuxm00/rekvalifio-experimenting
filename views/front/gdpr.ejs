@@ -1,6 +1,15 @@
 <%- include('./parts/_header') %>
 <%- include('./parts/_navbar') %>
 
-<%- content %>
+<div class="flex-container content-container">
+    <div>
+        <%- content %>
+    </div>
+    <div id="home-offers">
+        <%- include('./parts/_homeOffers') %>
+    </div>
+</div>
+
+
 
 <%- include('./parts/_footer') %>

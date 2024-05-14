@@ -11,6 +11,13 @@ import {createParticipant} from "../../src/db/participants.js";
 
 const logoName = await jsonDb.get(jsonDbSchema.logo)
 
+const offers = await getAllOffers()
+
+for (const offer of offers) {
+    offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
+    offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
+}
+
 export const coursesView = async (req, res) => {
 
     const {filter} = req.query;
@@ -25,13 +32,6 @@ export const coursesView = async (req, res) => {
 
     const coursesContent = await jsonDb.get(jsonDbSchema.courses)
     const types = await getAllCourseTypes()
-
-    const offers = await getAllOffers()
-
-    for (const offer of offers) {
-        offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
-        offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
-    }
 
     res.render("front/courses", {
         title: 'Kurzy',
@@ -51,13 +51,6 @@ export const categoryView = async (req, res) => {
     const category = await getCategoryById(categoryId)
     const courses = await getCoursesByCategoryId(categoryId);
 
-    const offers = await getAllOffers()
-
-    for (const offer of offers) {
-        offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
-        offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
-    }
-
     res.render("front/category", {
         title: 'Kurzy',
         marked: 'courses',
@@ -69,13 +62,6 @@ export const categoryView = async (req, res) => {
 }
 
 export const orderSummaryView = async (req, res) => {
-
-    const offers = await getAllOffers()
-
-    for (const offer of offers) {
-        offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
-        offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
-    }
 
     const {
         note,
@@ -137,13 +123,6 @@ export const courseView = async (req, res) => {
 
     const course = await getCourseById(courseId);
 
-    const offers = await getAllOffers()
-
-    for (const offer of offers) {
-        offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
-        offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
-    }
-
     res.render("front/course", {
         title: 'Kurz',
         marked: 'courses',
@@ -177,13 +156,6 @@ export const courseOrderView = async (req, res) => {
     const participants = req.session.participants
 
     const course = await getCourseById(courseId);
-
-    const offers = await getAllOffers()
-
-    for (const offer of offers) {
-        offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
-        offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
-    }
 
     res.render("front/order", {
         title: 'Kurz',
