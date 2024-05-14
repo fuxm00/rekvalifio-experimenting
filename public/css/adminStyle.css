@@ -28,7 +28,19 @@ input {
     border-radius: 8px;
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(204, 204, 204);
+    border-color: var(--grey3);
+}
+
+select {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+
+    background-color: white;
+
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--grey3);
 }
 
 #admin-order-list {
