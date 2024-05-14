@@ -31,21 +31,6 @@ input {
     border-color: rgb(204, 204, 204);
 }
 
-button {
-    padding: 5px 15px;
-    margin: 5px 10px;
-
-    border: solid black 1px;
-    border-radius: 75px;
-
-    background-color: #FDD692;
-    color: black;
-}
-
-button:hover {
-    background-color: rgb(176, 149, 101);
-}
-
 #admin-order-list {
     display: flex;
     align-items: center;
