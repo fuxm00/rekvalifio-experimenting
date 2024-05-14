@@ -7,6 +7,7 @@ import {jsonDbSchema} from "../../src/jsonDbSchema.js";
 import {getAllCourseTypes, geTypeByTitle} from "../../src/db/courseTypes.js";
 import {getAllOffers} from "../../src/db/offers.js";
 import {formatDate} from "../../src/utils/formatDate.js";
+import {createParticipant} from "../../src/db/participants.js";
 
 const logoName = await jsonDb.get(jsonDbSchema.logo)
 
@@ -28,8 +29,8 @@ export const coursesView = async (req, res) => {
     const offers = await getAllOffers()
 
     for (const offer of offers) {
-        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
-        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+        offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
     }
 
     res.render("front/courses", {
@@ -53,8 +54,8 @@ export const categoryView = async (req, res) => {
     const offers = await getAllOffers()
 
     for (const offer of offers) {
-        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
-        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+        offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
     }
 
     res.render("front/category", {
@@ -72,26 +73,37 @@ export const orderSummaryView = async (req, res) => {
     const offers = await getAllOffers()
 
     for (const offer of offers) {
-        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
-        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+        offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
     }
 
     const {
         note,
         email,
         phone,
+        billingFirm,
+        billingName,
         billingStreet,
         billingCity,
         billingPostal,
+        mailingFirm,
+        mailingName,
         billingIc,
         billingDic,
         mailingStreet,
         mailingCity,
-        mailingPostal
+        mailingPostal,
+        participants
     } = req.session;
-    const courseId = req.session.courseId
-    const course = await getCourseById(courseId)
 
+    const courseId = req.session.courseId
+    let course
+
+    if (courseId) {
+        course = await getCourseById(courseId)
+    } else {
+        res.redirect('/')
+    }
 
     res.render("front/orderSummary", {
         title: 'Kurzy',
@@ -103,14 +115,19 @@ export const orderSummaryView = async (req, res) => {
         note,
         email,
         phone,
+        billingFirm,
+        billingName,
         billingStreet,
         billingCity,
         billingPostal,
+        mailingFirm,
+        mailingName,
         billingIc,
         billingDic,
         mailingStreet,
         mailingCity,
-        mailingPostal
+        mailingPostal,
+        participants
     });
 }
 
@@ -123,8 +140,8 @@ export const courseView = async (req, res) => {
     const offers = await getAllOffers()
 
     for (const offer of offers) {
-        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
-        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+        offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
     }
 
     res.render("front/course", {
@@ -143,9 +160,13 @@ export const courseOrderView = async (req, res) => {
         note,
         email,
         phone,
+        billingFirm,
+        billingName,
         billingStreet,
         billingCity,
         billingPostal,
+        mailingFirm,
+        mailingName,
         billingIc,
         billingDic,
         mailingStreet,
@@ -153,13 +174,15 @@ export const courseOrderView = async (req, res) => {
         mailingPostal
     } = req.session;
 
+    const participants = req.session.participants
+
     const course = await getCourseById(courseId);
 
     const offers = await getAllOffers()
 
     for (const offer of offers) {
-        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
-        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+        offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
     }
 
     res.render("front/order", {
@@ -171,15 +194,20 @@ export const courseOrderView = async (req, res) => {
         note,
         email,
         phone,
+        billingFirm,
+        billingName,
         billingStreet,
         billingCity,
         billingPostal,
+        mailingFirm,
+        mailingName,
         billingIc,
         billingDic,
         mailingStreet,
         mailingCity,
         mailingPostal,
-        offers
+        offers,
+        participants
     });
 }
 
@@ -190,17 +218,24 @@ export const placeOrder = async (req, res) => {
         note,
         email,
         phone,
+        billingFirm,
+        billingName,
         billingStreet,
         billingCity,
         billingPostal,
+        mailingFirm,
+        mailingName,
         billingIc,
         billingDic,
         mailingStreet,
         mailingCity,
-        mailingPostal
+        mailingPostal,
+        participants
     } = req.session;
 
     const billingAddress = await createAddress({
+        firm: billingFirm,
+        name: billingName,
         street: billingStreet,
         city: billingCity,
         postal: billingPostal,
@@ -209,6 +244,8 @@ export const placeOrder = async (req, res) => {
     })
 
     const mailingAddress = await createAddress({
+        firm: mailingFirm,
+        name: mailingName,
         street: mailingStreet,
         city: mailingCity,
         postal: mailingPostal,
@@ -221,17 +258,37 @@ export const placeOrder = async (req, res) => {
     req.session.regenerate(function (err) {
     })
 
+    for (const participant of participants) {
+        const name = participant.name
+        const orderId = order.id
+        await createParticipant({name, orderId})
+    }
+
     res.redirect(`/course/order-complete/${order.id}`);
 }
 
 export const proceedOrder = async (req, res) => {
 
+    let participants = []
+    for (const key in req.body) {
+        if (key.startsWith('participant')) {
+            participants[key] = req.body[key];
+            let participant = {name : req.body[key]};
+            participants.push(participant)
+        }
+    }
+    req.session.participants = participants
+
+    req.session.billingFirm = req.body.billingFirm
+    req.session.billingName = req.body.billingName
     req.session.billingStreet = req.body.billingStreet
     req.session.billingCity = req.body.billingCity
     req.session.billingPostal = req.body.billingPostal
     req.session.billingIc = req.body.billingIc
     req.session.billingDic = req.body.billingDic
 
+    req.session.mailingFirm = req.body.mailingFirm
+    req.session.mailingName = req.body.mailingName
     req.session.mailingStreet = req.body.mailingStreet
     req.session.mailingCity = req.body.mailingCity
     req.session.mailingPostal = req.body.mailingPostal

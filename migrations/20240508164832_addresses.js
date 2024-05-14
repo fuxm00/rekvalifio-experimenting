@@ -6,6 +6,8 @@ export const up = async function (knex) {
     await knex.schema.createTable('addresses', (table) => {
         table.increments('id')
 
+        table.string('firm')
+        table.string('name')
         table.string('city').notNullable()
         table.string('street').notNullable()
         table.string('postal').notNullable()

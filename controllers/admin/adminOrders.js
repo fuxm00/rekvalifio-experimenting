@@ -7,6 +7,7 @@ import {
 } from "../../src/db/orders.js";
 import {formatDate} from "../../src/utils/formatDate.js";
 import {getAddressById} from "../../src/db/addresses.js";
+import {getParticipantsbyOrderId} from "../../src/db/participants.js";
 
 export const adminOrdersView = async (req, res) => {
 
@@ -49,6 +50,7 @@ export const adminOrderView = async (req, res) => {
     order.course = await getCourseById(order.courseId);
     order.billingAdress = await getAddressById(order.billingAddressId);
     order.mailingAddress = await getAddressById(order.mailingAddressId);
+    order.participants = await getParticipantsbyOrderId(order.id)
 
     res.render("admin/order", {
         title: 'Objednávka',

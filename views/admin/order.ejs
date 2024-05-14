@@ -3,7 +3,14 @@
 <div class="content-container">
     <div>Kurz: <%= order.course.title %></div>
 
+    <h3>Účastníci</h3>
+    <% for (const participant of order.participants) { %>
+        <div><%= participant.name %></div>
+    <% } %>
+
     <h3>Fakturační údaje</h3>
+    <div>Firma: <%= order.billingAdress.firm %></div>
+    <div>Jméno: <%= order.billingAdress.name %></div>
     <div>Ulice: <%= order.billingAdress.street %></div>
     <div>Město: <%= order.billingAdress.city %></div>
     <div>PSČ: <%= order.billingAdress.postal %></div>
@@ -12,6 +19,8 @@
 
     <% if (order.mailingAddress) { %>
         <h3>Poštovní adresa</h3>
+        <div>Firma: <%= order.mailingAddress.firm %></div>
+        <div>Jméno: <%= order.mailingAddress.name %></div>
         <div>Ulice: <%= order.mailingAddress.street %></div>
         <div>Město: <%= order.mailingAddress.city %></div>
         <div>PSČ: <%= order.mailingAddress.postal %></div>

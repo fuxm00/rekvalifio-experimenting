@@ -12,7 +12,6 @@ export const adminCoursesTypesView = async (req, res) => {
 export const addType = async (req, res) => {
 
     const {title} = req.body
-    console.log(title)
 
     await createCourseType({title})
 
