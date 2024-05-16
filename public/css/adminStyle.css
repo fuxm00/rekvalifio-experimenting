@@ -74,11 +74,11 @@ select {
 
 .button-blue {
     color: white;
-    background-color: var(--blue);
+    background-color: var(--blue-primary);
 }
 
 .button-blue:hover {
-    background-color: var(--darkerBlue);
+    background-color: var(--blue-primary-dark);
 }
 
 .button-navbar {

@@ -14,22 +14,26 @@
                 <div>
                     <% if (!archivedList) { %>
                         <% if (order.completed) { %>
-                            <a href="/admin/orders/unCompleteOrder/<%= order.id %>">✅</a>
+                            <a href="/admin/orders/unCompleteOrder/<%= order.id %>">
+                                <img src="/img/checkboxYes.png" class="w-[24px]">
+                            </a>
                         <% } else { %>
-                            <a href="/admin/orders/completeOrder/<%= order.id %>">⬜</a>
+                            <a href="/admin/orders/completeOrder/<%= order.id %>">
+                                <img src="/img/checkboxNo.png" class="w-[24px]">
+                            </a>
                         <% } %>
                     <% } %>
                 </div>
                 <div>
                     <% if (archivedList) { %>
-                        <a href="/admin/orders/unArchiveOrder/<%= order.id %>" class="admin-button button-blue">odarchivovat</a>
+                        <a href="/admin/orders/unArchiveOrder/<%= order.id %>" class="button-square button-blue">odarchivovat</a>
                     <% } else { %>
                         <a href="/admin/orders/archiveOrder/<%= order.id %>"
-                           class="admin-button button-blue">archivovat</a>
+                           class="button-square button-blue">archivovat</a>
                     <% } %>
                 </div>
                 <div>
-                    <a href="/admin/orders/delete/<%= order.id %>" class="admin-button button-red">smazat</a>
+                    <a href="/admin/orders/delete/<%= order.id %>" class="button-square button-red">smazat</a>
                 </div>
             </div>
         </div>

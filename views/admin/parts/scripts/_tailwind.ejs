@@ -1,0 +1,249 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<style type="text/tailwindcss">
+    @layer utilities {
+
+    }
+
+    @layer components {
+        :root {
+            --grey2: rgba(0, 0, 0, 0.2);
+            --grey3: rgba(0, 0, 0, 0.3);
+
+
+            --form-box: rgba(237, 246, 194);
+            --nocolor: rgba(0, 0, 0, 0);
+            --h1: rgba(227, 147, 97);
+
+            --red: rgb(217, 29, 64);
+            --darkerRed: rgba(125, 17, 40);
+            --orange: rgba(238, 162, 63);
+            --darkerOrange: rgba(227, 139, 63);
+
+            --blue-primary: rgb(99, 102, 241);
+            --blue-primary-dark: rgb(67, 69, 164);
+
+            --blue-soft: rgb(255, 255, 255);
+            --blue-soft-dark: rgb(189, 190, 238);
+        }
+
+        .master-container {
+            margin: 0 250px 0 250px;
+
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content-container {
+            margin: 10px 20px 10px 20px;
+        }
+        .body {
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #footer {
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .center-button {
+            display: flex;
+            justify-content: center;
+        }
+
+        .mt10 {
+            margin: 10px 0 0 0;
+        }
+
+        .mt20 {
+            margin: 20px 0 0 0;
+        }
+
+        .ml-30 {
+            margin: 0 0 0 30px;
+        }
+
+        .mb-10 {
+            margin: 0 0 10px 0;
+        }
+        #header {
+            margin-top: 20px;
+            border-radius: 8px;
+            padding-left: 30px;
+            padding-right: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background-color: #FDD692;
+        }
+
+        #footer {
+            border-radius: 8px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background-color: #FDD692;
+        }
+
+        input {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+
+            border-radius: 8px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: var(--grey3);
+        }
+
+        select {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+
+            background-color: white;
+
+            border-radius: 8px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: var(--grey3);
+        }
+
+        #admin-order-list {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 10px;
+        }
+
+        #admin-order-list div a {
+            text-decoration: none;
+        }
+
+        .button-red {
+            color: white;
+            background-color: var(--red);
+        }
+
+        .button-red:hover {
+            background-color: var(--darkerRed);
+        }
+
+        .button-round {
+            border-radius: 20px;
+
+            font-size: 0.8rem;
+            font-weight: bold;
+
+            padding: 4px 11px;
+
+            text-decoration: none;
+        }
+
+        .button-square {
+            border-radius: 5px;
+
+            font-size: 0.8rem;
+            font-weight: bold;
+
+            padding: 4px 11px;
+
+            text-decoration: none;
+        }
+
+        .button-blue {
+            color: white;
+            background-color: var(--blue-primary);
+        }
+
+        .button-blue:hover {
+            background-color: var(--blue-primary-dark);
+        }
+
+        .button-soft-blue {
+            color: black;
+            border: 1px solid var(--blue-soft-dark);
+            background-color: var(--blue-soft);
+        }
+
+        .button-soft-blue:hover {
+            color: black;
+            background-color: var(--blue-soft-dark);
+        }
+
+        .button-navbar {
+            color: black;
+            background-color: white;
+        }
+
+        .button-navbar:hover {
+            color: white;
+            background-color: grey;
+        }
+
+        .button-navbar-marked {
+            color: white;
+            background-color: var(--orange);
+        }
+
+        .button-navbar-marked:hover {
+            background-color: var(--darkerOrange);
+        }
+
+        .flex-horizontal {
+            display: flex;
+            align-items: center;
+            gap: 20px
+        }
+
+        .flex-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        h1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 25px 0 0 0;
+        }
+
+        .admin-section-card {
+            border-radius: 8px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: var(--grey3);
+            flex-grow: 1;
+        }
+
+        .admin-section-card:hover {
+            background-color: var(--grey2);
+        }
+
+        .admin-section-card a {
+            flex: 1 1 0;
+            padding: 10px;
+        }
+
+        .admin-section-card a img {
+            height: 50px;
+        }
+    }
+</style>

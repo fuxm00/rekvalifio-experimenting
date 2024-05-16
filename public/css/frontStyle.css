@@ -85,12 +85,12 @@ p {
 
     text-decoration: none;
 
-    background-color: var(--blue);
+    background-color: var(--blue-primary);
     color: white;
 }
 
 .participants-button:hover {
-    background-color: var(--darkerBlue);
+    background-color: var(--blue-primary-dark);
 }
 
 #home-offers {
@@ -103,7 +103,7 @@ p {
 }
 
 #offer-heading-box {
-    background-color: var(--blue);
+    background-color: var(--blue-primary);
 }
 
 #offer-heading {
@@ -168,7 +168,7 @@ p {
 }
 
 .courses-navbar-item-marked {
-    background-color: var(--blue);
+    background-color: var(--blue-primary);
 }
 
 ul {
@@ -201,12 +201,12 @@ h2 {
 
     text-decoration: none;
 
-    background-color: var(--blue);
+    background-color: var(--blue-primary);
     color: white;
 }
 
 .order-button:hover {
-    background-color: var(--darkerBlue);
+    background-color: var(--blue-primary-dark);
 }
 
 #order-form h2 {
