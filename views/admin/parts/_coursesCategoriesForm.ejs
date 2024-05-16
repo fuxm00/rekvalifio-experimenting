@@ -1,19 +1,17 @@
+<h3>
+    <% if (category) { %>
+        Upravit kategrii: <%= category.title %>
+    <% } else { %>
+        Přidat kategorii
+    <% } %>
+</h3>
+
 <div class="content-container">
-
-    <h3>
-        <% if (category) { %>
-            Upravit kategrii: <%= category.title %>
-        <% } else { %>
-            Přidat kategorii
-        <% } %>
-    </h3>
-
-    <div class="content-container">
-        <form action='/admin/courses/<%= category ? `edit-category/${category.id}` : "add-category" %>' method='post'>
+    <form action='/admin/courses/<%= category ? `edit-category/${category.id}` : "add-category" %>' method='post'>
+        <div class="flex-horizontal">
             <div>
                 <label>
                     <div>Název</div>
-
                     <input type="text" name="categoryTitle"
                            placeholder="<%= category ? category.title : "název kategorie" %>"
                            class="input"
@@ -21,43 +19,46 @@
                 </label>
             </div>
 
-            <h3>Obsah</h3>
-            <textarea id="categoryContent" name="categoryContent"></textarea>
-
-            <div class="mt20">Typ</div>
-            <select name="typeId">
-                <% for (const type of types) { %>
-                    <option value="<%= type.id %>"
-                    <% if (category) { %>
-                        <%= type.id === category.typeId ? 'selected' : '' %>
-                            <% } %>
-                    ><%= type.title %></option>
-                <% } %>
-            </select>
-
-            <div class="center-button">
-                <button type='submit' class="admin-button button-blue mt20">
-                    <% if (category) { %>
-                        Upravit
-                    <% } else { %>
-                        Přidat
+            <div>
+                <div>Typ</div>
+                <select name="typeId">
+                    <% for (const type of types) { %>
+                        <option value="<%= type.id %>"
+                        <% if (category) { %>
+                            <%= type.id === category.typeId ? 'selected' : '' %>
+                                <% } %>
+                        ><%= type.title %></option>
                     <% } %>
-                </button>
+                </select>
             </div>
-        </form>
+        </div>
 
-        <script>
-            const myToolbarButtons = ['fullscreen', '|', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', '|', 'paragraphFormat', 'paragraphStyle', '|', 'align', 'formatOL', 'formatUL', '-', 'insertLink', '|', 'insertHR', '|', 'undo', 'redo', 'trackChanges']
+        <div>Obsah</div>
+        <textarea id="categoryContent" name="categoryContent"></textarea>
 
-            new FroalaEditor('#categoryContent', {
-                toolbarButtons: myToolbarButtons
-            }, function () {
 
+        <div class="center-button">
+            <button type='submit' class="button-square button-blue mt20">
                 <% if (category) { %>
-                this.html.set('<%- category.content %>');
+                    Upravit
+                <% } else { %>
+                    Přidat
                 <% } %>
-            })
-        </script>
+            </button>
+        </div>
+    </form>
 
-    </div>
+    <script>
+        const myToolbarButtons = ['fullscreen', '|', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', '|', 'paragraphFormat', 'paragraphStyle', '|', 'align', 'formatOL', 'formatUL', '-', 'insertLink', '|', 'insertHR', '|', 'undo', 'redo', 'trackChanges']
+
+        new FroalaEditor('#categoryContent', {
+            toolbarButtons: myToolbarButtons
+        }, function () {
+
+            <% if (category) { %>
+            this.html.set('<%- category.content %>');
+            <% } %>
+        })
+    </script>
+
 </div>

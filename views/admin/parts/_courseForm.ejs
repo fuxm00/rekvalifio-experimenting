@@ -1,41 +1,32 @@
+<h3>
+    <% if (!course) { %>
+        Přidat kurz
+    <% } else { %>
+        Upravit kurz
+    <% } %>
+</h3>
+
 <div class="content-container">
+    <form
+    <% if (!course) { %>
+        action='/admin/courses/add-course'
+    <% } else { %>
+        action='/admin/courses/edit-course/<%= course.id %>'
+            <% } %>
 
-    <h3>
-        <% if (!course) { %>
-            Přidat kurz
-        <% } else { %>
-            Upravit kurz
-        <% } %>
-    </h3>
-
-    <div class="content-container">
-        <form
-        <% if (!course) { %>
-            action='/admin/courses/add-course'
-        <% } else { %>
-            action='/admin/courses/edit-course/<%= course.id %>'
-                <% } %>
-
-            method='post'>
+        method='post'>
+        <div class="flex-horizontal">
             <div>
                 <label>
                     <div>Název</div>
-
                     <input type="text" name="title" placeholder="název kurzu" class="input"
                     <% if (course) { %>
                            value="<%= course.title %>"
                             <% } %>
                     />
                 </label>
-
             </div>
-
             <div>
-                <div>Obsah</div>
-                <textarea id="courseContent" name="courseContent"></textarea>
-            </div>
-
-            <div class="mt20">
                 <div>Kategorie</div>
                 <select name="category">
                     <% for (const category of categories) { %>
@@ -43,32 +34,35 @@
 
                         <% if (course) { %>
                             <%= category.id === course.categoryId ? 'selected' : '' %>
-                        <% } %>
-
+                                <% } %>
 
                         ><%= category.title %></option>
                     <% } %>
                 </select>
             </div>
+        </div>
+        <div>
+            <div>Obsah</div>
+            <textarea id="courseContent" name="courseContent"></textarea>
+        </div>
 
-            <div class="center-button ">
-                <button type='submit' class="button-square button-blue mt20">
-                    <% if (!course) { %>
-                        Přidat
-                    <% } else { %>
-                        Upravit
-                    <% } %>
-                </button>
-            </div>
-        </form>
-
-        <script>
-            let editor = new FroalaEditor('#courseContent', {}, function () {
-                <% if (course) { %>
-                editor.html.set('<%- course.content %>');
+        <div class="center-button ">
+            <button type='submit' class="button-square button-blue mt20">
+                <% if (!course) { %>
+                    Přidat
+                <% } else { %>
+                    Upravit
                 <% } %>
-            })
-        </script>
+            </button>
+        </div>
+    </form>
 
-    </div>
+    <script>
+        let editor = new FroalaEditor('#courseContent', {}, function () {
+            <% if (course) { %>
+            editor.html.set('<%- course.content %>');
+            <% } %>
+        })
+    </script>
+
 </div>

@@ -9,6 +9,9 @@ import {getAllCourseTypes, getTypeById} from "../../src/db/courseTypes.js";
 export const adminCoursesCategoriesView = async (req, res) => {
 
     const categories = await getAllCourseCategories()
+    for (const category of categories) {
+        category.type =  await getTypeById(category.typeId)
+    }
     const types = await getAllCourseTypes()
 
     res.render("admin/coursesCategories", {
@@ -26,7 +29,11 @@ export const adminCoursesCategoryView = async (req, res) => {
     const categoryId = req.params.id;
     const category = await getCategoryById(categoryId);
     const type = await getTypeById(category.id)
+
     const categories = await getAllCourseCategories()
+    for (const category of categories) {
+        category.type =  await getTypeById(category.typeId)
+    }
     const types = await getAllCourseTypes()
 
     res.render("admin/coursesCategories", {

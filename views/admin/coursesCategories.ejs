@@ -1,12 +1,12 @@
 <%- include('./parts/_header') %>
 
 <h2>Správa kurzů</h2>
-
-<%- include('./parts/_coursesNavbar') %>
-
-<%- include('./parts/_coursesCategoriesForm') %>
-
 <div class="content-container">
+
+    <%- include('./parts/_coursesNavbar') %>
+
+    <%- include('./parts/_coursesCategoriesForm') %>
+
     <h3>Seznam kategrií</h3>
     <% if ((categories.length >= 1)) { %>
         <%- include('./parts/_coursesCategoriesList') %>
@@ -16,6 +16,5 @@
         </div>
     <% } %>
 </div>
-
 
 <%- include('./parts/_footer') %>

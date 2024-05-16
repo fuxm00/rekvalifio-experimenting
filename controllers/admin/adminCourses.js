@@ -2,12 +2,16 @@ import {
     createCourse, getAllCourses, getCourseById, removeCourseById, updateCourse
 } from "../../src/db/courses.js";
 import {
-    getAllCourseCategories,
+    getAllCourseCategories, getCategoryById,
 } from "../../src/db/courseCategories.js";
 
 export const adminCoursesView = async (req, res) => {
 
     const courses = await getAllCourses()
+    for (const course of courses) {
+        course.category =  await getCategoryById(course.categoryId)
+    }
+
     const categories = await getAllCourseCategories()
 
     res.render("admin/courses", {

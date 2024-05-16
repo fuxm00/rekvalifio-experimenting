@@ -7,9 +7,9 @@
         <h2>Typy kurzů</h2>
 
         <% if ((courses.length >= 1)) { %>
-            <ul>
+            <ul class="content-container list">
                 <% for (const course of courses) { %>
-                    <li class="ml-30"><a href="/course/<%= course.id %>"><%= course.title %></a></li>
+                    <li class="ml-30"><a href="/course/<%= course.id %>" class="list-link-item"><%= course.title %></a></li>
                 <% } %>
             </ul>
         <% } else { %>

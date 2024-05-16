@@ -6,7 +6,7 @@ import {
     adminOrdersArchiveView, adminOrdersComplete,
     adminOrdersUnArchive, adminOrdersUnComplete,
     adminOrdersView, adminOrderView, deleteOrder
-} from "../../controllers/admin/adminOrders.js";
+} from "../../controllers/admin/adminOrdersController.js";
 
 const orders = express.Router()
 

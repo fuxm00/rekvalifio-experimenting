@@ -6,6 +6,10 @@ import {createCourseType} from "../../src/db/courseTypes.js";
 export const adminOffersView = async (req, res) => {
 
     const offers = await getAllOffers();
+    for (const offer of offers) {
+        offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
+        offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
+    }
     const categories = await getAllCourseCategories();
     const minDate = await formatDate(new Date(), 'YYYY-MM-DD')
 
@@ -15,7 +19,6 @@ export const adminOffersView = async (req, res) => {
         offer: null,
         categories,
         minDate
-
     } );
 }
 

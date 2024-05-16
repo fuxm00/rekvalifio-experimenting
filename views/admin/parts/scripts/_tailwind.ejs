@@ -6,24 +6,15 @@
 
     @layer components {
         :root {
-            --grey2: rgba(0, 0, 0, 0.2);
-            --grey3: rgba(0, 0, 0, 0.3);
-
-
-            --form-box: rgba(237, 246, 194);
-            --nocolor: rgba(0, 0, 0, 0);
-            --h1: rgba(227, 147, 97);
-
             --red: rgb(217, 29, 64);
             --darkerRed: rgba(125, 17, 40);
-            --orange: rgba(238, 162, 63);
-            --darkerOrange: rgba(227, 139, 63);
 
             --blue-primary: rgb(99, 102, 241);
             --blue-primary-dark: rgb(67, 69, 164);
 
-            --blue-soft: rgb(255, 255, 255);
-            --blue-soft-dark: rgb(189, 190, 238);
+            --blue-soft: rgb(238 242 255);
+            --blue-soft-dark: rgb(224, 231, 255);
+            --blue-soft-text: rgb(79 70 229)
         }
 
         .master-container {
@@ -33,14 +24,17 @@
             flex-direction: column;
             min-height: 100vh;
         }
+
         .content-container {
             margin: 10px 20px 10px 20px;
         }
+
         .body {
             min-height: 100%;
             margin: 0;
             padding: 0;
         }
+
         #footer {
             margin-top: auto;
             margin-bottom: 15px;
@@ -66,6 +60,7 @@
         .mb-10 {
             margin: 0 0 10px 0;
         }
+
         #header {
             margin-top: 20px;
             border-radius: 8px;
@@ -111,16 +106,12 @@
             border-color: var(--grey3);
         }
 
-        #admin-order-list {
+        .list {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 10px;
             margin: 10px;
-        }
-
-        #admin-order-list div a {
-            text-decoration: none;
         }
 
         .button-red {
@@ -164,13 +155,12 @@
         }
 
         .button-soft-blue {
-            color: black;
+            color: var(--blue-soft-text);
             border: 1px solid var(--blue-soft-dark);
             background-color: var(--blue-soft);
         }
 
         .button-soft-blue:hover {
-            color: black;
             background-color: var(--blue-soft-dark);
         }
 
@@ -182,15 +172,6 @@
         .button-navbar:hover {
             color: white;
             background-color: grey;
-        }
-
-        .button-navbar-marked {
-            color: white;
-            background-color: var(--orange);
-        }
-
-        .button-navbar-marked:hover {
-            background-color: var(--darkerOrange);
         }
 
         .flex-horizontal {
@@ -210,12 +191,14 @@
             font-family: 'Arial', sans-serif;
             font-size: 1.5rem;
             font-weight: bold;
+            margin: 25px 10px
         }
 
         h2 {
             font-family: 'Arial', sans-serif;
             font-size: 1.25rem;
             font-weight: bold;
+            margin: 25px 0 10px 0;
         }
 
         h3 {
