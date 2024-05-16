@@ -165,7 +165,7 @@
 
         <div class="order-button-container">
             <button type='submit'
-                    class="order-button"><%= summary ? "Dokončit objednávku" : "Pokračovat v obejdnávce" %></button>
+                    class="button-round button-blue"><%= summary ? "Dokončit objednávku" : "Pokračovat v objednávce" %></button>
         </div>
     </form>
 
@@ -194,7 +194,7 @@
             let button = document.createElement('button');
             button.textContent = 'Přidat';
             button.type = 'button';
-            button.className = 'participants-button'
+            button.className = 'button-blue button-round'
 
             button.addEventListener('click', () => createInput());
 
