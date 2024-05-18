@@ -31,6 +31,7 @@
             <div>
                 <div>Kategorie</div>
                 <select name="category">
+                    <option value="" disabled selected>Vyber kategorii</option>
                     <% for (const category of categories) { %>
                         <option value="<%= category.id %>"
 

@@ -4,7 +4,7 @@
  */
 export const up = async function (knex) {
     await knex.schema.createTable('addresses', (table) => {
-        table.increments('id')
+        table.increments('id').primary()
 
         table.string('firm')
         table.string('name')

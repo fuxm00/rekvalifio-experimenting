@@ -1,6 +1,13 @@
 <%- include('./parts/_header') %>
 <%- include('./parts/_navbar') %>
 
-<h1>Dokončení objednávky: <%= orderId %></h1>
+<div class="flex-container flex-space-between content-container">
+    <h1>Dokončení objednávky: <%= orderId %></h1>
+    <div id="home-offers">
+        <%- include('./parts/_homeOffers') %>
+    </div>
+</div>
+
+
 
 <%- include('./parts/_footer') %>

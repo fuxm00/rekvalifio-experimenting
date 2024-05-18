@@ -22,6 +22,7 @@
             <div>
                 <div>Typ</div>
                 <select name="typeId">
+                    <option value="" disabled selected>Vyber typ</option>
                     <% for (const type of types) { %>
                         <option value="<%= type.id %>"
                         <% if (category) { %>

@@ -9,7 +9,7 @@ export const adminCoursesView = async (req, res) => {
 
     const courses = await getAllCourses()
     for (const course of courses) {
-        course.category =  await getCategoryById(course.categoryId)
+        course.category = await getCategoryById(course.categoryId)
     }
 
     const categories = await getAllCourseCategories()
@@ -22,13 +22,17 @@ export const adminCoursesView = async (req, res) => {
 export const adminCourseView = async (req, res) => {
 
     const courseId = req.params.id;
-
     const course = await getCourseById(courseId);
+
+    const courses = await getAllCourses()
+    for (const course of courses) {
+        course.category = await getCategoryById(course.categoryId)
+    }
 
     const categories = await getAllCourseCategories()
 
-    res.render("admin/course", {
-        title: 'Kurz', course, categories, marked: 'courses'
+    res.render("admin/courses", {
+        title: 'Kurz', course, marked: 'courses',categories, courses
     });
 }
 

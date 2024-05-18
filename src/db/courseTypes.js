@@ -23,3 +23,11 @@ export const geTypeByTitle = async (title) => {
 
     return type
 }
+
+export const removeTypeById = async (id) => {
+    await db('courseTypes').delete().where('id', id)
+}
+
+export const updateType = async (data, typeId) => {
+    await db('courseTypes').update(data).where('Id', typeId)
+}

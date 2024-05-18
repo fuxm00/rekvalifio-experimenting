@@ -283,7 +283,8 @@ export const orderCompleteView = async (req, res) => {
         title: 'Kurz',
         marked: 'courses',
         orderId,
-        logoName
+        logoName,
+        offers
     });
 }
 

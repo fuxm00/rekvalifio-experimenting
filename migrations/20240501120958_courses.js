@@ -4,7 +4,7 @@
  */
 export const up = async function (knex) {
     await knex.schema.createTable('courses', (table) => {
-        table.increments('id')
+        table.increments('id').primary()
 
         table.string('title').notNullable()
 

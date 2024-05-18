@@ -1,10 +1,11 @@
 import {
     createCategory,
     getAllCourseCategories,
-    getCategoryById,
+    getCategoryById, removeCategoryById,
     updateCategory
 } from "../../src/db/courseCategories.js";
 import {getAllCourseTypes, getTypeById} from "../../src/db/courseTypes.js";
+import {removeCourseById} from "../../src/db/courses.js";
 
 export const adminCoursesCategoriesView = async (req, res) => {
 
@@ -63,4 +64,12 @@ export const editCategory = async (req, res) => {
     await updateCategory({title, content, typeId}, categoryId)
 
     res.redirect('/admin/courses/categories')
+}
+
+export const removeCategory = async (req, res) => {
+    const {id: categoryId} = req.params;
+
+    await removeCategoryById(categoryId);
+
+    res.redirect('back')
 }

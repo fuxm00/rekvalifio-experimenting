@@ -10,17 +10,26 @@ import {
     addCategory,
     adminCoursesCategoriesView,
     adminCoursesCategoryView,
-    editCategory
+    editCategory, removeCategory
 } from "../../controllers/admin/adminCourseCateoriesController.js";
-import {addType, adminCoursesTypesView} from "../../controllers/admin/adminCourseTypesController.js";
+import {
+    addType,
+    adminCoursesTypesView,
+    adminCoursesTypeView, editType,
+    removeType
+} from "../../controllers/admin/adminCourseTypesController.js";
 
 const adminCourses = express.Router()
 
 adminCourses.get("/admin/courses/categories", adminCoursesCategoriesView)
 adminCourses.get("/admin/courses/categories/:id", adminCoursesCategoryView)
+adminCourses.get("/admin/courses/remove-category/:id", removeCategory)
 
 adminCourses.get("/admin/courses/types", adminCoursesTypesView)
+adminCourses.get("/admin/courses/types/:id", adminCoursesTypeView)
 adminCourses.post("/admin/courses/add-type", addType)
+adminCourses.post("/admin/courses/edit-type/:id", editType)
+adminCourses.get("/admin/courses/remove-type/:id", removeType)
 
 adminCourses.get("/admin/courses", adminCoursesView)
 adminCourses.get("/admin/courses/:id", adminCourseView)

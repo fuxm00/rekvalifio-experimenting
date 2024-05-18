@@ -29,3 +29,7 @@ export const getCategoryById = async (id) => {
 export const updateCategory = async (data, categryId) => {
     await db('courseCategories').update(data).where('Id', categryId)
 }
+
+export const removeCategoryById = async (id) => {
+    await db('courseCategories').delete().where('id', id)
+}

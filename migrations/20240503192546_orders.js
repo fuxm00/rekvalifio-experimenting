@@ -4,7 +4,7 @@
  */
 export const up = async function (knex) {
     await knex.schema.createTable('orders', (table) => {
-        table.increments('id')
+        table.increments('id').primary()
 
         table.boolean('archived').notNullable().defaultTo(false)
 
