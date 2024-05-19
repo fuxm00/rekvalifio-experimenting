@@ -137,10 +137,10 @@ export const courseOrderView = async (req, res) => {
         mailingStreet,
         mailingCity,
         mailingPostal,
-        finalPrice
+        finalPrice,
+        participants
     } = req.session;
 
-    const participants = req.session.participants
     const course = await getCourseById(courseId);
     const headerLinks = await getFrontHeaderLinks()
     const offers = await getFormatedOffers()
@@ -230,7 +230,6 @@ export const proceedOrder = async (req, res) => {
     let participants = []
     for (const key in req.body) {
         if (key.startsWith('participant')) {
-            participants[key] = req.body[key];
             let participant = {name: req.body[key]};
             participants.push(participant)
         }
