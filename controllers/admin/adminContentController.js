@@ -10,6 +10,7 @@ export const adminContentView = async (req, res) => {
     const conditionContent = await jsonDb.get(jsonDbSchema.conditions)
     const facebookLink = await jsonDb.get(jsonDbSchema.facebookLink)
     const instagramLink = await jsonDb.get(jsonDbSchema.instagramLink)
+    const xLink = await jsonDb.get(jsonDbSchema.xLink)
 
     res.render("admin/content", {
         title: 'Obsah',
@@ -19,7 +20,8 @@ export const adminContentView = async (req, res) => {
         gdprContent,
         conditionContent,
         facebookLink,
-        instagramLink
+        instagramLink,
+        xLink
     });
 }
 
@@ -46,10 +48,11 @@ export const changeHomeTexts = async (req, res) => {
 
 export const changeSocialLinks = async (req, res) => {
 
-    const {facebookLink, instagramLink} = req.body;
+    const {facebookLink, instagramLink, xLink} = req.body;
 
     await jsonDb.set(jsonDbSchema.facebookLink, facebookLink);
     await jsonDb.set(jsonDbSchema.instagramLink, instagramLink);
+    await jsonDb.set(jsonDbSchema.xLink, xLink);
 
 
     res.redirect('back')

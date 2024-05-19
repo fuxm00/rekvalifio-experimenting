@@ -7,4 +7,5 @@ export const jsonDbSchema = {
     conditions: "conditions-content",
     facebookLink: "facebook-link",
     instagramLink: "instagram-link",
+    xLink: "x-link",
 }

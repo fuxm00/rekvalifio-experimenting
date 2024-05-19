@@ -97,16 +97,16 @@
 
         #social-link {
             max-width: min-content;
-            margin: 0 20px;
+            margin: 0 5px;
             text-decoration: none;
+        }
+
+        #social-logo:hover {
+            opacity: 60%;
         }
 
         #social-logo {
             max-width: 30px;
-        }
-
-        #social-logo:hover {
-            opacity: 70%;
         }
 
         #navbar-container {
@@ -182,9 +182,7 @@
         }
 
         .offer-item-link:hover {
-            background-color: var(--grey2);
-
-            border: solid 1px var(--nocolor);
+            background-color: var(--blue-soft);
         }
 
         .navbar-item {
@@ -241,11 +239,17 @@
             margin: 0;
         }
 
+        @font-face {
+            font-family: 'superBumble'; /*a name to be used later*/
+            src: url('/fonts/LoftygoalsRegular.otf'); /*URL to font*/
+        }
+
         h1 {
-            font-family: 'Arial', sans-serif;
-            font-size: 1.75rem;
+            font-family: 'superBumble', sans-serif;
+            font-size: 2rem;
             font-weight: bold;
             margin: 25px 0;
+            color: var(--blue-primary);
         }
 
         h2 {
@@ -253,6 +257,13 @@
             font-size: 1.25rem;
             font-weight: bold;
             margin: 25px 0 10px 0;
+        }
+
+        h3 {
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 25px 0 0 0;
         }
 
         .order-button-container {
