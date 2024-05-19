@@ -63,7 +63,8 @@ export const orderSummaryView = async (req, res) => {
         mailingStreet,
         mailingCity,
         mailingPostal,
-        participants
+        participants,
+        finalPrice
     } = req.session;
 
     const courseId = req.session.courseId
@@ -100,7 +101,8 @@ export const orderSummaryView = async (req, res) => {
         mailingStreet,
         mailingCity,
         mailingPostal,
-        participants
+        participants,
+        finalPrice
     });
 }
 
@@ -134,7 +136,8 @@ export const courseOrderView = async (req, res) => {
         billingDic,
         mailingStreet,
         mailingCity,
-        mailingPostal
+        mailingPostal,
+        finalPrice
     } = req.session;
 
     const participants = req.session.participants
@@ -164,7 +167,8 @@ export const courseOrderView = async (req, res) => {
         mailingCity,
         mailingPostal,
         offers,
-        participants
+        participants,
+        finalPrice
     });
 }
 
@@ -187,7 +191,8 @@ export const placeOrder = async (req, res) => {
         mailingStreet,
         mailingCity,
         mailingPostal,
-        participants
+        participants,
+        finalPrice
     } = req.session;
 
     const billingAddress = await createAddress({
@@ -207,7 +212,7 @@ export const placeOrder = async (req, res) => {
     const billingAddressId = billingAddress.id;
     const mailingAddressId = mailingAddress.id;
 
-    const order = await createOrder({courseId, note, email, phone, billingAddressId, mailingAddressId})
+    const order = await createOrder({courseId, note, email, phone, billingAddressId, mailingAddressId,price: finalPrice})
     req.session.regenerate(function (err) {
     })
 
@@ -252,7 +257,10 @@ export const proceedOrder = async (req, res) => {
 
     req.session.courseId = req.params.id;
 
-    res.redirect(`/course/order-summary`);
+    const course = await getCourseById(req.params.id)
+    req.session.finalPrice = participants.length * course.price
+
+        res.redirect(`/course/order-summary`);
 }
 
 export const orderCompleteView = async (req, res) => {

@@ -2,7 +2,14 @@
 <%- include('./parts/_navbar') %>
 
 <div class="flex-container flex-space-between content-container">
-    <h1>Dokončení objednávky: <%= orderId %></h1>
+    <div>
+        <h1>Objednávka odeslána</h1>
+        <div class="content-container">
+            <p>Číslo vaší objednávky je: <%= orderId %></p>
+            <p>Ohledně objednávky vás budeme kontaktovat.</p>
+        </div>
+
+    </div>
     <div id="home-offers">
         <%- include('./parts/_homeOffers') %>
     </div>

@@ -5,6 +5,11 @@
     }
 
     @layer components {
+        @font-face {
+            font-family: 'superBumble'; /*a name to be used later*/
+            src: url('/fonts/LoftygoalsRegular.otf'); /*URL to font*/
+        }
+
         :root {
             --grey2: rgba(0, 0, 0, 0.2);
             --grey3: rgba(0, 0, 0, 0.3);
@@ -30,6 +35,56 @@
         * {
             margin: 0;
             padding: 0;
+        }
+
+        input {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+
+            min-width: 300px;
+
+            border-radius: 8px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: var(--grey3);
+        }
+
+        input:disabled {
+            color: var(--grey3);
+        }
+
+        .check-box {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+
+            min-width: 5px;
+
+            border-radius: 8px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: var(--grey3);
+        }
+
+        textarea {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+
+            min-width: 500px;
+            min-height: 200px;
+
+            border-radius: 8px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: var(--grey3);
+        }
+
+        textarea:disabled {
+            color: var(--grey3);
+        }
+
+        .form-line {
+            margin: 50px 0 50px 0;
+            border-top: 1px solid var(--grey3);
         }
 
         .master-container {
@@ -124,26 +179,8 @@
             display: flex;
         }
 
-        .inputs-box {
-            padding: 10px 20px;
-
-            background-color: var(--form-box);
-
-            border: 1px solid var(--grey3);
-            border-radius: 10px;
-        }
-
         .offer-input {
             width: 10px;
-        }
-
-        .form-label {
-            display: flex;
-            gap: 25px;
-        }
-
-        .form-label div {
-            width: 50px;
         }
 
         #home-offers {
@@ -239,10 +276,7 @@
             margin: 0;
         }
 
-        @font-face {
-            font-family: 'superBumble'; /*a name to be used later*/
-            src: url('/fonts/LoftygoalsRegular.otf'); /*URL to font*/
-        }
+
 
         h1 {
             font-family: 'superBumble', sans-serif;
@@ -307,6 +341,15 @@
         }
 
         .list-link-item:hover {
+            text-decoration: none;
+        }
+
+        .link-item {
+            text-decoration: Underline;
+            color: rgb(78, 21, 163);
+        }
+
+        .link-item:hover {
             text-decoration: none;
         }
     }

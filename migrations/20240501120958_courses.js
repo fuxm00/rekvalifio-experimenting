@@ -10,6 +10,8 @@ export const up = async function (knex) {
 
         table.string('content').notNullable()
 
+        table.float('price').notNullable()
+
         table.integer('categoryId').notNullable()
         table.foreign('categoryId').references('id').inTable('courseCategories')
     })

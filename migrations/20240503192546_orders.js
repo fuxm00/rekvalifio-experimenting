@@ -16,6 +16,8 @@ export const up = async function (knex) {
 
         table.string('phone').notNullable()
 
+        table.float('price').notNullable()
+
         table.timestamp('created_at').defaultTo(knex.fn.now());
 
         table.integer('courseId').notNullable()

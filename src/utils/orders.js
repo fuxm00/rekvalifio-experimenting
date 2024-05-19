@@ -19,4 +19,5 @@ export const getCompleteOrder = async (orderId) => {
     order.billingAdress = await getAddressById(order.billingAddressId);
     order.mailingAddress = await getAddressById(order.mailingAddressId);
     order.participants = await getParticipantsbyOrderId(order.id)
+    return order
 }

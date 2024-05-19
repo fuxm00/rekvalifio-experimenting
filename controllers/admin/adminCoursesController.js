@@ -30,19 +30,19 @@ export const adminCourseView = async (req, res) => {
 
 export const addCourse = async (req, res) => {
 
-    const {title, courseContent: content, category: categoryId} = req.body
+    const {title, courseContent: content, category: categoryId, price} = req.body
 
-    await createCourse({title, content, categoryId})
+    await createCourse({title, content, categoryId, price})
 
     res.redirect('back')
 }
 
 export const editCourse = async (req, res) => {
 
-    const {title, courseContent: content, category: categoryId} = req.body
+    const {title, courseContent: content, category: categoryId, price} = req.body
     const {id: courseId} = req.params;
 
-    await updateCourse({title, content, categoryId}, courseId)
+    await updateCourse({title, content, categoryId, price}, courseId)
 
     res.redirect('/admin/courses')
 }

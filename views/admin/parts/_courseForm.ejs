@@ -41,6 +41,16 @@
                     <% } %>
                 </select>
             </div>
+            <div>
+                <label>
+                    <div>Cena</div>
+                    <input type="text" name="price" placeholder="cena kurzu" class="input"
+                    <% if (course) { %>
+                           value="<%= course.price %>"
+                            <% } %>
+                    />
+                </label>
+            </div>
         </div>
         <div>
             <div>Obsah</div>

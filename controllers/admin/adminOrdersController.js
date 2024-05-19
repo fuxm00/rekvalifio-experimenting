@@ -25,7 +25,7 @@ export const adminOrderView = async (req, res) => {
 
     const orderId = req.params.id;
 
-    const order = await getCompleteOrder()
+    const order = await getCompleteOrder(orderId)
 
     res.render("admin/order", {
         title: 'Objednávka', order
