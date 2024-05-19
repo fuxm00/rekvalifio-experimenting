@@ -5,7 +5,7 @@ import {
     adminCourseView,
     editCourse,
     removeCourse
-} from "../../controllers/admin/adminCourses.js";
+} from "../../controllers/admin/adminCoursesController.js";
 import {
     addCategory,
     adminCoursesCategoriesView,

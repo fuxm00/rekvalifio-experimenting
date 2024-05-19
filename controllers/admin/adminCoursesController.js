@@ -4,14 +4,11 @@ import {
 import {
     getAllCourseCategories, getCategoryById,
 } from "../../src/db/courseCategories.js";
+import {getCoursesWithCategory} from "../../src/utils/courses.js";
 
 export const adminCoursesView = async (req, res) => {
 
-    const courses = await getAllCourses()
-    for (const course of courses) {
-        course.category = await getCategoryById(course.categoryId)
-    }
-
+    const courses = await getCoursesWithCategory()
     const categories = await getAllCourseCategories()
 
     res.render("admin/courses", {
@@ -23,16 +20,11 @@ export const adminCourseView = async (req, res) => {
 
     const courseId = req.params.id;
     const course = await getCourseById(courseId);
-
-    const courses = await getAllCourses()
-    for (const course of courses) {
-        course.category = await getCategoryById(course.categoryId)
-    }
-
+    const courses = await getCoursesWithCategory()
     const categories = await getAllCourseCategories()
 
     res.render("admin/courses", {
-        title: 'Kurz', course, marked: 'courses',categories, courses
+        title: 'Kurz', course, marked: 'courses', categories, courses
     });
 }
 

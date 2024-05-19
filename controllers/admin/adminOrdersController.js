@@ -1,61 +1,35 @@
-import { getCourseById } from "../../src/db/courses.js";
 import {
-    archiveOrderById, completeOrderById,
-    getAllArchivedOrders,
-    getAllNonArchivedOrders,
-    getOrderById, remvoeOrderById
+    archiveOrderById, completeOrderById, remvoeOrderById
 } from "../../src/db/orders.js";
-import {formatDate} from "../../src/utils/formatDate.js";
-import {getAddressById} from "../../src/db/addresses.js";
-import {getParticipantsbyOrderId} from "../../src/db/participants.js";
+import {getCompleteOrder, getFormatedOrders} from "../../src/utils/orders.js";
 
 export const adminOrdersView = async (req, res) => {
 
-    const orders = await getAllNonArchivedOrders();
-
-    for (const order of orders) {
-        order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
-    }
+    const orders = await getFormatedOrders()
 
     res.render("admin/orders", {
-        title: 'Objednávky',
-        orders,
-        archivedList: false,
-        marked: "orders"
-    } );
+        title: 'Objednávky', orders, archivedList: false, marked: "orders"
+    });
 }
 
 export const adminOrdersArchiveView = async (req, res) => {
 
-    const orders = await getAllArchivedOrders();
-
-    for (const order of orders) {
-        order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
-    }
+    const orders = await getFormatedOrders()
 
     res.render("admin/orders", {
-        title: 'Archiv objednávek',
-        orders,
-        archivedList: true,
-        marked: "archive"
-    } );
+        title: 'Archiv objednávek', orders, archivedList: true, marked: "archive"
+    });
 }
 
 export const adminOrderView = async (req, res) => {
 
     const orderId = req.params.id;
 
-    const order = await getOrderById(orderId);
-    order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
-    order.course = await getCourseById(order.courseId);
-    order.billingAdress = await getAddressById(order.billingAddressId);
-    order.mailingAddress = await getAddressById(order.mailingAddressId);
-    order.participants = await getParticipantsbyOrderId(order.id)
+    const order = await getCompleteOrder()
 
     res.render("admin/order", {
-        title: 'Objednávka',
-        order
-    } );
+        title: 'Objednávka', order
+    });
 }
 
 export const adminOrdersArchive = async (req, res) => {

@@ -5,7 +5,7 @@ import {
     changeHomeTexts,
     changeLogo,
     changeSocialLinks
-} from "../../controllers/admin/adminContent.js";
+} from "../../controllers/admin/adminContentController.js";
 import {upload} from "../../src/middlewares/upload.js";
 
 const content = express.Router()

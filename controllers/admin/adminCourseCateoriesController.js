@@ -1,28 +1,18 @@
 import {
-    createCategory,
-    getAllCourseCategories,
-    getCategoryById, removeCategoryById,
-    updateCategory
+    createCategory, getCategoryById, removeCategoryById, updateCategory
 } from "../../src/db/courseCategories.js";
 import {getAllCourseTypes, getTypeById} from "../../src/db/courseTypes.js";
-import {removeCourseById} from "../../src/db/courses.js";
+import {getCategoriesWithType} from "../../src/utils/categories.js";
 
 export const adminCoursesCategoriesView = async (req, res) => {
 
-    const categories = await getAllCourseCategories()
-    for (const category of categories) {
-        category.type =  await getTypeById(category.typeId)
-    }
+    const categories = await getCategoriesWithType()
     const types = await getAllCourseTypes()
 
     res.render("admin/coursesCategories", {
-        title: 'kurzy',
-        categories,
-        marked: "categories",
-        category: null,
-        types
+        title: 'kurzy', categories, marked: "categories", category: null, types
 
-    } );
+    });
 }
 
 export const adminCoursesCategoryView = async (req, res) => {
@@ -30,21 +20,12 @@ export const adminCoursesCategoryView = async (req, res) => {
     const categoryId = req.params.id;
     const category = await getCategoryById(categoryId);
     const type = await getTypeById(category.id)
-
-    const categories = await getAllCourseCategories()
-    for (const category of categories) {
-        category.type =  await getTypeById(category.typeId)
-    }
+    const categories = await getCategoriesWithType()
     const types = await getAllCourseTypes()
 
     res.render("admin/coursesCategories", {
-        title: 'kurzy',
-        categories,
-        marked: "categories",
-        category: category,
-        types,
-        type
-    } );
+        title: 'kurzy', categories, marked: "categories", category: category, types, type
+    });
 }
 
 export const addCategory = async (req, res) => {

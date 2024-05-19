@@ -1,7 +1,7 @@
 import jsonDb from "../../src/jsonDb.js";
 import {jsonDbSchema} from "../../src/jsonDbSchema.js";
-import {getFrontHeaderLinks} from "../../src/utils/getFrontHeaderLinks.js";
-import {getFormatedOffers} from "../../src/utils/getFormatedOffers.js";
+import {getFrontHeaderLinks} from "../../src/utils/frontHeaderLinks.js";
+import {getFormatedOffers} from "../../src/utils/offers.js";
 
 export const gdprView = async (req, res) => {
 

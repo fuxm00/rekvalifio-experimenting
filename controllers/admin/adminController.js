@@ -6,6 +6,6 @@ export const adminView = async (req, res) => {
 
 export const adminLoginView = async (req, res) => {
     res.render("admin/login", {
-        title: 'login'
+        title: 'login' 
     } );
 }

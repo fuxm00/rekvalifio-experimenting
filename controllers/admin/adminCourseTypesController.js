@@ -1,12 +1,6 @@
 import {
-    createCourseType,
-    getAllCourseTypes,
-    getTypeById,
-    removeTypeById,
-    updateType
+    createCourseType, getAllCourseTypes, getTypeById, removeTypeById, updateType
 } from "../../src/db/courseTypes.js";
-import {getCategoryById} from "../../src/db/courseCategories.js";
-import {updateCourse} from "../../src/db/courses.js";
 
 export const adminCoursesTypesView = async (req, res) => {
 

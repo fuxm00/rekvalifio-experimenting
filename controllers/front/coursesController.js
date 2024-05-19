@@ -6,8 +6,8 @@ import {createAddress} from "../../src/db/addresses.js";
 import {jsonDbSchema} from "../../src/jsonDbSchema.js";
 import {getAllCourseTypes, geTypeByTitle} from "../../src/db/courseTypes.js";
 import {createParticipant} from "../../src/db/participants.js";
-import {getFrontHeaderLinks} from "../../src/utils/getFrontHeaderLinks.js";
-import {getFormatedOffers} from "../../src/utils/getFormatedOffers.js";
+import {getFrontHeaderLinks} from "../../src/utils/frontHeaderLinks.js";
+import {getFormatedOffers} from "../../src/utils/offers.js";
 
 export const coursesView = async (req, res) => {
 
