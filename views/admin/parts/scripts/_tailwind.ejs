@@ -91,6 +91,8 @@
             margin-bottom: 20px;
             padding: 10px 20px;
 
+            min-width: 300px;
+
             border-radius: 8px;
             border-style: solid;
             border-width: 1px;
@@ -100,6 +102,8 @@
         select {
             margin-bottom: 20px;
             padding: 10px 20px;
+
+            min-width: 300px;
 
             background-color: white;
 
@@ -190,11 +194,23 @@
             gap: 20px;
         }
 
-        h1 {
-            font-family: 'Arial', sans-serif;
-            font-size: 1.5rem;
+        @font-face {
+            font-family: 'superBumble'; /*a name to be used later*/
+            src: url('/fonts/LoftygoalsRegular.otf'); /*URL to font*/
+        }
+
+        .logo {
+            font-family: 'superBumble', sans-serif;
+            font-size: 1.85rem;
             font-weight: bold;
-            margin: 25px 10px
+            margin: 25px 10px;
+
+            color: var(--blue-primary);
+
+        }
+
+        .logo:hover {
+            color: var(--blue-primary-dark);
         }
 
         h2 {
@@ -215,12 +231,12 @@
             border-radius: 8px;
             border-style: solid;
             border-width: 1px;
-            border-color: var(--grey3);
+            border-color: var(--grey2);
             flex-grow: 1;
         }
 
         .admin-section-card:hover {
-            background-color: var(--grey2);
+            background-color: var(--blue-soft-dark);
         }
 
         .admin-section-card a {
@@ -230,6 +246,14 @@
 
         .admin-section-card a img {
             height: 50px;
+        }
+
+        .text-decor {
+            text-decoration: underline;
+        }
+
+        .text-grey {
+            color: grey;
         }
     }
 </style>

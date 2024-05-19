@@ -5,22 +5,15 @@ import {getAllCourseCategories, getCategoryById, getCourseCategoriesOfType} from
 import {createAddress} from "../../src/db/addresses.js";
 import {jsonDbSchema} from "../../src/jsonDbSchema.js";
 import {getAllCourseTypes, geTypeByTitle} from "../../src/db/courseTypes.js";
-import {getAllOffers} from "../../src/db/offers.js";
-import {formatDate} from "../../src/utils/formatDate.js";
 import {createParticipant} from "../../src/db/participants.js";
-
-const logoName = await jsonDb.get(jsonDbSchema.logo)
-
-const offers = await getAllOffers()
-
-for (const offer of offers) {
-    offer.formatedStartDate = await formatDate(offer.startDate, 'D. M.')
-    offer.formatedEndDate = await formatDate(offer.endDate, 'D. M. YYYY')
-}
+import {getFrontHeaderLinks} from "../../src/utils/getFrontHeaderLinks.js";
+import {getFormatedOffers} from "../../src/utils/getFormatedOffers.js";
 
 export const coursesView = async (req, res) => {
 
     const {filter} = req.query;
+
+    const headerLinks = await getFrontHeaderLinks()
 
     let categories
     if (filter) {
@@ -32,16 +25,10 @@ export const coursesView = async (req, res) => {
 
     const coursesContent = await jsonDb.get(jsonDbSchema.courses)
     const types = await getAllCourseTypes()
+    const offers = await getFormatedOffers()
 
     res.render("front/courses", {
-        title: 'Kurzy',
-        marked: 'courses',
-        categories,
-        logoName,
-        coursesContent,
-        types,
-        offers,
-        filter
+        title: 'Kurzy', marked: 'courses', categories, headerLinks, coursesContent, types, offers, filter
     });
 }
 
@@ -50,14 +37,11 @@ export const categoryView = async (req, res) => {
     const categoryId = req.params.id;
     const category = await getCategoryById(categoryId)
     const courses = await getCoursesByCategoryId(categoryId);
+    const headerLinks = await getFrontHeaderLinks()
+    const offers = await getFormatedOffers()
 
     res.render("front/category", {
-        title: 'Kurzy',
-        marked: 'courses',
-        logoName,
-        category,
-        courses,
-        offers
+        title: 'Kurzy', marked: 'courses', headerLinks, category, courses, offers
     });
 }
 
@@ -91,12 +75,15 @@ export const orderSummaryView = async (req, res) => {
         res.redirect('/')
     }
 
+    const headerLinks = await getFrontHeaderLinks()
+    const offers = await getFormatedOffers()
+
     res.render("front/orderSummary", {
         title: 'Kurzy',
         marked: 'courses',
         summary: true,
         offers,
-        logoName,
+        headerLinks,
         course,
         note,
         email,
@@ -120,15 +107,12 @@ export const orderSummaryView = async (req, res) => {
 export const courseView = async (req, res) => {
 
     const courseId = req.params.id;
-
     const course = await getCourseById(courseId);
+    const headerLinks = await getFrontHeaderLinks()
+    const offers = await getFormatedOffers()
 
     res.render("front/course", {
-        title: 'Kurz',
-        marked: 'courses',
-        course,
-        logoName,
-        offers
+        title: 'Kurz', marked: 'courses', course, headerLinks, offers
     });
 }
 
@@ -154,15 +138,16 @@ export const courseOrderView = async (req, res) => {
     } = req.session;
 
     const participants = req.session.participants
-
     const course = await getCourseById(courseId);
+    const headerLinks = await getFrontHeaderLinks()
+    const offers = await getFormatedOffers()
 
     res.render("front/order", {
         title: 'Kurz',
         marked: 'courses',
         summary: false,
         course,
-        logoName,
+        headerLinks,
         note,
         email,
         phone,
@@ -216,11 +201,7 @@ export const placeOrder = async (req, res) => {
     })
 
     const mailingAddress = await createAddress({
-        firm: mailingFirm,
-        name: mailingName,
-        street: mailingStreet,
-        city: mailingCity,
-        postal: mailingPostal,
+        firm: mailingFirm, name: mailingName, street: mailingStreet, city: mailingCity, postal: mailingPostal,
     })
 
     const billingAddressId = billingAddress.id;
@@ -245,7 +226,7 @@ export const proceedOrder = async (req, res) => {
     for (const key in req.body) {
         if (key.startsWith('participant')) {
             participants[key] = req.body[key];
-            let participant = {name : req.body[key]};
+            let participant = {name: req.body[key]};
             participants.push(participant)
         }
     }
@@ -267,7 +248,6 @@ export const proceedOrder = async (req, res) => {
 
     req.session.email = req.body.email
     req.session.phone = req.body.phone
-
     req.session.note = req.body.note
 
     req.session.courseId = req.params.id;
@@ -276,15 +256,12 @@ export const proceedOrder = async (req, res) => {
 }
 
 export const orderCompleteView = async (req, res) => {
-
+    const headerLinks = await getFrontHeaderLinks()
     const orderId = req.params.id;
+    const offers = await getFormatedOffers()
 
     res.render("front/orderComplete", {
-        title: 'Kurz',
-        marked: 'courses',
-        orderId,
-        logoName,
-        offers
+        title: 'Kurz', marked: 'courses', orderId, headerLinks, offers
     });
 }
 

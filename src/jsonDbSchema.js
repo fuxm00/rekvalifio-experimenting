@@ -5,4 +5,6 @@ export const jsonDbSchema = {
     contacts: "contacts-content",
     gdpr: "gdpr-content",
     conditions: "conditions-content",
+    facebookLink: "facebook-link",
+    instagramLink: "instagram-link",
 }

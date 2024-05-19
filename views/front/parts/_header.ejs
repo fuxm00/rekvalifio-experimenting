@@ -11,16 +11,20 @@
 <div class="master-container">
     <div id="header">
         <a href="/" id="logo-link">
-            <img id="logo" src="/img/upload/<%= logoName %>">
+            <img id="logo" src="/img/upload/<%= headerLinks.logoName %>">
         </a>
         <div class="flex-horizontal">
-            <a href="facebook" id="social-link">
-                <img id="social-logo" src="/img/facebook.png">
-            </a>
+            <% if (headerLinks.facebookLink) { %>
+                <a href="<%= headerLinks.facebookLink %>" id="social-link">
+                    <img id="social-logo" src="/img/facebook.png">
+                </a>
+            <% } %>
 
-            <a href="instagram" id="social-link">
-                <img id="social-logo" src="/img/instagram.png">
-            </a>
+            <% if (headerLinks.instagramLink) { %>
+                <a href="<%= headerLinks.instagramLink %>>" id="social-link">
+                    <img id="social-logo" src="/img/instagram.png">
+                </a>
+            <% } %>
         </div>
     </div>
     <div>
