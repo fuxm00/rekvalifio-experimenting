@@ -1,7 +1,7 @@
 import {
     archiveOrderById, completeOrderById, remvoeOrderById
 } from "../../src/db/orders.js";
-import {getCompleteOrder, getFormatedOrders} from "../../src/utils/orders.js";
+import {getCompleteOrder, getFormatedArchivedOrders, getFormatedOrders} from "../../src/utils/orders.js";
 
 export const adminOrdersView = async (req, res) => {
 
@@ -14,7 +14,7 @@ export const adminOrdersView = async (req, res) => {
 
 export const adminOrdersArchiveView = async (req, res) => {
 
-    const orders = await getFormatedOrders()
+    const orders = await getFormatedArchivedOrders()
 
     res.render("admin/orders", {
         title: 'Archiv objednávek', orders, archivedList: true, marked: "archive"

@@ -69,7 +69,11 @@
     </form>
 
     <script>
-        let editor = new FroalaEditor('#courseContent', {}, function () {
+        const myToolbarButtons = ['fullscreen', '|', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', '|', 'paragraphFormat', 'paragraphStyle', '|', 'align', 'formatOL', 'formatUL', '-', 'insertLink', '|', 'insertHR', '|', 'undo', 'redo', 'trackChanges']
+
+        let editor = new FroalaEditor('#courseContent', {
+            toolbarButtons: myToolbarButtons
+        }, function () {
             <% if (course) { %>
             editor.html.set('<%- course.content %>');
             <% } %>

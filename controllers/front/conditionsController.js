@@ -6,14 +6,14 @@ import {getFormatedOffers} from "../../src/utils/offers.js";
 export const conditionsView = async (req, res) => {
 
     const headerLinks = await getFrontHeaderLinks()
-    const conditionsContent = await jsonDb.get(jsonDbSchema.conditions)
+    const content = await jsonDb.get(jsonDbSchema.conditions)
     const offers = await getFormatedOffers()
 
     res.render("front/conditions", {
         title: 'Obchodní podmínky',
         marked: null,
         headerLinks,
-        content: conditionsContent,
+        content,
         offers
     } );
 }

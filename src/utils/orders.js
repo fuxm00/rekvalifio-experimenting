@@ -1,4 +1,4 @@
-import {getAllNonArchivedOrders, getOrderById} from "../db/orders.js";
+import {getAllArchivedOrders, getAllNonArchivedOrders, getOrderById} from "../db/orders.js";
 import {formatDate} from "./formatDate.js";
 import {getCourseById} from "../db/courses.js";
 import {getAddressById} from "../db/addresses.js";
@@ -6,6 +6,14 @@ import {getParticipantsbyOrderId} from "../db/participants.js";
 
 export const getFormatedOrders = async () => {
     const orders = await getAllNonArchivedOrders();
+    for (const order of orders) {
+        order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
+    }
+    return orders
+}
+
+export const getFormatedArchivedOrders = async () => {
+    const orders = await getAllArchivedOrders();
     for (const order of orders) {
         order.formatedDate = await formatDate(order.created_at, 'D. M. YYYY')
     }

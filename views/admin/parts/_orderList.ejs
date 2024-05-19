@@ -33,7 +33,9 @@
                     <% } %>
                 </div>
                 <div>
-                    <a href="/admin/orders/delete/<%= order.id %>" class="button-square button-red">smazat</a>
+                    <% if (!archivedList) { %>
+                        <a href="/admin/orders/delete/<%= order.id %>" class="button-square button-red">smazat</a>
+                    <% } %>
                 </div>
             </div>
         </div>

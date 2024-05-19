@@ -3,8 +3,8 @@
 
 <div class="flex-container flex-space-between content-container">
     <div>
-        <%- coursesContent %>
-        <div class="mt20">
+        <%- content ? content : "Obsah nezadán" %>
+        <div class="mt-4">
             <%- include('./parts/_coursesNavbar') %>
         </div>
         <div class="mt20">

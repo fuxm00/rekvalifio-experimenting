@@ -10,9 +10,14 @@
 <body>
 <div class="master-container">
     <div id="header">
-        <a href="/" id="logo-link">
-            <img id="logo" src="/img/upload/<%= headerLinks.logoName %>">
-        </a>
+        <% if (headerLinks.logoName) { %>
+            <a href="/" id="logo-link">
+                <img id="logo" src="/img/upload/<%= headerLinks.logoName %>">
+            </a>
+        <% } else { %>
+            <p>Logo nezadáno</p>
+        <% } %>
+
         <div class="flex-horizontal">
             <% if (headerLinks.facebookLink) { %>
                 <a href="<%= headerLinks.facebookLink %>" id="social-link">

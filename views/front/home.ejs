@@ -3,7 +3,7 @@
 
 <div class="flex-container flex-space-between content-container">
     <div>
-        <%- homeContent %>
+        <%- content ? content : "Obsah nezadán" %>
     </div>
     <div id="home-offers">
         <%- include('./parts/_homeOffers') %>

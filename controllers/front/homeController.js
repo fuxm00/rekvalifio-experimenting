@@ -5,7 +5,7 @@ import {getFormatedOffers} from "../../src/utils/offers.js";
 
 export const homeView = async (req, res) => {
 
-    const homeContent = await jsonDb.get(jsonDbSchema.home)
+    const content = await jsonDb.get(jsonDbSchema.home)
     const headerLinks = await getFrontHeaderLinks()
     const offers = await getFormatedOffers()
 
@@ -13,7 +13,7 @@ export const homeView = async (req, res) => {
         title: 'Domů',
         marked: 'home',
         headerLinks,
-        homeContent,
+        content,
         offers,
     } );
 }

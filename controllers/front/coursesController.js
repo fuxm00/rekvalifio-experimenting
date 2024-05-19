@@ -23,12 +23,12 @@ export const coursesView = async (req, res) => {
         categories = await getAllCourseCategories()
     }
 
-    const coursesContent = await jsonDb.get(jsonDbSchema.courses)
+    const content = await jsonDb.get(jsonDbSchema.courses)
     const types = await getAllCourseTypes()
     const offers = await getFormatedOffers()
 
     res.render("front/courses", {
-        title: 'Kurzy', marked: 'courses', categories, headerLinks, coursesContent, types, offers, filter
+        title: 'Kurzy', marked: 'courses', categories, headerLinks, content, types, offers, filter
     });
 }
 
