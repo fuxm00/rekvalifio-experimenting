@@ -3,6 +3,8 @@ import {
 } from "../../src/db/courseCategories.js";
 import {getAllCourseTypes, getTypeById} from "../../src/db/courseTypes.js";
 import {getCategoriesWithType} from "../../src/utils/categories.js";
+import {toastTypes} from "../../src/toastTypes.js";
+import {createCourse, updateCourse} from "../../src/db/courses.js";
 
 export const adminCoursesCategoriesView = async (req, res) => {
 
@@ -11,7 +13,6 @@ export const adminCoursesCategoriesView = async (req, res) => {
 
     res.render("admin/coursesCategories", {
         title: 'kurzy', categories, marked: "categories", category: null, types
-
     });
 }
 
@@ -31,8 +32,17 @@ export const adminCoursesCategoryView = async (req, res) => {
 export const addCategory = async (req, res) => {
 
     const {categoryTitle: title, categoryContent: content, typeId} = req.body
+    const toastMessages = []
 
-    await createCategory({title, content, typeId})
+    !title ? toastMessages.push({type: toastTypes.warning, title: "Zadejte název kategorie"}) : null
+    !typeId ? toastMessages.push({type: toastTypes.warning, title: "Zadejte typ kategorie"}) : null
+
+    if (toastMessages.length < 1) {
+        await createCategory({title, content, typeId})
+        toastMessages.push({type: toastTypes.normal, title: "Kategorie přidána"})
+    }
+
+    req.session.toastMessages = toastMessages
 
     res.redirect('back')
 }
@@ -42,15 +52,31 @@ export const editCategory = async (req, res) => {
     const {categoryTitle: title, categoryContent: content, typeId} = req.body
     const {id: categoryId} = req.params;
 
-    await updateCategory({title, content, typeId}, categoryId)
+    const toastMessages = []
 
-    res.redirect('/admin/courses/categories')
+    !title ? toastMessages.push({type: toastTypes.warning, title: "Zadejte název kategorie"}) : null
+    !typeId ? toastMessages.push({type: toastTypes.warning, title: "Zadejte typ kategorie"}) : null
+
+
+    if (toastMessages.length < 1) {
+        await updateCategory({title, content, typeId}, categoryId)
+        toastMessages.push({type: toastTypes.normal, title: "Kategorie upravena"})
+        req.session.toastMessages = toastMessages
+        res.redirect('/admin/courses/categories')
+    } else {
+        req.session.toastMessages = toastMessages
+        res.redirect('back')
+    }
 }
 
 export const removeCategory = async (req, res) => {
     const {id: categoryId} = req.params;
 
     await removeCategoryById(categoryId);
+
+    const toastMessages = []
+    toastMessages.push({type: toastTypes.normal, title: "Kategorie odstraněna"})
+    req.session.toastMessages = toastMessages
 
     res.redirect('back')
 }

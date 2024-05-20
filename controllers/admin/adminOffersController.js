@@ -1,8 +1,9 @@
-import {createOffer, getAllOffers, getOfferById, removeOfferById, updateOffer} from "../../src/db/offers.js";
-import {getAllCourseCategories, getCategoryById} from "../../src/db/courseCategories.js";
+import {createOffer, getOfferById, removeOfferById, updateOffer} from "../../src/db/offers.js";
+import {getAllCourseCategories} from "../../src/db/courseCategories.js";
 import {formatDate} from "../../src/utils/formatDate.js";
 import {getFormatedOffersWithCategory} from "../../src/utils/offers.js";
-import {removeTypeById} from "../../src/db/courseTypes.js";
+import {toastTypes} from "../../src/toastTypes.js";
+import {createCourseType, updateType} from "../../src/db/courseTypes.js";
 
 export const adminOffersView = async (req, res) => {
 
@@ -45,7 +46,18 @@ export const addOffer = async (req, res) => {
 
     const {title, offerStart: startDate, offerEnd: endDate, category: categoryId} = req.body
 
-    await createOffer({title, startDate, endDate, categoryId})
+    const toastMessages = []
+    !title ? toastMessages.push({type: toastTypes.warning, title: "Zadejte název nabídky"}) : null
+    !startDate ? toastMessages.push({type: toastTypes.warning, title: "Zadejte počáteční datum nabídky"}) : null
+    !endDate ? toastMessages.push({type: toastTypes.warning, title: "Zadejte koncové datum nabídky"}) : null
+    !categoryId ? toastMessages.push({type: toastTypes.warning, title: "Zadejte kategorii nabídky"}) : null
+
+    if (toastMessages.length < 1) {
+        await createOffer({title, startDate, endDate, categoryId})
+        toastMessages.push({type: toastTypes.normal, title: "Nabídka přidána"})
+    }
+
+    req.session.toastMessages = toastMessages
 
     res.redirect('back')
 }
@@ -55,15 +67,31 @@ export const editOffer = async (req, res) => {
     const {title, offerStart: startDate, offerEnd: endDate, category: categoryId} = req.body
     const {id: offerId} = req.params;
 
-    await updateOffer({title, startDate, endDate, categoryId}, offerId)
+    const toastMessages = []
+    !title ? toastMessages.push({type: toastTypes.warning, title: "Zadejte název nabídky"}) : null
+    !startDate ? toastMessages.push({type: toastTypes.warning, title: "Zadejte počáteční datum nabídky"}) : null
+    !endDate ? toastMessages.push({type: toastTypes.warning, title: "Zadejte koncové datum nabídky"}) : null
+    !categoryId ? toastMessages.push({type: toastTypes.warning, title: "Zadejte kategorii nabídky"}) : null
 
-    res.redirect('/admin/offers')
+    if (toastMessages.length < 1) {
+        await updateOffer({title, startDate, endDate, categoryId}, offerId)
+        toastMessages.push({type: toastTypes.normal, title: "Nabídka upravena"})
+        req.session.toastMessages = toastMessages
+        res.redirect('/admin/offers')
+    } else {
+        req.session.toastMessages = toastMessages
+        res.redirect('back')
+    }
 }
 
 export const removeOffer = async (req, res) => {
     const {id: offerId} = req.params;
 
     await removeOfferById(offerId);
+
+    const toastMessages = []
+    toastMessages.push({type: toastTypes.normal, title: "Nabídka odstraněna"})
+    req.session.toastMessages = toastMessages
 
     res.redirect('back')
 }

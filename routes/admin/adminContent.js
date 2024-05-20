@@ -7,10 +7,11 @@ import {
     changeSocialLinks
 } from "../../controllers/admin/adminContentController.js";
 import {upload} from "../../src/middlewares/upload.js";
+import loadToastMessages from "../../src/middlewares/loadToastMessages.js";
 
 const content = express.Router()
 
-content.get("/admin/content", auth, adminContentView)
+content.get("/admin/content", auth, loadToastMessages, adminContentView)
 content.post("/admin/content/change-logo", auth, upload.single('logo'), changeLogo)
 content.post("/admin/content/change-home-texts", auth, changeHomeTexts)
 content.post("/admin/content/change-social-links", auth, changeSocialLinks)

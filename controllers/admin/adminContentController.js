@@ -1,5 +1,6 @@
 import jsonDb from "../../src/jsonDb.js";
 import {jsonDbSchema} from "../../src/jsonDbSchema.js";
+import {toastTypes} from "../../src/toastTypes.js";
 
 export const adminContentView = async (req, res) => {
 
@@ -21,15 +22,22 @@ export const adminContentView = async (req, res) => {
         conditionContent,
         facebookLink,
         instagramLink,
-        xLink
+        xLink,
     });
 }
 
 export const changeLogo = async (req, res) => {
 
-    const {filename} = req.file
-    await jsonDb.set(jsonDbSchema.logo, filename);
+    const toastMessages = []
 
+    if (req.file) {
+        const {filename} = req.file
+        await jsonDb.set(jsonDbSchema.logo, filename);
+        toastMessages.push({type: toastTypes.normal, title:"Logo nahráno"})
+    } else {
+        toastMessages.push({type: toastTypes.warning, title:"vyberte logo"})
+    }
+    req.session.toastMessages = toastMessages
     res.redirect('back')
 }
 
@@ -43,6 +51,10 @@ export const changeHomeTexts = async (req, res) => {
     await jsonDb.set(jsonDbSchema.gdpr, gdprContent);
     await jsonDb.set(jsonDbSchema.conditions, conditionsContent);
 
+    const toastMessages = []
+    toastMessages.push({type: toastTypes.normal, title:"Obsah stránek upraven"})
+    req.session.toastMessages = toastMessages
+
     res.redirect('back')
 }
 
@@ -54,6 +66,9 @@ export const changeSocialLinks = async (req, res) => {
     await jsonDb.set(jsonDbSchema.instagramLink, instagramLink);
     await jsonDb.set(jsonDbSchema.xLink, xLink);
 
+    const toastMessages = []
+    toastMessages.push({type: toastTypes.normal, title:"Odkazy upraveny"})
+    req.session.toastMessages = toastMessages
 
     res.redirect('back')
 }

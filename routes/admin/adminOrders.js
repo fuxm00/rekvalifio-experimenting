@@ -7,16 +7,17 @@ import {
     adminOrdersUnArchive, adminOrdersUnComplete,
     adminOrdersView, adminOrderView, deleteOrder
 } from "../../controllers/admin/adminOrdersController.js";
+import loadToastMessages from "../../src/middlewares/loadToastMessages.js";
 
 const orders = express.Router()
 
-orders.get("/admin/orders", auth, adminOrdersView)
-orders.get("/admin/orders/archive", auth, adminOrdersArchiveView)
-orders.get("/admin/orders/archiveOrder/:id", auth, adminOrdersArchive)
-orders.get("/admin/orders/unArchiveOrder/:id", auth, adminOrdersUnArchive)
-orders.get("/admin/orders/:id", auth, adminOrderView)
-orders.get("/admin/orders/completeOrder/:id", auth, adminOrdersComplete)
-orders.get("/admin/orders/unCompleteOrder/:id", auth, adminOrdersUnComplete)
-orders.get("/admin/orders/delete/:id", auth, deleteOrder)
+orders.get("/admin/orders", auth, loadToastMessages, adminOrdersView)
+orders.get("/admin/orders/archive", auth, loadToastMessages, adminOrdersArchiveView)
+orders.get("/admin/orders/archiveOrder/:id", auth, loadToastMessages, adminOrdersArchive)
+orders.get("/admin/orders/unArchiveOrder/:id", auth, loadToastMessages, adminOrdersUnArchive)
+orders.get("/admin/orders/:id", auth, loadToastMessages, adminOrderView)
+orders.get("/admin/orders/completeOrder/:id", auth, loadToastMessages, adminOrdersComplete)
+orders.get("/admin/orders/unCompleteOrder/:id", auth, loadToastMessages, adminOrdersUnComplete)
+orders.get("/admin/orders/delete/:id", auth, loadToastMessages, deleteOrder)
 
 export default orders

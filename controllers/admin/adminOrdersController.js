@@ -2,6 +2,7 @@ import {
     archiveOrderById, completeOrderById, remvoeOrderById
 } from "../../src/db/orders.js";
 import {getCompleteOrder, getFormatedArchivedOrders, getFormatedOrders} from "../../src/utils/orders.js";
+import {toastTypes} from "../../src/toastTypes.js";
 
 export const adminOrdersView = async (req, res) => {
 
@@ -26,9 +27,10 @@ export const adminOrderView = async (req, res) => {
     const orderId = req.params.id;
 
     const order = await getCompleteOrder(orderId)
+    const toastMessages = res.locals.toastMessages
 
     res.render("admin/order", {
-        title: 'Objednávka', order
+        title: 'Objednávka', order, toastMessages
     });
 }
 
@@ -37,6 +39,10 @@ export const adminOrdersArchive = async (req, res) => {
     const orderId = req.params.id;
 
     await archiveOrderById(orderId, true);
+
+    const toastMessages = []
+    toastMessages.push({type: toastTypes.normal, title:"Objednávka archivována"})
+    req.session.toastMessages = toastMessages
 
     res.redirect('back')
 }
@@ -47,6 +53,10 @@ export const adminOrdersUnArchive = async (req, res) => {
 
     await archiveOrderById(orderId, false);
 
+    const toastMessages = []
+    toastMessages.push({type: toastTypes.normal, title:"Objednávka odarchivována"})
+    req.session.toastMessages = toastMessages
+
     res.redirect('back')
 }
 
@@ -55,6 +65,10 @@ export const adminOrdersComplete = async (req, res) => {
     const orderId = req.params.id;
 
     await completeOrderById(orderId, true);
+
+    const toastMessages = []
+    toastMessages.push({type: toastTypes.normal, title:"Objednávka dokončena"})
+    req.session.toastMessages = toastMessages
 
     res.redirect('back')
 }
@@ -65,6 +79,10 @@ export const adminOrdersUnComplete = async (req, res) => {
 
     await completeOrderById(orderId, false);
 
+    const toastMessages = []
+    toastMessages.push({type: toastTypes.normal, title:"Objednávka není dokončena"})
+    req.session.toastMessages = toastMessages
+
     res.redirect('back')
 }
 
@@ -73,6 +91,10 @@ export const deleteOrder = async (req, res) => {
     const orderId = req.params.id;
 
     await remvoeOrderById(orderId)
+
+    const toastMessages = []
+    toastMessages.push({type: toastTypes.normal, title:"Objednávka smazána"})
+    req.session.toastMessages = toastMessages
 
     res.redirect('back')
 }

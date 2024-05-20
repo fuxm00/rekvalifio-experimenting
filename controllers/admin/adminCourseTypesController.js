@@ -1,6 +1,8 @@
 import {
     createCourseType, getAllCourseTypes, getTypeById, removeTypeById, updateType
 } from "../../src/db/courseTypes.js";
+import {toastTypes} from "../../src/toastTypes.js";
+import {createCourse, updateCourse} from "../../src/db/courses.js";
 
 export const adminCoursesTypesView = async (req, res) => {
 
@@ -27,7 +29,15 @@ export const addType = async (req, res) => {
 
     const {title} = req.body
 
-    await createCourseType({title})
+    const toastMessages = []
+    !title ? toastMessages.push({type: toastTypes.warning, title: "Zadejte název typu"}) : null
+
+    if (toastMessages.length < 1) {
+        await createCourseType({title})
+        toastMessages.push({type: toastTypes.normal, title: "Typ přidán"})
+    }
+
+    req.session.toastMessages = toastMessages
 
     res.redirect('back')
 }
@@ -37,15 +47,28 @@ export const editType = async (req, res) => {
     const {title} = req.body
     const {id: typeId} = req.params;
 
-    await updateType({title}, typeId)
+    const toastMessages = []
+    !title ? toastMessages.push({type: toastTypes.warning, title: "Zadejte název typu"}) : null
 
-    res.redirect('/admin/courses/types')
+    if (toastMessages.length < 1) {
+        await updateType({title}, typeId)
+        toastMessages.push({type: toastTypes.normal, title: "Typ upraven"})
+        req.session.toastMessages = toastMessages
+        res.redirect('/admin/courses/types')
+    } else {
+        req.session.toastMessages = toastMessages
+        res.redirect('back')
+    }
 }
 
 export const removeType = async (req, res) => {
     const {id: typeId} = req.params;
 
     await removeTypeById(typeId);
+
+    const toastMessages = []
+    toastMessages.push({type: toastTypes.normal, title: "Typ odstraněn"})
+    req.session.toastMessages = toastMessages
 
     res.redirect('back')
 }
