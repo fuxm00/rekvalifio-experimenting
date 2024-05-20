@@ -3,7 +3,15 @@
 <h2>Správa nabídek</h2>
 <div class="content-container">
 
-    <%- include('./parts/_offerForm') %>
+    <div>
+        <a href="/admin/offers" class="button-round <%= marked === "offers" ? "button-blue" : "button-soft-blue" %>">Aktuální</a>
+        <a href="/admin/expired-offers"
+           class="button-round <%= marked === "expired" ? "button-blue" : "button-soft-blue" %>">Expirované</a>
+    </div>
+
+    <% if (!expired) { %>
+        <%- include('./parts/_offerForm') %>
+    <% } %>
 
     <h3>Seznam nabídek</h3>
     <% if ((offers.length >= 1)) { %>

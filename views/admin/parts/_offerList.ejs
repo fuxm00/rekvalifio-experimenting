@@ -15,7 +15,12 @@
                     Datum: <%= offer.formatedStartDate %> - <%= offer.formatedEndDate %>
                 </div>
             </div>
+            <% if (!expired) { %>
+                <div>
+                    <a href="/admin/offers/remove-offer/<%= offer.id %>" class="button-square button-red">smazat</a>
+                </div>
+            <% } %>
         </div>
-    <hr>
+        <hr>
     <% } %>
 </div>

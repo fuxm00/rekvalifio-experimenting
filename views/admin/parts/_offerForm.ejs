@@ -2,20 +2,12 @@
     <% if (!offer) { %>
         Přidat nabídku
     <% } else { %>
-        Upravit nabídku: <%= offer.title%>
+        Upravit nabídku: <%= offer.title %>
     <% } %>
 </h3>
 
 <div class="content-container">
-    <form
-    <% if (!offer) { %>
-        action='/admin/offers/add-offer'
-    <% } else { %>
-        action='/admin/offers/edit-offer/<%= offer.id %>'
-            <% } %>
-
-        method='post'>
-
+    <form method='post' id="offer-form">
         <div class="flex-horizontal">
             <div>
                 <label>
@@ -50,7 +42,7 @@
                 <label>
                     <div>Začátek</div>
                     <input type="date" name="offerStart"
-                           value="<%= minDate %>"
+                           value="<%= offer ? offer.startDate : minDate %>"
                            min="<%= minDate %>">
                 </label>
             </div>
@@ -59,21 +51,42 @@
                 <label>
                     <div>Konec</div>
                     <input type="date" name="offerEnd"
-                           value="<%= minDate %>"
+                           value="<%= offer ? offer.endDate : minDate %>"
                            min="<%= minDate %>">
                 </label>
             </div>
         </div>
 
         <div class="center-button">
-            <button type='submit' class="button-square button-blue mt20">
+            <button type='submit' class="button-square button-blue mt20" id="primaryAction">
                 <% if (!offer) { %>
                     Přidat
                 <% } else { %>
                     Upravit
                 <% } %>
             </button>
+            <% if (offer) { %>
+                <button type='submit' class="button-square button-soft-blue mt20 ml-4" id="secondaryAction">
+                    vytvořit nový
+                </button>
+            <% } %>
         </div>
     </form>
 
 </div>
+
+<script>
+    document.getElementById('primaryAction').addEventListener('click', function () {
+        <% if (offer) { %>
+        document.getElementById('offer-form').action = '/admin/offers/edit-offer/<%= offer.id %>';
+        <% } else { %>
+        document.getElementById('offer-form').action = '/admin/offers/add-offer';
+        <% } %>
+    });
+
+    <% if (offer) { %>
+    document.getElementById('secondaryAction').addEventListener('click', function () {
+        document.getElementById('offer-form').action = '/admin/offers/add-offer';
+    });
+    <% } %>
+</script>
