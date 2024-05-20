@@ -5,7 +5,6 @@ import {getCategoryById} from "../db/courseCategories.js";
 export const getFormatedOffers = async (expired = false) => {
 
     const offers = await getOffersByExpiration(expired)
-    console.log(offers)
     for (const offer of offers) {
         offer.formatedStartDate =  await formatDate(offer.startDate, 'D. M.')
         offer.formatedEndDate =  await formatDate(offer.endDate, 'D. M. YYYY')
