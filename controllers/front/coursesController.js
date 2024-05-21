@@ -1,4 +1,4 @@
-import {getCourseById, getCoursesByCategoryId} from "../../src/db/courses.js";
+import {createCourse, getCourseById, getCoursesByCategoryId} from "../../src/db/courses.js";
 import {createOrder} from "../../src/db/orders.js";
 import jsonDb from "../../src/jsonDb.js";
 import {getAllCourseCategories, getCategoryById, getCourseCategoriesOfType} from "../../src/db/courseCategories.js";
@@ -6,6 +6,7 @@ import {createAddress} from "../../src/db/addresses.js";
 import {jsonDbSchema} from "../../src/jsonDbSchema.js";
 import {getAllCourseTypes, geTypeByTitle} from "../../src/db/courseTypes.js";
 import {createParticipant} from "../../src/db/participants.js";
+import {toastTypes} from "../../src/toastTypes.js";
 
 export const coursesView = async (req, res) => {
 
@@ -194,7 +195,15 @@ export const placeOrder = async (req, res) => {
     const billingAddressId = billingAddress.id;
     const mailingAddressId = mailingAddress.id;
 
-    const order = await createOrder({courseId, note, email, phone, billingAddressId, mailingAddressId,price: finalPrice})
+    const order = await createOrder({
+        courseId,
+        note,
+        email,
+        phone,
+        billingAddressId,
+        mailingAddressId,
+        price: finalPrice
+    })
     req.session.regenerate(function (err) {
     })
 
@@ -209,39 +218,92 @@ export const placeOrder = async (req, res) => {
 
 export const proceedOrder = async (req, res) => {
 
+    const toastMessages = []
+
     let participants = []
     for (const key in req.body) {
         if (key.startsWith('participant')) {
-            let participant = {name: req.body[key]};
-            participants.push(participant)
+            if (req.body[key]) {
+                let participant = {name: req.body[key]};
+                participants.push(participant)
+            }
         }
     }
-    req.session.participants = participants
 
-    req.session.billingFirm = req.body.billingFirm
-    req.session.billingName = req.body.billingName
-    req.session.billingStreet = req.body.billingStreet
-    req.session.billingCity = req.body.billingCity
-    req.session.billingPostal = req.body.billingPostal
-    req.session.billingIc = req.body.billingIc
-    req.session.billingDic = req.body.billingDic
+    participants.length < 1 ? toastMessages.push({
+        type: toastTypes.warning,
+        title: "Zadejte alespoň jednoho účastníka"
+    }) : req.session.participants = participants
 
-    req.session.mailingFirm = req.body.mailingFirm
-    req.session.mailingName = req.body.mailingName
-    req.session.mailingStreet = req.body.mailingStreet
-    req.session.mailingCity = req.body.mailingCity
-    req.session.mailingPostal = req.body.mailingPostal
+    const {
+        billingFirm, billingName, billingStreet, billingCity, billingPostal, billingIc, billingDic,
+        mailingFirm, mailingName, mailingStreet, mailingCity, mailingPostal,
+        email, phone, note,approval
+    } = req.body;
 
-    req.session.email = req.body.email
-    req.session.phone = req.body.phone
-    req.session.note = req.body.note
+    if (billingFirm === "" && billingName === "") {
+        toastMessages.push({
+            type: toastTypes.warning,
+            title: "Vyplňte název firmy nebo jméno pro fakturaci"
+        })
+    } else {
+        req.session.billingFirm = billingFirm
+        req.session.billingName = billingName
+    }
+
+    billingStreet === "" ? toastMessages.push({
+        type: toastTypes.warning,
+        title: "Vyplňte ulici pro fakturaci"
+    }) : req.session.billingStreet = billingStreet
+
+    billingCity === "" ? toastMessages.push({
+        type: toastTypes.warning,
+        title: "Vyplňte město pro fakturaci"
+    }) : req.session.billingCity = billingCity
+
+    billingPostal === "" ? toastMessages.push({
+        type: toastTypes.warning,
+        title: "Vyplňte PSČ pro fakturaci"
+    }) : req.session.billingPostal = billingPostal
+
+    !approval ? toastMessages.push({
+        type: toastTypes.warning, 
+        title: "Pro pokračování musíte souhlasit s obchodními podmínkami"
+    }) : null
+
+    req.session.billingIc = billingIc
+    req.session.billingDic = billingDic
+
+    req.session.mailingFirm = mailingFirm
+    req.session.mailingName = mailingName
+    req.session.mailingStreet = mailingStreet
+    req.session.mailingCity = mailingCity
+    req.session.mailingPostal = mailingPostal
+
+    !email ? toastMessages.push({
+        type: toastTypes.warning,
+        title: "Vyplňte kontaktní email"
+    }) : req.session.email = email
+
+    !phone ? toastMessages.push({
+        type: toastTypes.warning,
+        title: "Vyplňte kontaktní telefon"
+    }) : req.session.phone = phone
+
+    req.session.note = note
 
     req.session.courseId = req.params.id;
 
     const course = await getCourseById(req.params.id)
     req.session.finalPrice = participants.length * course.price
 
+    req.session.toastMessages = toastMessages
+
+    if (toastMessages.length < 1) {
         res.redirect(`/course/order-summary`);
+    } else {
+        res.redirect('back');
+    }
 }
 
 export const orderCompleteView = async (req, res) => {

@@ -17,7 +17,7 @@
                         <label>
                             <div>Jména</div>
                             <input name="participant1"
-                                   value="<%= participants[0].name %>" <%= summary ? "disabled" : "" %>>
+                                   value="<%= participants[0] ? participants[0].name : "" %>" <%= summary ? "disabled" : "" %>>
                         </label>
                     </div>
                     <% for (let i = 1; i < participants.length; i++) { %>
