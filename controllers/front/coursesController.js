@@ -6,14 +6,10 @@ import {createAddress} from "../../src/db/addresses.js";
 import {jsonDbSchema} from "../../src/jsonDbSchema.js";
 import {getAllCourseTypes, geTypeByTitle} from "../../src/db/courseTypes.js";
 import {createParticipant} from "../../src/db/participants.js";
-import {getFrontHeaderLinks} from "../../src/utils/frontHeaderLinks.js";
-import {getFormatedOffers} from "../../src/utils/offers.js";
 
 export const coursesView = async (req, res) => {
 
     const {filter} = req.query;
-
-    const headerLinks = await getFrontHeaderLinks()
 
     let categories
     if (filter) {
@@ -25,10 +21,9 @@ export const coursesView = async (req, res) => {
 
     const content = await jsonDb.get(jsonDbSchema.courses)
     const types = await getAllCourseTypes()
-    const offers = await getFormatedOffers()
 
     res.render("front/courses", {
-        title: 'Kurzy', marked: 'courses', categories, headerLinks, content, types, offers, filter
+        title: 'Kurzy', marked: 'courses', categories, content, types, filter
     });
 }
 
@@ -37,11 +32,9 @@ export const categoryView = async (req, res) => {
     const categoryId = req.params.id;
     const category = await getCategoryById(categoryId)
     const courses = await getCoursesByCategoryId(categoryId);
-    const headerLinks = await getFrontHeaderLinks()
-    const offers = await getFormatedOffers()
 
     res.render("front/category", {
-        title: 'Kurzy', marked: 'courses', headerLinks, category, courses, offers
+        title: 'Kurzy', marked: 'courses', category, courses,
     });
 }
 
@@ -76,15 +69,10 @@ export const orderSummaryView = async (req, res) => {
         res.redirect('/')
     }
 
-    const headerLinks = await getFrontHeaderLinks()
-    const offers = await getFormatedOffers()
-
     res.render("front/orderSummary", {
         title: 'Kurzy',
         marked: 'courses',
         summary: true,
-        offers,
-        headerLinks,
         course,
         note,
         email,
@@ -110,11 +98,9 @@ export const courseView = async (req, res) => {
 
     const courseId = req.params.id;
     const course = await getCourseById(courseId);
-    const headerLinks = await getFrontHeaderLinks()
-    const offers = await getFormatedOffers()
 
     res.render("front/course", {
-        title: 'Kurz', marked: 'courses', course, headerLinks, offers
+        title: 'Kurz', marked: 'courses', course
     });
 }
 
@@ -142,15 +128,12 @@ export const courseOrderView = async (req, res) => {
     } = req.session;
 
     const course = await getCourseById(courseId);
-    const headerLinks = await getFrontHeaderLinks()
-    const offers = await getFormatedOffers()
 
     res.render("front/order", {
         title: 'Kurz',
         marked: 'courses',
         summary: false,
         course,
-        headerLinks,
         note,
         email,
         phone,
@@ -166,7 +149,6 @@ export const courseOrderView = async (req, res) => {
         mailingStreet,
         mailingCity,
         mailingPostal,
-        offers,
         participants,
         finalPrice
     });
@@ -263,12 +245,10 @@ export const proceedOrder = async (req, res) => {
 }
 
 export const orderCompleteView = async (req, res) => {
-    const headerLinks = await getFrontHeaderLinks()
     const orderId = req.params.id;
-    const offers = await getFormatedOffers()
 
     res.render("front/orderComplete", {
-        title: 'Kurz', marked: 'courses', orderId, headerLinks, offers
+        title: 'Kurz', marked: 'courses', orderId,
     });
 }
 

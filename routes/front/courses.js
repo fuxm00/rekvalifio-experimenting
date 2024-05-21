@@ -6,15 +6,17 @@ import {
     orderCompleteView,
     placeOrder, categoryView, proceedOrder, orderSummaryView
 } from "../../controllers/front/coursesController.js";
+import loadFrontHeaderLinks from "../../src/middlewares/loadFrontHeaderLinks.js";
+import loadOffers from "../../src/middlewares/loadOffers.js";
 
 const courses = express.Router()
 
-courses.get("/courses", coursesView)
-courses.get("/course-category/:id", categoryView)
-courses.get("/course/order-summary", orderSummaryView)
-courses.get('/course/:id', courseView)
-courses.get('/course/order/:id', courseOrderView)
-courses.get('/course/order-complete/:id', orderCompleteView)
+courses.get("/courses", loadFrontHeaderLinks, loadOffers, coursesView)
+courses.get("/course-category/:id", loadFrontHeaderLinks, loadOffers, categoryView)
+courses.get("/course/order-summary", loadFrontHeaderLinks, loadOffers, orderSummaryView)
+courses.get('/course/:id', loadFrontHeaderLinks, loadOffers, courseView)
+courses.get('/course/order/:id', loadFrontHeaderLinks, loadOffers, courseOrderView)
+courses.get('/course/order-complete/:id', loadFrontHeaderLinks, loadOffers, orderCompleteView)
 
 courses.post("/course/order-proceed/:id", proceedOrder)
 courses.post('/course/place-order/:id', placeOrder)

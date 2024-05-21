@@ -1,10 +1,10 @@
-import {contactsView} from "../../controllers/front/contactsController.js";
 import express from "express";
 import {homeView} from "../../controllers/front/homeController.js";
-import auth from "../../src/middlewares/auth.js";
+import loadFrontHeaderLinks from "../../src/middlewares/loadFrontHeaderLinks.js";
+import loadOffers from "../../src/middlewares/loadOffers.js";
 
 const home = express.Router()
 
-home.get("/", homeView);
+home.get("/", loadFrontHeaderLinks, loadOffers, homeView);
 
 export default home
