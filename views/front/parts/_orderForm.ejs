@@ -182,7 +182,7 @@
 
         <div class="order-button-container mt-8">
             <button type='submit'
-                    class="button-round button-blue"><%= summary ? "Dokončit objednávku" : "Pokračovat v objednávce" %></button>
+                    class="button-square button-blue"><%= summary ? "Dokončit objednávku" : "Pokračovat v objednávce" %></button>
         </div>
     </form>
 
@@ -210,7 +210,7 @@
             let button = document.createElement('button');
             button.textContent = 'další účastník';
             button.type = 'button';
-            button.className = 'button-blue button-round'
+            button.className = 'button-soft-blue button-square'
 
             button.addEventListener('click', () => createInput());
 

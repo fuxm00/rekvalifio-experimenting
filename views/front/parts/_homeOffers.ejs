@@ -1,8 +1,9 @@
-<div id="offer-heading-box">
-    <h2 id="offer-heading">Aktuální nabídka</h2>
-</div>
-
 <% if (offers.length > 0) { %>
+    <div id="offer-heading-box">
+        <h2 id="offer-heading">Aktuální nabídka</h2>
+    </div>
+
+
     <ul id="offers-list">
         <% for (const offer of offers) { %>
             <li class="offer-item">
@@ -12,6 +13,4 @@
             </li>
         <% } %>
     </ul>
-<% } else { %>
-    <p class="ml-4">žádné</p>
 <% } %>
