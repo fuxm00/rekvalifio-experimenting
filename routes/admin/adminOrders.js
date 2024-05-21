@@ -1,5 +1,4 @@
 import express from "express";
-import {adminLoginView} from "../../controllers/admin/adminController.js";
 import auth from "../../src/middlewares/auth.js";
 import {
     adminOrdersArchive,

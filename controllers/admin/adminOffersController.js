@@ -3,7 +3,6 @@ import {getAllCourseCategories} from "../../src/db/courseCategories.js";
 import {formatDate} from "../../src/utils/formatDate.js";
 import {getFormatedOffersWithCategory} from "../../src/utils/offers.js";
 import {toastTypes} from "../../src/toastTypes.js";
-import {createCourseType, updateType} from "../../src/db/courseTypes.js";
 
 export const adminOffersView = async (req, res) => {
 
