@@ -10,12 +10,17 @@ import {toastTypes} from "../../src/toastTypes.js";
 
 export const coursesView = async (req, res) => {
 
-    const {filter} = req.query;
+    let {filter} = req.query;
 
     let categories
     if (filter) {
         const type = await geTypeByTitle(filter)
-        categories = await getCourseCategoriesOfType(type.id)
+        if (!type) {
+            categories = await getAllCourseCategories()
+            filter = null
+        } else {
+            categories = await getCourseCategoriesOfType(type.id)
+        }
     } else {
         categories = await getAllCourseCategories()
     }
