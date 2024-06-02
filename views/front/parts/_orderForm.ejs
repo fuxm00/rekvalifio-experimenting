@@ -15,7 +15,7 @@
                 <% if (participants) { %>
                     <div>
                         <label>
-                            <div>Jména</div>
+                            <div>Jména a příjmení účastníka/ů <p class="inline text-red-500">*</p></div>
                             <input name="participant1"
                                    value="<%= participants[0] ? participants[0].name : "" %>" <%= summary ? "disabled" : "" %>>
                         </label>
@@ -32,7 +32,7 @@
                 <% } else { %>
                     <div>
                         <label>
-                            <div>Jméno účastníka</div>
+                            <div>Jméno a příjmení účastníka <p class="inline text-red-500">*</p></div>
                             <input name="participant1" value="" <%= summary ? "disabled" : "" %>>
                         </label>
                     </div>
@@ -48,31 +48,31 @@
         <div class="inputs-box">
             <div>
                 <label>
-                    <div>Firma</div>
+                    <div>Firma <p class="inline text-red-500">*</p></div>
                     <input name="billingFirm" value="<%= billingFirm %>" <%= summary ? "disabled" : "" %>>
                 </label>
             </div>
             <div>
                 <label>
-                    <div>Jméno</div>
+                    <div>Jméno a příjmení <p class="inline text-red-500">*</p></div>
                     <input name="billingName" value="<%= billingName %>" <%= summary ? "disabled" : "" %>>
                 </label>
             </div>
             <div>
                 <label>
-                    <div>Ulice</div>
+                    <div>Ulice <p class="inline text-red-500">*</p></div>
                     <input name="billingStreet" value="<%= billingStreet %>" <%= summary ? "disabled" : "" %>>
                 </label>
             </div>
             <div>
                 <label>
-                    <div>Město</div>
+                    <div>Město <p class="inline text-red-500">*</p></div>
                     <input name="billingCity" value="<%= billingCity %>" <%= summary ? "disabled" : "" %>>
                 </label>
             </div>
             <div>
                 <label>
-                    <div>PSČ</div>
+                    <div>PSČ <p class="inline text-red-500">*</p></div>
                     <input name="billingPostal" value="<%= billingPostal %>" <%= summary ? "disabled" : "" %>>
                 </label>
             </div>
@@ -94,7 +94,7 @@
         <h2>Poštovní adresa</h2>
         <div class="inputs-box">
             <div>
-                <p>Shoduje-li se adresa s fakturační, nemusíte vyplňovat.</p>
+                <p>Shoduje-li se adresa s fakturační, není nutné vyplňovat.</p>
             </div>
             <div>
                 <label>
@@ -104,7 +104,7 @@
             </div>
             <div>
                 <label>
-                    <div>Jméno</div>
+                    <div>Jméno a příjmení</div>
                     <input name="mailingName" value="<%= mailingName %>" <%= summary ? "disabled" : "" %>>
                 </label>
             </div>
@@ -133,13 +133,13 @@
         <div class="inputs-box">
             <div>
                 <label>
-                    <div>E-mail</div>
+                    <div>E-mail <p class="inline text-red-500">*</p></div>
                     <input name="email" value="<%= email %>" <%= summary ? "disabled" : "" %>>
                 </label>
             </div>
             <div>
                 <label>
-                    <div>Telefon</div>
+                    <div>Telefon <p class="inline text-red-500">*</p></div>
                     <input name="phone" value="<%= phone %>" <%= summary ? "disabled" : "" %>>
                 </label>
             </div>
@@ -168,7 +168,9 @@
                         <input name="approval"
                                class="check-box"
                                type="checkbox">
-                        souhalsím s <a href="/conditions" class="link-item">obchodními podmínkami společnosti</a>
+                        souhlasím s <a href="/conditions" target="_blank" class="link-item">obchodními podmínkami
+                            společnosti</a>
+                        <p class="inline text-red-500">*</p>
                     </label>
                 </div>
             </div>
