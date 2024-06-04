@@ -1,9 +1,9 @@
 import {
     createCategory, getCategoryById, removeCategoryById, updateCategory
-} from "../../src/db/courseCategories.js";
-import {getAllCourseTypes, getTypeById} from "../../src/db/courseTypes.js";
+} from "../../model/db/courseCategories.js";
+import {getAllCourseTypes, getTypeById} from "../../model/db/courseTypes.js";
 import {getCategoriesWithType} from "../../src/utils/categories.js";
-import {toastTypes} from "../../src/toastTypes.js";
+import {toastTypes} from "../../model/schema/toastTypes.js";
 
 export const adminCoursesCategoriesView = async (req, res) => {
 

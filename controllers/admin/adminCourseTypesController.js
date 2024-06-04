@@ -1,7 +1,7 @@
 import {
     createCourseType, getAllCourseTypes, getTypeById, removeTypeById, updateType
-} from "../../src/db/courseTypes.js";
-import {toastTypes} from "../../src/toastTypes.js";
+} from "../../model/db/courseTypes.js";
+import {toastTypes} from "../../model/schema/toastTypes.js";
 
 export const adminCoursesTypesView = async (req, res) => {
 

@@ -1,12 +1,17 @@
 import {
     archiveOrderById, completeOrderById, remvoeOrderById
-} from "../../src/db/orders.js";
+} from "../../model/db/orders.js";
 import {getCompleteOrder, getFormatedArchivedOrders, getFormatedOrders} from "../../src/utils/orders.js";
-import {toastTypes} from "../../src/toastTypes.js";
+import {toastTypes} from "../../model/schema/toastTypes.js";
+import {getAddressById} from "../../model/db/addresses.js";
 
 export const adminOrdersView = async (req, res) => {
 
     const orders = await getFormatedOrders()
+
+    for (const order of orders) {
+        order.billingAddress = await getAddressById(order.billingAddressId)
+    }
 
     res.render("admin/orders", {
         title: 'Objednávky', orders, archivedList: false, marked: "orders"
@@ -16,6 +21,10 @@ export const adminOrdersView = async (req, res) => {
 export const adminOrdersArchiveView = async (req, res) => {
 
     const orders = await getFormatedArchivedOrders()
+
+    for (const order of orders) {
+        order.billingAddress = await getAddressById(order.billingAddressId)
+    }
 
     res.render("admin/orders", {
         title: 'Archiv objednávek', orders, archivedList: true, marked: "archive"

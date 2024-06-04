@@ -1,12 +1,12 @@
-import {createCourse, getCourseById, getCoursesByCategoryId} from "../../src/db/courses.js";
-import {createOrder} from "../../src/db/orders.js";
-import jsonDb from "../../src/jsonDb.js";
-import {getAllCourseCategories, getCategoryById, getCourseCategoriesOfType} from "../../src/db/courseCategories.js";
-import {createAddress} from "../../src/db/addresses.js";
-import {jsonDbSchema} from "../../src/jsonDbSchema.js";
-import {getAllCourseTypes, geTypeByTitle} from "../../src/db/courseTypes.js";
-import {createParticipant} from "../../src/db/participants.js";
-import {toastTypes} from "../../src/toastTypes.js";
+import {createCourse, getCourseById, getCoursesByCategoryId} from "../../model/db/courses.js";
+import {createOrder} from "../../model/db/orders.js";
+import jsonDb from "../../model/jsonDb.js";
+import {getAllCourseCategories, getCategoryById, getCourseCategoriesOfType} from "../../model/db/courseCategories.js";
+import {createAddress} from "../../model/db/addresses.js";
+import {jsonDbSchema} from "../../model/schema/jsonDbSchema.js";
+import {getAllCourseTypes, geTypeByTitle} from "../../model/db/courseTypes.js";
+import {createParticipant} from "../../model/db/participants.js";
+import {toastTypes} from "../../model/schema/toastTypes.js";
 
 export const coursesView = async (req, res) => {
 

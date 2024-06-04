@@ -7,6 +7,9 @@
                     Objednávka č. <%= order.id %>.
                 </a>
                 <div>
+                    Od: <%= order.billingAddress.firm ? order.billingAddress.firm : order.billingAddress.name %>
+                </div>
+                <div>
                     Vytvořeno: <%= order.formatedDate %>
                 </div>
             </div>

@@ -1,6 +1,6 @@
-import jsonDb from "../../src/jsonDb.js";
-import {jsonDbSchema} from "../../src/jsonDbSchema.js";
-import {toastTypes} from "../../src/toastTypes.js";
+import jsonDb from "../../model/jsonDb.js";
+import {jsonDbSchema} from "../../model/schema/jsonDbSchema.js";
+import {toastTypes} from "../../model/schema/toastTypes.js";
 
 export const adminContentView = async (req, res) => {
 

@@ -5,6 +5,6 @@ export default {
     },
     useNullAsDefault: false,
     migrations: {
-        directory: './migrations'
+        directory: './model/migrations'
     }
 }

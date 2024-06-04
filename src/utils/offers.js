@@ -1,6 +1,6 @@
-import {getAllOffers, getOffersByExpiration} from "../db/offers.js";
+import {getAllOffers, getOffersByExpiration} from "../../model/db/offers.js";
 import {formatDate} from "./formatDate.js";
-import {getCategoryById} from "../db/courseCategories.js";
+import {getCategoryById} from "../../model/db/courseCategories.js";
 
 export const getFormatedOffers = async (expired = false) => {
 

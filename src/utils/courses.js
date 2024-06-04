@@ -1,5 +1,5 @@
-import {getAllCourses} from "../db/courses.js";
-import {getCategoryById} from "../db/courseCategories.js";
+import {getAllCourses} from "../../model/db/courses.js";
+import {getCategoryById} from "../../model/db/courseCategories.js";
 
 export const getCoursesWithCategory = async () => {
     const courses = await getAllCourses()

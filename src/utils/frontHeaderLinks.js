@@ -1,5 +1,5 @@
-import jsonDb from "../jsonDb.js";
-import {jsonDbSchema} from "../jsonDbSchema.js";
+import jsonDb from "../../model/jsonDb.js";
+import {jsonDbSchema} from "../../model/schema/jsonDbSchema.js";
 
 export const getFrontHeaderLinks = async () => {
     const logoName = await jsonDb.get(jsonDbSchema.logo)

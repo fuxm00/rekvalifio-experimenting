@@ -1,8 +1,8 @@
-import {createOffer, getOfferById, removeOfferById, updateOffer} from "../../src/db/offers.js";
-import {getAllCourseCategories} from "../../src/db/courseCategories.js";
+import {createOffer, getOfferById, removeOfferById, updateOffer} from "../../model/db/offers.js";
+import {getAllCourseCategories} from "../../model/db/courseCategories.js";
 import {formatDate} from "../../src/utils/formatDate.js";
 import {getFormatedOffersWithCategory} from "../../src/utils/offers.js";
-import {toastTypes} from "../../src/toastTypes.js";
+import {toastTypes} from "../../model/schema/toastTypes.js";
 
 export const adminOffersView = async (req, res) => {
 

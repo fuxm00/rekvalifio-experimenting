@@ -1,8 +1,8 @@
-import {getAllArchivedOrders, getAllNonArchivedOrders, getOrderById} from "../db/orders.js";
+import {getAllArchivedOrders, getAllNonArchivedOrders, getOrderById} from "../../model/db/orders.js";
 import {formatDate} from "./formatDate.js";
-import {getCourseById} from "../db/courses.js";
-import {getAddressById} from "../db/addresses.js";
-import {getParticipantsbyOrderId} from "../db/participants.js";
+import {getCourseById} from "../../model/db/courses.js";
+import {getAddressById} from "../../model/db/addresses.js";
+import {getParticipantsbyOrderId} from "../../model/db/participants.js";
 
 export const getFormatedOrders = async () => {
     const orders = await getAllNonArchivedOrders();

@@ -1,5 +1,5 @@
-import jsonDb from "../../src/jsonDb.js";
-import {jsonDbSchema} from "../../src/jsonDbSchema.js";
+import jsonDb from "../../model/jsonDb.js";
+import {jsonDbSchema} from "../../model/schema/jsonDbSchema.js";
 
 export const homeView = async (req, res) => {
 

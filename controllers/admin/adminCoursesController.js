@@ -1,11 +1,11 @@
 import {
     createCourse, getCourseById, removeCourseById, updateCourse
-} from "../../src/db/courses.js";
+} from "../../model/db/courses.js";
 import {
     getAllCourseCategories,
-} from "../../src/db/courseCategories.js";
+} from "../../model/db/courseCategories.js";
 import {getCoursesWithCategory} from "../../src/utils/courses.js";
-import {toastTypes} from "../../src/toastTypes.js";
+import {toastTypes} from "../../model/schema/toastTypes.js";
 
 export const adminCoursesView = async (req, res) => {
 
