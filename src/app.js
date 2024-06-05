@@ -12,7 +12,7 @@ import conditions from "../routes/front/conditions.js";
 import gdpr from "../routes/front/gdpr.js";
 import adminUsers from "../routes/admin/adminUsers.js";
 import adminOffers from "../routes/admin/adminOffers.js";
-
+import "dotenv/config.js";
 
 export const app = express()
 
@@ -21,7 +21,7 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use(session({
-        secret: 'secret key',
+        secret: process.env.SESSION_SECRET,
         saveUninitialized: false,
         resave: false
     }
