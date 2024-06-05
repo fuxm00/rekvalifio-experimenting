@@ -58,7 +58,7 @@ export const addOffer = async (req, res) => {
 
     req.session.toastMessages = toastMessages
 
-    res.redirect('back')
+    res.redirect('/admin/offers')
 }
 
 export const editOffer = async (req, res) => {
@@ -92,5 +92,5 @@ export const removeOffer = async (req, res) => {
     toastMessages.push({type: toastTypes.normal, title: "Nabídka odstraněna"})
     req.session.toastMessages = toastMessages
 
-    res.redirect('back')
+    res.redirect('/admin/offers')
 }
