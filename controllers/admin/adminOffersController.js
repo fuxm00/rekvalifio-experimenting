@@ -8,10 +8,10 @@ export const adminOffersView = async (req, res) => {
 
     const offers = await getFormatedOffersWithCategory()
     const categories = await getAllCourseCategories();
-    const minDate = await formatDate(new Date(), 'YYYY-MM-DD')
+    const todayDate = await formatDate(new Date(), 'YYYY-MM-DD')
 
     res.render("admin/offers", {
-        title: 'Nabídky', offers, offer: null, categories, minDate,
+        title: 'Nabídky', offers, offer: null, categories, todayDate,
         marked: "offers", expired: false
     });
 }
@@ -20,10 +20,10 @@ export const adminExpiredOffersView = async (req, res) => {
 
     const offers = await getFormatedOffersWithCategory(true)
     const categories = await getAllCourseCategories();
-    const minDate = await formatDate(new Date(), 'YYYY-MM-DD')
+    const todayDate = await formatDate(new Date(), 'YYYY-MM-DD')
 
     res.render("admin/offers", {
-        title: 'Nabídky', offers, offer: null, categories, minDate,
+        title: 'Nabídky', offers, offer: null, categories, todayDate,
         marked: "expired", expired: true
     });
 }
@@ -34,10 +34,10 @@ export const adminOfferView = async (req, res) => {
     const offer = await getOfferById(offerId)
     const offers = await getFormatedOffersWithCategory()
     const categories = await getAllCourseCategories();
-    const minDate = await formatDate(new Date(), 'YYYY-MM-DD')
+    const todayDate = await formatDate(new Date(), 'YYYY-MM-DD')
 
     res.render("admin/offers", {
-        title: 'Nabídky', offers, offer, categories, minDate, marked: "offers", expired: false
+        title: 'Nabídky', offers, offer, categories, todayDate, marked: "offers", expired: false
     });
 }
 

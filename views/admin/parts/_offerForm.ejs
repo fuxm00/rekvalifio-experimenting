@@ -42,8 +42,7 @@
                 <label>
                     <div>Začátek</div>
                     <input type="date" name="offerStart"
-                           value="<%= offer ? offer.startDate : minDate %>"
-                           min="<%= minDate %>">
+                           value="<%= offer ? offer.startDate : todayDate %>">
                 </label>
             </div>
 
@@ -51,8 +50,7 @@
                 <label>
                     <div>Konec</div>
                     <input type="date" name="offerEnd"
-                           value="<%= offer ? offer.endDate : minDate %>"
-                           min="<%= minDate %>">
+                           value="<%= offer ? offer.endDate : todayDate %>">
                 </label>
             </div>
         </div>
