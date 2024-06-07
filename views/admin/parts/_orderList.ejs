@@ -2,7 +2,7 @@
     <hr>
     <% for (const order of orders) { %>
         <div class="list">
-            <div class="flex-horizontal">
+            <div class="flex-horizontal flex-wrap">
                 <a href="/admin/orders/<%= order.id %>" class="button-square button-blue">
                     Objednávka č. <%= order.id %>.
                 </a>
@@ -18,11 +18,11 @@
                     <% if (!archivedList) { %>
                         <% if (order.completed) { %>
                             <a href="/admin/orders/unCompleteOrder/<%= order.id %>">
-                                <img src="/img/checkboxYes.png" class="w-[24px]">
+                                <img src="/img/checkboxYes.png" class="min-w-[24px] max-w-[24px]">
                             </a>
                         <% } else { %>
                             <a href="/admin/orders/completeOrder/<%= order.id %>">
-                                <img src="/img/checkboxNo.png" class="w-[24px]">
+                                <img src="/img/checkboxNo.png" class="min-w-[24px] max-w-[24px]">
                             </a>
                         <% } %>
                     <% } %>
