@@ -4,7 +4,6 @@ import home from "../routes/front/home.js";
 import courses from "../routes/front/courses.js";
 import admin from "../routes/admin/admin.js";
 import adminCourses from "../routes/admin/adminCourses.js";
-import loadUser from "./middlewares/loadUser.js";
 import adminOrders from "../routes/admin/adminOrders.js";
 import adminContent from "../routes/admin/adminContent.js";
 import session from "express-session";
@@ -13,6 +12,8 @@ import gdpr from "../routes/front/gdpr.js";
 import adminUsers from "../routes/admin/adminUsers.js";
 import adminOffers from "../routes/admin/adminOffers.js";
 import "dotenv/config.js";
+import cookieParser from "cookie-parser";
+import loadUser from "./middlewares/loadUser.js";
 
 export const app = express()
 
@@ -20,13 +21,13 @@ app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
+app.use(cookieParser())
 app.use(session({
         secret: process.env.SESSION_SECRET,
         saveUninitialized: false,
         resave: false
     }
 ))
-app.use(loadUser)
 
 app.use(home)
 app.use(contacts)

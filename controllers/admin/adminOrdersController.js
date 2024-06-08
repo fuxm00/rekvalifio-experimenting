@@ -1,5 +1,5 @@
 import {
-    archiveOrderById, completeOrderById, remvoeOrderById
+    archiveOrderById, completeOrderById, removeOrderById
 } from "../../model/db/orders.js";
 import {getCompleteOrder, getFormatedArchivedOrders, getFormatedOrders} from "../../src/utils/orders.js";
 import {toastTypes} from "../../model/schema/toastTypes.js";
@@ -99,7 +99,7 @@ export const deleteOrder = async (req, res) => {
 
     const orderId = req.params.id;
 
-    await remvoeOrderById(orderId)
+    await removeOrderById(orderId)
 
     const toastMessages = []
     toastMessages.push({type: toastTypes.normal, title:"Objednávka smazána"})

@@ -1,5 +1,5 @@
 import express from "express";
-import auth from "../../src/middlewares/auth.js";
+import auth from "../../src/middlewares/loggedIn.js";
 import {
     adminContentView,
     changeHomeTexts,
@@ -8,13 +8,15 @@ import {
 } from "../../controllers/admin/adminContentController.js";
 import {upload} from "../../src/middlewares/upload.js";
 import loadToastMessages from "../../src/middlewares/loadToastMessages.js";
+import loadUser from "../../src/middlewares/loadUser.js";
+import approveRights from "../../src/middlewares/Approved.js";
 
 const content = express.Router()
 
-content.get("/admin/content", auth, loadToastMessages, adminContentView)
-content.post("/admin/content/change-logo", auth, upload.single('logo'), changeLogo)
-content.post("/admin/content/change-home-texts", auth, changeHomeTexts)
-content.post("/admin/content/change-social-links", auth, changeSocialLinks)
+content.get("/admin/content", loadUser, auth, approveRights, loadToastMessages, adminContentView)
+content.post("/admin/content/change-logo", loadUser, auth, approveRights, upload.single('logo'), changeLogo)
+content.post("/admin/content/change-home-texts", loadUser, auth, approveRights, changeHomeTexts)
+content.post("/admin/content/change-social-links", loadUser, auth, approveRights, changeSocialLinks)
 
 
 export default content

@@ -47,6 +47,6 @@ export const completeOrderById = async (id, isComplete) => {
     await db('orders').update({completed: isComplete}).where('id', id)
 }
 
-export const remvoeOrderById = async (id) => {
+export const removeOrderById = async (id) => {
     await db('orders').delete().where('id', id)
 }

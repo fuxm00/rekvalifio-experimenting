@@ -1,6 +1,6 @@
 export default (req, res, next) => {
 
-    if (true) {
+    if (res.locals.user) {
         next()
     } else {
         res.redirect('/admin/login')
