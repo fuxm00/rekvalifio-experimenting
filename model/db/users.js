@@ -17,7 +17,7 @@ export const createUser = async (mail, password) => {
     const currentUsers = await getAllUsers()
     let defaultApproval = currentUsers.length < 1;
 
-    const ids = await db('users').insert({ mail, salt, hash, token, isApproved: defaultApproval })
+    const ids = await db('users').insert({mail, salt, hash, token, isApproved: defaultApproval})
 
     const user = await db('users').where('id', ids[0]).first()
 
@@ -25,7 +25,7 @@ export const createUser = async (mail, password) => {
 }
 
 export const getUser = async (mail, password) => {
-    const user = await db('users').where({ mail }).first()
+    const user = await db('users').where({mail}).first()
     if (!user) return null
 
     const salt = user.salt
@@ -36,7 +36,7 @@ export const getUser = async (mail, password) => {
 }
 
 export const getUserByToken = async (token) => {
-    const user = await db('users').where({ token }).first()
+    const user = await db('users').where({token}).first()
     return user
 }
 
@@ -45,5 +45,5 @@ export const approveUserById = async (id, isApproved) => {
 }
 
 export const removeUserById = async (id) => {
-    await db('users').delete().where({ id })
+    await db('users').delete().where({id})
 }
