@@ -1,12 +1,10 @@
 import {approveUserById, createUser, getAllUsers, getUser, removeUserById} from "../../model/db/users.js";
 import {toastTypes} from "../../model/schema/toastTypes.js";
-import db from "../../model/db.js";
-import {completeOrderById, removeOrderById} from "../../model/db/orders.js";
 
 export const adminUserRegisterView = async (req, res) => {
 
     res.render("admin/register", {
-        title: 'users', login: false
+        title: 'register', login: false
     });
 }
 
@@ -34,7 +32,7 @@ export const adminUserRegister = async (req, res) => {
 export const adminUserLoginView = async (req, res) => {
 
     res.render("admin/login", {
-        title: 'users', login: true
+        title: 'login', login: true
     });
 }
 
@@ -144,6 +142,6 @@ export const waitView = async (req, res) => {
     }
 
     res.render("admin/wait", {
-        title: 'users',
+        title: 'wait',
     });
 }
