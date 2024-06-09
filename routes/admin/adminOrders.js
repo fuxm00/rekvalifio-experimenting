@@ -8,7 +8,7 @@ import {
 } from "../../controllers/admin/adminOrdersController.js";
 import loadToastMessages from "../../src/middlewares/loadToastMessages.js";
 import loadUser from "../../src/middlewares/loadUser.js";
-import approveRights from "../../src/middlewares/Approved.js";
+import approveRights from "../../src/middlewares/approved.js";
 
 const orders = express.Router()
 

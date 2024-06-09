@@ -11,7 +11,7 @@ import {
 import auth from "../../src/middlewares/loggedIn.js";
 import loadToastMessages from "../../src/middlewares/loadToastMessages.js";
 import loadUser from "../../src/middlewares/loadUser.js";
-import approveRights from "../../src/middlewares/Approved.js";
+import approveRights from "../../src/middlewares/approved.js";
 
 const adminCourses = express.Router()
 

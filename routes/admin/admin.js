@@ -3,7 +3,7 @@ import {adminView} from "../../controllers/admin/adminController.js";
 import auth from "../../src/middlewares/loggedIn.js";
 import loadUser from "../../src/middlewares/loadUser.js";
 import loadToastMessages from "../../src/middlewares/loadToastMessages.js";
-import approveRights from "../../src/middlewares/Approved.js";
+import approveRights from "../../src/middlewares/approved.js";
 
 const admin = express.Router()
 
