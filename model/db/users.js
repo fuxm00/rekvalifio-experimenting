@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import db from "../db.js";
+import {getHash} from "../../src/utils/getHash.js";
 
 export const getAllUsers = async () => {
     let query = db('users').select('*')
@@ -11,7 +12,7 @@ export const getAllUsers = async () => {
 
 export const createUser = async (mail, password) => {
     const salt = crypto.randomBytes(16).toString('hex')
-    const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha256').toString('hex')
+    const hash = getHash(password, salt)
     const token = crypto.randomBytes(16).toString('hex')
 
     const currentUsers = await getAllUsers()
@@ -28,8 +29,10 @@ export const getUser = async (mail, password) => {
     const user = await db('users').where({mail}).first()
     if (!user) return null
 
+    console.log(user)
+
     const salt = user.salt
-    const hash = crypto.pbkdf2Sync(password, salt, 100000, 64, 'sha512').toString('hex')
+    const hash = getHash(password, salt)
     if (hash !== user.hash) return null
 
     return user
