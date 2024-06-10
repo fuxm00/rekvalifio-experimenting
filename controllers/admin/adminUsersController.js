@@ -14,7 +14,7 @@ export const adminUserRegister = async (req, res) => {
 
     const toastMessages = []
     !mail ? toastMessages.push({type: toastTypes.warning, title: "Zadejte svůj nový e-mail"}) : null
-    !password ? toastMessages.push({type: toastTypes.warning, title: "Zadejte svůje nové heslo"}) : null
+    !password ? toastMessages.push({type: toastTypes.warning, title: "Zadejte svoje nové heslo"}) : null
 
     if (toastMessages.length < 1) {
         const user = await createUser(mail, password)
@@ -42,7 +42,7 @@ export const adminUserLogin = async (req, res) => {
 
     const toastMessages = []
     !mail ? toastMessages.push({type: toastTypes.warning, title: "Zadejte svůj e-mail"}) : null
-    !password ? toastMessages.push({type: toastTypes.warning, title: "Zadejte svůje heslo"}) : null
+    !password ? toastMessages.push({type: toastTypes.warning, title: "Zadejte svoje heslo"}) : null
 
     if (toastMessages.length < 1) {
         const user = await getUser(mail, password)

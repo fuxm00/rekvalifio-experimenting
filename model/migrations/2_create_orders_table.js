@@ -18,7 +18,7 @@ export const up = async function (knex) {
 
         table.float('price').notNullable()
 
-        table.timestamp('created_at').defaultTo(knex.fn.now());
+        table.timestamp('createdAt').defaultTo(knex.fn.now()).notNullable();
 
         table.integer('courseId').notNullable()
         table.foreign('courseId').references('id').inTable('courses')
