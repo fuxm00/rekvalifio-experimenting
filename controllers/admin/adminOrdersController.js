@@ -105,5 +105,5 @@ export const deleteOrder = async (req, res) => {
     toastMessages.push({type: toastTypes.normal, title:"Objednávka smazána"})
     req.session.toastMessages = toastMessages
 
-    res.redirect('back')
+    res.redirect('/admin/orders')
 }

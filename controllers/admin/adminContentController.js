@@ -4,6 +4,7 @@ import {toastTypes} from "../../model/schema/toastTypes.js";
 
 export const adminContentView = async (req, res) => {
 
+    const logoLink = await jsonDb.get(jsonDbSchema.logo)
     const homeContent = await jsonDb.get(jsonDbSchema.home)
     const coursesContent = await jsonDb.get(jsonDbSchema.courses)
     const contactsContent = await jsonDb.get(jsonDbSchema.contacts)
@@ -23,6 +24,7 @@ export const adminContentView = async (req, res) => {
         facebookLink,
         instagramLink,
         xLink,
+        logoLink,
     });
 }
 

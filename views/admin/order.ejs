@@ -1,6 +1,7 @@
 <%- include('./parts/_header') %>
 <h2>Objednávka č. <%= order.id %></h2>
 <div class="content-container">
+
     <div>Kurz: <%= order.course.title %></div>
 
     <h3>Účastníci</h3>
@@ -9,8 +10,12 @@
     <% } %>
 
     <h3>Fakturační údaje</h3>
-    <div>Firma: <%= order.billingAdress.firm %></div>
-    <div>Jméno a příjmení: <%= order.billingAdress.name %></div>
+    <% if (order.billingAdress.firm) { %>
+        <div>Firma: <%= order.billingAdress.firm %></div>
+    <% } %>
+    <% if (order.billingAdress.name) { %>
+        <div>Jméno a příjmení: <%= order.billingAdress.name %></div>
+    <% } %>
     <div>Ulice: <%= order.billingAdress.street %></div>
     <div>Město: <%= order.billingAdress.city %></div>
     <div>PSČ: <%= order.billingAdress.postal %></div>
@@ -31,10 +36,36 @@
     <div>telefon: <%= order.phone %></div>
 
     <h3>Poznámka</h3>
-    <div>Poznámka: <%= order.note %></div>
+    <div><%= order.note %></div>
 
     <h3>Platební informace</h3>
     <div>Celková cena: <%= order.price %> Kč</div>
+</div>
+
+<div class="flex-horizontal justify-center">
+    <div>
+        <% if (order.completed) { %>
+            <a href="/admin/orders/unCompleteOrder/<%= order.id %>">
+                <img src="/img/checkboxYes.png" class="min-w-[24px] max-w-[24px]">
+            </a>
+        <% } else { %>
+            <a href="/admin/orders/completeOrder/<%= order.id %>">
+                <img src="/img/checkboxNo.png" class="min-w-[24px] max-w-[24px]">
+            </a>
+        <% } %>
+    </div>
+    <div>
+        <% if (order.archived) { %>
+            <a href="/admin/orders/unArchiveOrder/<%= order.id %>"
+               class="button-square button-soft-blue">odarchivovat</a>
+        <% } else { %>
+            <a href="/admin/orders/archiveOrder/<%= order.id %>"
+               class="button-square button-soft-blue">archivovat</a>
+        <% } %>
+    </div>
+    <div>
+        <a href="/admin/orders/delete/<%= order.id %>" class="button-square button-red">smazat</a>
+    </div>
 </div>
 
 <%- include('./parts/scripts/_toast') %>

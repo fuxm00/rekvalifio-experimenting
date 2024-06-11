@@ -1,4 +1,4 @@
-import {createCourse, getCourseById, getCoursesByCategoryId} from "../../model/db/courses.js";
+import {getCourseById, getCoursesByCategoryId} from "../../model/db/courses.js";
 import {createOrder} from "../../model/db/orders.js";
 import jsonDb from "../../model/jsonDb.js";
 import {getAllCourseCategories, getCategoryById, getCourseCategoriesOfType} from "../../model/db/courseCategories.js";
@@ -193,21 +193,23 @@ export const placeOrder = async (req, res) => {
         dic: billingDic
     })
 
-    const mailingAddress = await createAddress({
-        firm: mailingFirm, name: mailingName, street: mailingStreet, city: mailingCity, postal: mailingPostal,
-    })
+    let mailingAddress
+
+    if (mailingAddress || mailingName || mailingStreet || mailingCity || mailingPostal) {
+        mailingAddress = await createAddress({
+            firm: mailingFirm,
+            name: mailingName,
+            street: mailingStreet,
+            city: mailingCity,
+            postal: mailingPostal,
+        })
+    }
 
     const billingAddressId = billingAddress.id;
-    const mailingAddressId = mailingAddress.id;
+    const mailingAddressId = mailingAddress ? mailingAddress.id : null
 
     const order = await createOrder({
-        courseId,
-        note,
-        email,
-        phone,
-        billingAddressId,
-        mailingAddressId,
-        price: finalPrice
+        courseId, note, email, phone, billingAddressId, mailingAddressId, price: finalPrice
     })
     req.session.regenerate(function (err) {
     })
@@ -236,20 +238,31 @@ export const proceedOrder = async (req, res) => {
     }
 
     participants.length < 1 ? toastMessages.push({
-        type: toastTypes.warning,
-        title: "Zadejte alespoň jednoho účastníka"
+        type: toastTypes.warning, title: "Zadejte alespoň jednoho účastníka"
     }) : req.session.participants = participants
 
     const {
-        billingFirm, billingName, billingStreet, billingCity, billingPostal, billingIc, billingDic,
-        mailingFirm, mailingName, mailingStreet, mailingCity, mailingPostal,
-        email, phone, note,approval
+        billingFirm,
+        billingName,
+        billingStreet,
+        billingCity,
+        billingPostal,
+        billingIc,
+        billingDic,
+        mailingFirm,
+        mailingName,
+        mailingStreet,
+        mailingCity,
+        mailingPostal,
+        email,
+        phone,
+        note,
+        approval
     } = req.body;
 
     if (billingFirm === "" && billingName === "") {
         toastMessages.push({
-            type: toastTypes.warning,
-            title: "Vyplňte název firmy nebo jméno pro fakturaci"
+            type: toastTypes.warning, title: "Vyplňte název firmy nebo jméno pro fakturaci"
         })
     } else {
         req.session.billingFirm = billingFirm
@@ -257,23 +270,19 @@ export const proceedOrder = async (req, res) => {
     }
 
     billingStreet === "" ? toastMessages.push({
-        type: toastTypes.warning,
-        title: "Vyplňte ulici pro fakturaci"
+        type: toastTypes.warning, title: "Vyplňte ulici pro fakturaci"
     }) : req.session.billingStreet = billingStreet
 
     billingCity === "" ? toastMessages.push({
-        type: toastTypes.warning,
-        title: "Vyplňte město pro fakturaci"
+        type: toastTypes.warning, title: "Vyplňte město pro fakturaci"
     }) : req.session.billingCity = billingCity
 
     billingPostal === "" ? toastMessages.push({
-        type: toastTypes.warning,
-        title: "Vyplňte PSČ pro fakturaci"
+        type: toastTypes.warning, title: "Vyplňte PSČ pro fakturaci"
     }) : req.session.billingPostal = billingPostal
 
     !approval ? toastMessages.push({
-        type: toastTypes.warning, 
-        title: "Pro pokračování musíte souhlasit s obchodními podmínkami"
+        type: toastTypes.warning, title: "Pro pokračování musíte souhlasit s obchodními podmínkami"
     }) : null
 
     req.session.billingIc = billingIc
@@ -286,13 +295,11 @@ export const proceedOrder = async (req, res) => {
     req.session.mailingPostal = mailingPostal
 
     !email ? toastMessages.push({
-        type: toastTypes.warning,
-        title: "Vyplňte kontaktní email"
+        type: toastTypes.warning, title: "Vyplňte kontaktní email"
     }) : req.session.email = email
 
     !phone ? toastMessages.push({
-        type: toastTypes.warning,
-        title: "Vyplňte kontaktní telefon"
+        type: toastTypes.warning, title: "Vyplňte kontaktní telefon"
     }) : req.session.phone = phone
 
     req.session.note = note
