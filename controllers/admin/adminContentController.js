@@ -37,7 +37,7 @@ export const changeLogo = async (req, res) => {
         await jsonDb.set(jsonDbSchema.logo, filename);
         toastMessages.push({type: toastTypes.normal, title:"Logo nahráno"})
     } else {
-        toastMessages.push({type: toastTypes.warning, title:"vyberte logo"})
+        toastMessages.push({type: toastTypes.warning, title:"Logo nebylo vybráno"})
     }
     req.session.toastMessages = toastMessages
     res.redirect('back')
