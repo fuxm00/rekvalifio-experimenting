@@ -13,7 +13,6 @@ import adminUsers from "../routes/admin/adminUsers.js";
 import adminOffers from "../routes/admin/adminOffers.js";
 import "dotenv/config.js";
 import cookieParser from "cookie-parser";
-import loadUser from "./middlewares/loadUser.js";
 
 export const app = express()
 
