@@ -2,7 +2,7 @@
     <% if (!course) { %>
         Přidat kurz
     <% } else { %>
-        Upravit kurz č. <%= course.id%>: <%= course.title%>
+        Upravit kurz č. <%= course.id %>: <%= course.title %>
     <% } %>
 </h3>
 
@@ -22,6 +22,8 @@
                     <input type="text" name="title" placeholder="název kurzu" class="input"
                     <% if (course) { %>
                            value="<%= course.title %>"
+                    <% } else { %>
+                           value="<%= sessionCourse ? sessionCourse.title : null %>"
                             <% } %>
                     />
                 </label>
@@ -35,6 +37,10 @@
 
                         <% if (course) { %>
                             <%= category.id === course.categoryId ? 'selected' : '' %>
+                        <% } else { %>
+                            <% if (sessionCourse) { %>
+                                <%= category.id === sessionCourse.categoryId ? 'selected' : '' %>
+                                    <% } %>
                                 <% } %>
 
                         ><%= category.title %></option>
@@ -47,6 +53,8 @@
                     <input type="text" name="price" placeholder="cena kurzu" class="input"
                     <% if (course) { %>
                            value="<%= course.price %>"
+                    <% } else { %>
+                           value="<%= sessionCourse ? sessionCourse.price : null %>"
                             <% } %>
                     />
                 </label>
@@ -74,9 +82,7 @@
         let editor = new FroalaEditor('#courseContent', {
             toolbarButtons: toolbarButtons
         }, function () {
-            <% if (course) { %>
-            editor.html.set('<%- course.content %>');
-            <% } %>
+            editor.html.set('<%- course ? course.content : sessionCourse ? sessionCourse.content : null %>');
         })
     </script>
 

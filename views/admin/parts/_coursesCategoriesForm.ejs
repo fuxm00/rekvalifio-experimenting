@@ -1,6 +1,6 @@
 <h3>
     <% if (category) { %>
-        Upravit kategrii č. <%= category.id%>: <%= category.title %>
+        Upravit kategrii č. <%= category.id %>: <%= category.title %>
     <% } else { %>
         Přidat kategorii
     <% } %>
@@ -15,7 +15,12 @@
                     <input type="text" name="categoryTitle"
                            placeholder="<%= category ? category.title : "název kategorie" %>"
                            class="input"
-                           value="<%= category ? category.title : "" %>">
+                    <% if (category) { %>
+                           value="<%= category.title %>"
+                    <% } else { %>
+                           value="<%= sessionCategory ? sessionCategory.title : null %>"
+                            <% } %>
+                    />
                 </label>
             </div>
 
@@ -25,8 +30,13 @@
                     <option value="" disabled selected>Vyber typ</option>
                     <% for (const type of types) { %>
                         <option value="<%= type.id %>"
+
                         <% if (category) { %>
                             <%= type.id === category.typeId ? 'selected' : '' %>
+                        <% } else { %>
+                            <% if (sessionCategory) { %>
+                                <%= type.id === sessionCategory.typeId ? 'selected' : '' %>
+                                    <% } %>
                                 <% } %>
                         ><%= type.title %></option>
                     <% } %>
@@ -55,10 +65,7 @@
         new FroalaEditor('#categoryContent', {
             toolbarButtons: toolbarButtons
         }, function () {
-
-            <% if (category) { %>
-            this.html.set('<%- category.content %>');
-            <% } %>
+            this.html.set('<%- category ? category.content : sessionCategory ? sessionCategory.content : null %>');
         })
     </script>
 
